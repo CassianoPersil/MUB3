@@ -1,10 +1,8 @@
 package com.projetos.mub;
 
-import android.content.Intent;
-import android.support.v4.app.FragmentActivity;
+
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -13,18 +11,14 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends SupportMapFragment implements OnMapReadyCallback, GoogleMap.OnMapClickListener {
 
     private GoogleMap mMap;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        getMapAsync(this);
     }
 
 
@@ -44,9 +38,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-7.231777, -39.328237);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        // coordenadas em latitude e longitude da cidade de sidney
+        LatLng sydney = new LatLng(-33.87365, 151.20689);
+        //criando um novo marcador
+        MarkerOptions marker = new MarkerOptions();
+        //marcando a posição
+        marker.position(sydney);
+        //adicionando um titulo
+        marker.title("Marker in Sydney");
+        //permite marcar no mapa a posição desejada
+        mMap.addMarker(marker);
+        //permite mover a camera ate a posição marcada
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
+    }
+
+    @Override
+    public void onMapClick(LatLng latLng) {
+        Toast.makeText(getContext(), "Coordenadas:" + latLng.toString(), Toast.LENGTH_LONG).show();
     }
 }

@@ -17,7 +17,7 @@
         <item>Placas Quebradas</item>
         <item>Sinalização Incorreta</item>
     </string-array>
-    <string name="title_activity_menu_pincipal">MenuPincipal</string>
+    <string name="title_activity_menu_pincipal">MenuPrincipal</string>
 </resources>
 
 

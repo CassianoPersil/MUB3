@@ -10,7 +10,7 @@
 
     <include
         layout="@layout/activity_maps"
-        android:layout_width="409dp"
-        android:layout_height="607dp" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </android.support.constraint.ConstraintLayout>
