@@ -20,6 +20,7 @@
     <string name="title_activity_menu_pincipal">MenuPrincipal</string>
     <string name="EsquceuSenha">Esqueceu a senha?</string>
     <string name="textoBotao">Login</string>
+    <string name="TextoBotão">Salvar</string>
 </resources>
 
 

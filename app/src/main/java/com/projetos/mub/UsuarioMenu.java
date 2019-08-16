@@ -15,7 +15,7 @@ public class UsuarioMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usuario_menu);
 
-        btSalvarUsu = (Button)findViewById(R.id.btSalvarUsu);
+        btSalvarUsu = (Button)findViewById(R.id.btSalvarUsuario);
         btSalvarUsu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
