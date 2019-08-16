@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#0EB3EF</color>
     <color name="colorAccent">#0EB3EF</color>
     <color name="colorBotao">#3ACD50</color>
+    <color name="contornoBotao">#e3e1dc</color>
+    <color name="textoBotao">#FFFFFF</color>
 </resources>
