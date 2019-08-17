@@ -22,6 +22,10 @@
     <string name="textoBotao">Login</string>
     <string name="TextoBotão">Salvar</string>
     <string name="botao_salvar">Salvar Dados</string>
+    <string name="Texto_Nome_Usuario_Ocorrencia">Nome Completo</string>
+    <string name="Texto_Local_Ocorrencia">Local da Ocorrência</string>
+    <string name="Texto_Data_Ocorrencia">Data da Ocorrência</string>
+    <string name="Texto_Botao_Ocorrencia">Enviar</string>
 </resources>
 
 

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -14,6 +15,7 @@ public class InserirOcorrencia extends AppCompatActivity {
 
     Spinner sp;
     Button btEnviarOco;
+    ImageButton imgOcorrencia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +23,8 @@ public class InserirOcorrencia extends AppCompatActivity {
         setContentView(R.layout.activity_inserir_ocorrencia);
 
         sp = (Spinner) findViewById(R.id.sp);
+        imgOcorrencia = (ImageButton) findViewById(R.id.imgOcorrencia);
+        btEnviarOco = (Button) findViewById(R.id.btEnviarOco);
         //Criar array para receber os dados da String
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.ocorrencias, R.layout.support_simple_spinner_dropdown_item);
 
