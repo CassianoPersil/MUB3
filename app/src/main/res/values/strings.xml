@@ -21,6 +21,7 @@
     <string name="EsquceuSenha">Esqueceu a senha?</string>
     <string name="textoBotao">Login</string>
     <string name="TextoBotão">Salvar</string>
+    <string name="botao_salvar">Salvar Dados</string>
 </resources>
 
 

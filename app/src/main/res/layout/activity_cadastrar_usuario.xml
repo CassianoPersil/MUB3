@@ -22,6 +22,7 @@
                 android:id="@+id/imLogo"
                 android:layout_width="wrap_content"
                 android:layout_height="160dp"
+                android:layout_gravity="center"
                 android:layout_weight="1"
                 app:srcCompat="@mipmap/ic_logoini_fore" />
         </LinearLayout>
@@ -37,38 +38,38 @@
             <EditText
                 android:id="@+id/ctNomeUsu"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginRight="7dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textEmailAddress"
-                android:textColorLink="@color/colorPrimary" />
+                android:hint="Nome Completo"
+                android:inputType="textPersonName" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
             android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/ctEmailUsu"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginRight="7dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPassword"
-                android:textColorLink="@color/design_default_color_primary"
-                android:tooltipText="Senha" />
+                android:hint=" Email"
+                android:inputType="textEmailAddress" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -76,10 +77,12 @@
                 android:id="@+id/ctSenhaUsu"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:ems="10"
+                android:hint="Senha"
                 android:inputType="textPassword" />
         </LinearLayout>
 
@@ -87,6 +90,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
+
             android:layout_marginRight="20dp"
             android:orientation="horizontal">
 
@@ -94,19 +98,19 @@
                 android:id="@+id/ctConfSenhaUsu"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:ems="10"
+                android:hint="Confirmar Senha"
                 android:inputType="textPassword" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="290dp"
+            android:layout_width="372dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -114,24 +118,32 @@
                 android:id="@+id/ctCpfUsu"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:ems="10"
+                android:hint="CPF"
                 android:inputType="number" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="78sp"
-            android:layout_marginLeft="60dp"
-            android:layout_marginRight="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btSalvarCad"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="80dp"
+                android:layout_marginRight="80dp"
                 android:layout_weight="1"
-                android:text="Button" />
+                android:background="@drawable/botao_customizado"
+                android:text="@string/botao_salvar"
+                android:textColor="@color/textoBotao"
+                android:textSize="16sp" />
         </LinearLayout>
 
     </LinearLayout>
