@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button btLogar;
     TextView ctcadastrar;
+    TextView ctEsqueceuSenha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         btLogar = (Button) findViewById(R.id.btLogar);
         ctcadastrar = (TextView) findViewById(R.id.ctCadastrar);
+        ctEsqueceuSenha = (TextView) findViewById(R.id.ctEsqueceuSenha);
 
         btLogar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,6 +42,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getBaseContext(), CadastrarUsuario.class);
+                startActivity(intent);
+            }
+        });
+
+        ctEsqueceuSenha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(), RecuperarSenha.class);
                 startActivity(intent);
             }
         });

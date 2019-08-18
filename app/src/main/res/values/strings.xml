@@ -26,6 +26,8 @@
     <string name="Texto_Local_Ocorrencia">Local da Ocorrência</string>
     <string name="Texto_Data_Ocorrencia">Data da Ocorrência</string>
     <string name="Texto_Botao_Ocorrencia">Enviar</string>
+    <string name="Texto_Recuperação_Senha">Informe seu Email para que possamos realizar o processo de recuperação de senha.</string>
+    <string name="Texto_Botao_Recuperar_Senha">Enviar</string>
 </resources>
 
 

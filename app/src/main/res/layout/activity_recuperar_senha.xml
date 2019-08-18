@@ -31,27 +31,28 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
             android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/ctNomeUsu"
+            <TextView
+                android:id="@+id/tvRecuperacao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:ems="10"
-                android:hint="Nome Completo"
-                android:inputType="textPersonName" />
+                android:gravity="center"
+                android:text="@string/Texto_Recuperação_Senha"
+                android:textAllCaps="false"
+                android:textSize="15sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="80dp"
             android:layout_marginRight="20dp"
             android:orientation="horizontal">
 
@@ -68,68 +69,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/ctSenhaUsu"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_weight="1"
-                android:ems="10"
-                android:hint="Senha"
-                android:inputType="textPassword" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-
-            android:layout_marginRight="20dp"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/ctConfSenhaUsu"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:ems="10"
-                android:hint="Confirmar Senha"
-                android:inputType="textPassword" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="372dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/ctCpfUsu"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:ems="10"
-                android:hint="CPF"
-                android:inputType="number" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="150dp"
             android:orientation="horizontal">
 
             <Button
@@ -141,7 +82,7 @@
                 android:layout_marginRight="80dp"
                 android:layout_weight="1"
                 android:background="@drawable/botao_customizado"
-                android:text="@string/botao_salvar"
+                android:text="@string/Texto_Botao_Recuperar_Senha"
                 android:textColor="@color/textoBotao"
                 android:textSize="16sp" />
         </LinearLayout>
