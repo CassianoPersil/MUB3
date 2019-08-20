@@ -13,9 +13,9 @@
             android:icon="@android:drawable/star_big_off"
             android:title="Minhas Ocorrências" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_Alterar"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Informações" />
+            android:title="Alterar Ocorrência" />
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
