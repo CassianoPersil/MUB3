@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_icon_mub"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RecuperarSenha"></activity>
+        <activity android:name=".AlterarOcorrencia"></activity>
+        <activity android:name=".RecuperarSenha" />
         <activity android:name=".CadastrarUsuario" />
         <activity android:name=".UsuarioMenu" />
         <activity android:name=".InserirOcorrencia" />

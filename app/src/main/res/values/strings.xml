@@ -17,17 +17,34 @@
         <item>Placas Quebradas</item>
         <item>Sinalização Incorreta</item>
     </string-array>
+
+    <string-array name="Status_Ocorrencias">
+        <item>Em Andamento</item>
+        <item>Finalizada</item>
+        <item>Concluída</item>
+        <item>Cancelada</item>
+    </string-array>
+
     <string name="title_activity_menu_pincipal">MenuPrincipal</string>
     <string name="EsquceuSenha">Esqueceu a senha?</string>
     <string name="textoBotao">Login</string>
     <string name="TextoBotão">Salvar</string>
     <string name="botao_salvar">Salvar Dados</string>
     <string name="Texto_Nome_Usuario_Ocorrencia">Nome Completo</string>
-    <string name="Texto_Local_Ocorrencia">Local da Ocorrência</string>
+    <string name="Texto_Local_Ocor">Local da Ocorrência</string>
     <string name="Texto_Data_Ocorrencia">Data da Ocorrência</string>
     <string name="Texto_Botao_Ocorrencia">Enviar</string>
     <string name="Texto_Recuperação_Senha">Informe seu Email para que possamos realizar o processo de recuperação de senha.</string>
     <string name="Texto_Botao_Recuperar_Senha">Enviar</string>
+    <string name="Texto_Local_Ocorrencia">Local da Ocorrência</string>
+    <string name="Imagem_Ocorrência">Imagem da Ocorrência</string>
+    <string name="Texto_Data_Ocorrencia_Postadada">Data</string>
+    <string name="Texto_Horario_Ocorrencia">Horário</string>
+    <string name="Texto_Status_Ocor">Status:</string>
+    <string name="Texto_Status_ocorrencia">Status:</string>
+    <string name="Texto_status_Ocorrencia">Status:</string>
+    <string name="Texto_Status_Ocorrencia">Status:</string>
+    <string name="Texto_Botão_Alterar_Ocorrencia">Alterar Dados</string>
 </resources>
 
 

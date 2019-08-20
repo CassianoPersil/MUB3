@@ -36,19 +36,14 @@ public class MapsActivity extends SupportMapFragment implements OnMapReadyCallba
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        mMap.setOnMapClickListener(this);
 
         // Add a marker in Sydney and move the camera
-        // coordenadas em latitude e longitude da cidade de sidney
         LatLng sydney = new LatLng(-33.87365, 151.20689);
-        //criando um novo marcador
         MarkerOptions marker = new MarkerOptions();
-        //marcando a posição
         marker.position(sydney);
-        //adicionando um titulo
         marker.title("Marker in Sydney");
-        //permite marcar no mapa a posição desejada
         mMap.addMarker(marker);
-        //permite mover a camera ate a posição marcada
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
     }
