@@ -15,9 +15,8 @@ import android.widget.Toast;
 public class AlterarOcorrencia extends AppCompatActivity {
     ImageView ImgPerfilUsuario, ImgOcorrencia;
     TextView NomeUsuario, EmailUsuario, ctLocalOcorrencia, ctImagemOcorrencia,
-            ctDataOcorrencia, ctHorarioOcorrencia, ctTextoStatusOcorrencia, ctStautsOcorrencia;
+            ctDataOcorrencia, ctHorarioOcorrencia, ctTextoStatusOcorrencia, ctStautsOcorrencia, ctObservacoes;
     Button btAlterarDados;
-    ImageButton imgbtSalvar;
     Spinner spinnerStatus;
 
     @Override
@@ -37,6 +36,7 @@ public class AlterarOcorrencia extends AppCompatActivity {
         ctStautsOcorrencia = (TextView) findViewById(R.id.ctStatusOcorrencia);
         btAlterarDados = (Button) findViewById(R.id.btAlterarDados);
         spinnerStatus = (Spinner) findViewById(R.id.spinnerStatus);
+        ctObservacoes = (TextView) findViewById(R.id.ctObservacoes);
 
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Status_Ocorrencias, R.layout.support_simple_spinner_dropdown_item);
