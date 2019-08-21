@@ -17,6 +17,7 @@ public class AlterarOcorrencia extends AppCompatActivity {
     TextView NomeUsuario, EmailUsuario, ctLocalOcorrencia, ctImagemOcorrencia,
             ctDataOcorrencia, ctHorarioOcorrencia, ctTextoStatusOcorrencia, ctStautsOcorrencia;
     Button btAlterarDados;
+    ImageButton imgbtSalvar;
     Spinner spinnerStatus;
 
     @Override
@@ -36,6 +37,7 @@ public class AlterarOcorrencia extends AppCompatActivity {
         ctStautsOcorrencia = (TextView) findViewById(R.id.ctStatusOcorrencia);
         btAlterarDados = (Button) findViewById(R.id.btAlterarDados);
         spinnerStatus = (Spinner) findViewById(R.id.spinnerStatus);
+
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Status_Ocorrencias, R.layout.support_simple_spinner_dropdown_item);
 
