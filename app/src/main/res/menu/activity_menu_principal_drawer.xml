@@ -17,9 +17,9 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Alterar Ocorrência" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_ConsultarOcorrencia"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Configurações" />
+            android:title="Consultar Ocorrências" />
     </group>
 
     <item android:title=" Meios Comunicações">

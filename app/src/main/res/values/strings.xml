@@ -46,6 +46,30 @@
     <string name="Texto_Status_Ocorrencia">Status:</string>
     <string name="Texto_Botão_Alterar_Ocorrencia">Alterar Dados</string>
     <string name="Caixa_Observações">Observações:</string>
+    <string name="Texto_Selecionar_Tipo_Ocorrencia">Selecione o(s) tipo(s) de ocorrência que deseja consultar</string>
+
+    //Tela Consultar Ocorrencia
+    <string name="Texto_Radio_Button_1">Andamento</string>
+    <string name="Texto_Radio_Button_2">Analisando</string>
+    <string name="Texto_Radio_Button_3">Finalizada</string>
+    <string name="Texto_Radio_Button_4">Concluida</string>
+    <string name="Texo_Informativo_Mes">Selecione o mês desejavel</string>
+    <string name="Texto_Botão_Pesquisar_Ocorrencias">Pesquisar</string>
+
+    <string-array name="spinner_meses">
+        <item>Janeiro</item>
+        <item>Fevereiro</item>
+        <item>Março</item>
+        <item>Abril</item>
+        <item>Maio</item>
+        <item>Junho</item>
+        <item>Julho</item>
+        <item>Agosto</item>
+        <item>Setembro</item>
+        <item>Outubro</item>
+        <item>Novembro</item>
+        <item>Dezembro</item>
+    </string-array>
 </resources>
 
 

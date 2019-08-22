@@ -89,7 +89,9 @@ public class MenuPrincipal extends AppCompatActivity
             Intent intent = new Intent(getBaseContext(), AlterarOcorrencia.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_ConsultarOcorrencia) {
+            Intent intent = new Intent(getBaseContext(),ConsultarOcorrencia.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_share) {
 
