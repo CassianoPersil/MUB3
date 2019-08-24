@@ -15,7 +15,7 @@ public class InserirOcorrencia extends AppCompatActivity {
 
     Spinner sp;
     Button btEnviarOco;
-    ImageButton imgOcorrencia;
+    ImageButton imgOcorrencia, imgData,imgHoras;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +25,9 @@ public class InserirOcorrencia extends AppCompatActivity {
         sp = (Spinner) findViewById(R.id.sp);
         imgOcorrencia = (ImageButton) findViewById(R.id.imgOcorrencia);
         btEnviarOco = (Button) findViewById(R.id.btEnviarOco);
+        imgData = (ImageButton) findViewById(R.id.imgData);
+        imgHoras = (ImageButton) findViewById(R.id.imgHoras);
+
         //Criar array para receber os dados da String
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.ocorrencias, R.layout.support_simple_spinner_dropdown_item);
 
