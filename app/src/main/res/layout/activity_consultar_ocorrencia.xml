@@ -33,48 +33,25 @@
                 android:layout_marginTop="15dp"
                 android:orientation="horizontal">
 
-                <RadioButton
-                    android:id="@+id/rbEmAndamento"
-                    android:layout_width="wrap_content"
+                <Spinner
+                    android:id="@+id/spinnerOcorrencias"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/Texto_Radio_Button_1" />
-
-                <RadioButton
-                    android:id="@+id/rbAnalisando"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/Texto_Radio_Button_2" />
-
-                <RadioButton
-                    android:id="@+id/rbFinalizada"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/Texto_Radio_Button_3" />
-
-                <RadioButton
-                    android:id="@+id/rbConcluida"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/Texto_Radio_Button_4" />
-
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/txSelecionarMes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="15dp"
                     android:text="@string/Texo_Informativo_Mes"
                     android:textColor="@android:color/background_dark"
                     android:textSize="15sp" />
@@ -91,13 +68,15 @@
                     android:id="@+id/spMeses"
                     android:layout_width="200dp"
                     android:layout_height="40dp"
-                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
                     android:layout_weight="1" />
 
                 <Button
                     android:id="@+id/btPesquisar"
                     android:layout_width="130dp"
                     android:layout_height="40dp"
+                    android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:text="@string/Texto_Botão_Pesquisar_Ocorrencias" />
             </LinearLayout>
@@ -111,7 +90,8 @@
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recListragem"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp" />
             </LinearLayout>
 
         </LinearLayout>

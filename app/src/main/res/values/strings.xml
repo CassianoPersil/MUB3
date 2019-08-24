@@ -19,6 +19,7 @@
     </string-array>
 
     <string-array name="Status_Ocorrencias">
+        <item></item>
         <item>Em Andamento</item>
         <item>Finalizada</item>
         <item>Concluída</item>
@@ -46,7 +47,7 @@
     <string name="Texto_Status_Ocorrencia">Status:</string>
     <string name="Texto_Botão_Alterar_Ocorrencia">Alterar Dados</string>
     <string name="Caixa_Observações">Observações:</string>
-    <string name="Texto_Selecionar_Tipo_Ocorrencia">Selecione o(s) tipo(s) de ocorrência que deseja consultar</string>
+    <string name="Texto_Selecionar_Tipo_Ocorrencia">Selecione o tipo de ocorrência que deseja consultar</string>
 
     //Tela Consultar Ocorrencia
     <string name="Texto_Radio_Button_1">Andamento</string>
@@ -57,6 +58,7 @@
     <string name="Texto_Botão_Pesquisar_Ocorrencias">Pesquisar</string>
 
     <string-array name="spinner_meses">
+        <item></item>
         <item>Janeiro</item>
         <item>Fevereiro</item>
         <item>Março</item>
