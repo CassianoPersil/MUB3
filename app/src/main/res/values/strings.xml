@@ -58,6 +58,9 @@
     <string name="Texo_Informativo_Mes">Selecione o mês desejavel</string>
     <string name="Texto_Botão_Pesquisar_Ocorrencias">Pesquisar</string>
     <string name="Nav_AtenderOcorrencia">Atender Ocorrências</string>
+    <string name="id_tipo_ocorrencia">Tipo de Ocorrência:</string>
+    <string name="id_tipo_ocorrencia">Tipo de Ocorrência:</string>
+    <string name="id_Img_ocorrencia">Imagem da Ocorrência</string>
 
     <string-array name="spinner_meses">
         <item></item>
