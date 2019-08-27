@@ -6,4 +6,5 @@
     <color name="colorBotao">#3ACD50</color>
     <color name="contornoBotao">#E3E1DC</color>
     <color name="textoBotao">#FFFFFF</color>
+    <color name="caixa_texto">#FFFFFF</color>
 </resources>

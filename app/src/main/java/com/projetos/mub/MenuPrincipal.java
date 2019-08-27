@@ -80,20 +80,20 @@ public class MenuPrincipal extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_conta) {
             Intent intent = new Intent(getBaseContext(), UsuarioMenu.class);
             startActivity(intent);
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_Ocorrencias) {
 
-        } else if (id == R.id.nav_Alterar) {
+        } else if (id == R.id.nav_alterar_Ocorrencia) {
             Intent intent = new Intent(getBaseContext(), AlterarOcorrencia.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_ConsultarOcorrencia) {
+        } else if (id == R.id.nav_consultar_ocorrencia) {
             Intent intent = new Intent(getBaseContext(),ConsultarOcorrencia.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_atender_ocorrencia) {
 
         } else if (id == R.id.nav_send) {
 

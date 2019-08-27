@@ -10,6 +10,7 @@
     <string name="title_activity_maps">Map</string>
 
     <string-array name="ocorrencias">
+        <item></item>
         <item>Semáforo Quebrado</item>
         <item>Obstrução Acidental</item>
         <item>Obstrução Veicular</item>
@@ -56,6 +57,7 @@
     <string name="Texto_Radio_Button_4">Concluida</string>
     <string name="Texo_Informativo_Mes">Selecione o mês desejavel</string>
     <string name="Texto_Botão_Pesquisar_Ocorrencias">Pesquisar</string>
+    <string name="Nav_AtenderOcorrencia">Atender Ocorrências</string>
 
     <string-array name="spinner_meses">
         <item></item>

@@ -5,34 +5,29 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_conta"
             android:icon="@drawable/ic_menu_camera"
             android:title="Conta" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_Ocorrencias"
             android:icon="@android:drawable/star_big_off"
             android:title="Minhas Ocorrências" />
         <item
-            android:id="@+id/nav_Alterar"
+            android:id="@+id/nav_alterar_Ocorrencia"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Alterar Ocorrência" />
         <item
-            android:id="@+id/nav_ConsultarOcorrencia"
+            android:id="@+id/nav_consultar_ocorrencia"
             android:icon="@drawable/ic_menu_manage"
             android:title="Consultar Ocorrências" />
+        <item
+            android:id="@+id/nav_atender_ocorrencia"
+            android:icon="@drawable/ic_menu_share"
+            android:title="@string/Nav_AtenderOcorrencia" />
+        <item
+            android:id="@+id/nav_send"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Enviar" />
     </group>
-
-    <item android:title=" Meios Comunicações">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Compartilhar" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Enviar" />
-        </menu>
-    </item>
 
 </menu>
