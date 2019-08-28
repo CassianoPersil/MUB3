@@ -61,6 +61,7 @@
     <string name="id_tipo_ocorrencia">Tipo de Ocorrência:</string>
     <string name="id_tipo_ocorrencia">Tipo de Ocorrência:</string>
     <string name="id_Img_ocorrencia">Imagem da Ocorrência</string>
+    <string name="Texto_Data_Nascimento">Data de Nascimento</string>
 
     <string-array name="spinner_meses">
         <item></item>
