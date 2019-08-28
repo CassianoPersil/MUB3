@@ -21,7 +21,7 @@
             <ImageView
                 android:id="@+id/imgLogo"
                 android:layout_width="wrap_content"
-                android:layout_height="160dp"
+                android:layout_height="150dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 app:srcCompat="@mipmap/ic_logoini_fore" />
@@ -31,7 +31,6 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
             android:orientation="horizontal">
 
@@ -67,7 +66,7 @@
 
         <LinearLayout
             android:layout_width="372dp"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:gravity="center"
@@ -78,8 +77,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="Senha"
@@ -104,6 +101,24 @@
                 android:ems="10"
                 android:hint="Confirmar Senha"
                 android:inputType="textPassword" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/ctTelefone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="@string/Texto_Telefone"
+                android:inputType="phone" />
         </LinearLayout>
 
         <LinearLayout
@@ -147,7 +162,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <Button
