@@ -19,7 +19,7 @@ public class CadastrarUsuario extends AppCompatActivity {
         ctnomeUsu = (TextView) findViewById(R.id.ctNomeUsu);
         ctemailUsu = (TextView) findViewById(R.id.ctEmailRecSenha);
         ctsenhaUsu = (TextView) findViewById(R.id.ctSenhaUsu);
-        ctsenhaConfUsu = (TextView) findViewById(R.id.ctConfSenhaUsu);
+        //ctsenhaConfUsu = (TextView) findViewById(R.id.ctConfSenhaUsu);
         ctCpfUsu = (TextView) findViewById(R.id.ctCpfUsu);
         btCadastrarUsu = (Button) findViewById(R.id.btEnviarDados);
 
@@ -31,6 +31,8 @@ public class CadastrarUsuario extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
 
     }
 }

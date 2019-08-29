@@ -62,6 +62,10 @@
     <string name="id_Img_ocorrencia">Imagem da Ocorrência</string>
     <string name="Texto_Data_Nascimento">Data de Nascimento</string>
     <string name="Texto_Telefone">Telefone</string>
+    <string name="Data_Ocorencia">Data:</string>
+    <string name="horario_ocorrencia">Horário:</string>
+    <string name="Botao_Atender">Atender</string>
+    <string name="botao_recusar">Recusar</string>
 
     <string-array name="spinner_meses">
         <item></item>

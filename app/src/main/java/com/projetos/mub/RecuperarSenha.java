@@ -21,5 +21,7 @@ public class RecuperarSenha extends AppCompatActivity {
         tvRecuperacao = (TextView) findViewById(R.id.tvRecuperacao);
         ctEmailRecSenha = (TextView) findViewById(R.id.ctEmailRecSenha);
         btEnviarDados = (Button) findViewById(R.id.btEnviarDados);
+
+
     }
 }
