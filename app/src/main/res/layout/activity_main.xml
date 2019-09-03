@@ -22,6 +22,7 @@
                 android:id="@+id/imgLogo"
                 android:layout_width="wrap_content"
                 android:layout_height="230dp"
+                android:layout_gravity="center"
                 android:layout_weight="1"
                 app:srcCompat="@mipmap/ic_logoini_fore" />
         </LinearLayout>
@@ -29,6 +30,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
@@ -57,6 +59,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
@@ -93,6 +96,7 @@
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:gravity="center"
@@ -103,8 +107,10 @@
                 android:id="@+id/ctCadastrar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="Cadastre-se"
                 android:textColor="@color/design_default_color_primary"
                 android:textColorLink="@color/design_default_color_primary"
@@ -129,6 +135,7 @@
                 android:layout_marginRight="50dp"
 
                 android:background="@drawable/botao_customizado"
+                android:gravity="center"
                 android:text="@string/textoBotao"
                 android:textColor="@color/textoBotao" />
         </LinearLayout>
@@ -136,6 +143,7 @@
         <LinearLayout
             android:layout_width="290dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginLeft="60dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="60dp"
@@ -156,7 +164,7 @@
                 android:id="@+id/ctEsqueceuSenha"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
+                android:layout_marginLeft="20dp"
                 android:layout_weight="1"
                 android:text="@string/EsquceuSenha"
                 android:textColor="@android:color/primary_text_light_nodisable" />
@@ -166,6 +174,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="78sp"
+            android:layout_gravity="center"
             android:layout_marginLeft="60dp"
             android:layout_marginRight="60dp"
             android:orientation="horizontal">
