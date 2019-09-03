@@ -51,12 +51,14 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:layout_marginRight="5dp"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <EditText
                     android:id="@+id/ctNomeUsuario"
-                    android:layout_width="309dp"
+                    android:layout_width="270dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
@@ -66,8 +68,8 @@
 
                 <ImageButton
                     android:id="@+id/btLocalOcorrencia"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_weight="1"
                     app:srcCompat="@mipmap/ic_edit_icon" />
 
@@ -76,12 +78,13 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginRight="5dp"
                 android:orientation="horizontal">
 
                 <EditText
                     android:id="@+id/ctEndereçoUsuario"
-                    android:layout_width="309dp"
+                    android:layout_width="270dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:ems="10"
@@ -90,8 +93,8 @@
 
                 <ImageButton
                     android:id="@+id/btEndereçoUsuario"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_weight="1"
                     app:srcCompat="@mipmap/ic_edit_icon" />
 
@@ -100,12 +103,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginRight="5dp"
                 android:orientation="vertical">
 
                 <EditText
                     android:id="@+id/ctCpf"
-                    android:layout_width="match_parent"
+                    android:layout_width="270dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="60dp"
                     android:layout_marginBottom="5dp"
@@ -117,12 +121,13 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginRight="5dp"
                 android:orientation="horizontal">
 
                 <EditText
                     android:id="@+id/ctEmailUsuario"
-                    android:layout_width="308dp"
+                    android:layout_width="270dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="E-mail"
@@ -130,8 +135,8 @@
 
                 <ImageButton
                     android:id="@+id/btEmailUsuario"
-                    android:layout_width="54dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_weight="1"
                     app:srcCompat="@mipmap/ic_edit_icon" />
 
@@ -140,8 +145,9 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="5dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:foregroundGravity="center_vertical"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -149,7 +155,6 @@
                     android:id="@+id/ctDataOcorrencia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:text="Data Nascimento"
                     android:textSize="18sp" />
@@ -158,8 +163,6 @@
                     android:id="@+id/ctDataNasc"
                     android:layout_width="140dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:ems="10"
                     android:gravity="center"
@@ -167,8 +170,8 @@
 
                 <ImageButton
                     android:id="@+id/btDataNasc"
-                    android:layout_width="52dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_weight="1"
                     app:srcCompat="@mipmap/ic_edit_icon" />
             </LinearLayout>
@@ -176,14 +179,16 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:orientation="vertical">
 
                 <Button
                     android:id="@+id/btAlterarDados"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginLeft="60dp"
-                    android:layout_marginTop="60dp"
+                    android:layout_marginTop="50dp"
                     android:layout_marginRight="60dp"
                     android:background="@drawable/botao_customizado"
                     android:text="@string/TextoBotão"

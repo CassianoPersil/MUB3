@@ -66,6 +66,7 @@
     <string name="horario_ocorrencia">Horário:</string>
     <string name="Botao_Atender">Atender</string>
     <string name="botao_recusar">Recusar</string>
+    <string name="Texto_Nascimento">Data de Nascimento</string>
 
     <string-array name="spinner_meses">
         <item></item>
