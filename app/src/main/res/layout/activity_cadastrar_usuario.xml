@@ -29,9 +29,11 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <EditText
@@ -48,9 +50,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <EditText
@@ -65,17 +69,19 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="372dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
             android:gravity="center"
             android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/ctSenhaUsu"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:ems="10"
@@ -86,15 +92,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/ctTelefone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="@string/Texto_Telefone"
@@ -102,8 +110,9 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="372dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:gravity="center"
@@ -112,9 +121,8 @@
             <EditText
                 android:id="@+id/ctCpfUsu"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="CPF"
@@ -122,10 +130,12 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="372dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -133,6 +143,7 @@
                 android:id="@+id/ctDataNascimento"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="@string/Texto_Data_Nascimento"
@@ -142,7 +153,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
             android:orientation="horizontal">
 
             <Button
@@ -154,6 +166,7 @@
                 android:layout_marginRight="80dp"
                 android:layout_weight="1"
                 android:background="@drawable/botao_customizado"
+                android:gravity="center"
                 android:text="@string/botao_salvar"
                 android:textColor="@color/textoBotao"
                 android:textSize="16sp" />
