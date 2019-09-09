@@ -39,7 +39,7 @@
     <string name="Texto_Recuperação_Senha">Informe seu Email para que possamos realizar o processo de recuperação de senha.</string>
     <string name="Texto_Botao_Recuperar_Senha">Enviar</string>
     <string name="Texto_Local_Ocorrencia">Local da Ocorrência</string>
-    <string name="Imagem_Ocorrência">Inserir Imagem</string>
+    <string name="Imagem_Ocorrência">Imagem da Ocorrência</string>
     <string name="Texto_Data_Ocorrencia_Postadada">Data</string>
     <string name="Texto_Horario_Ocorrencia">Horário</string>
     <string name="Texto_Status_Ocor">Status:</string>
