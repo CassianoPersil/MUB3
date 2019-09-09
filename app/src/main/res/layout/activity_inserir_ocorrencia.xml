@@ -57,7 +57,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:gravity="center"
-                android:hint="01 / 01 / 2222"
+                android:hint="01 / 01 / 2019"
                 android:inputType="date" />
 
             <ImageButton
@@ -75,7 +75,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:gravity="center"
-                android:hint="11:11:1111"
+                android:hint="00:00:00"
                 android:inputType="time" />
 
             <ImageButton
