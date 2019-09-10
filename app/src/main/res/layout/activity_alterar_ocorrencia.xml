@@ -45,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Cassiano Silva"
-                    android:textSize="20sp" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -149,7 +149,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingTop="10dp">
 
                 <EditText
                     android:id="@+id/ctObservacoes"
@@ -158,6 +159,8 @@
                     android:ems="10"
                     android:hint="@string/Caixa_Observações"
                     android:inputType="textPersonName"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="10dp"
                     android:paddingBottom="75dp"
                     android:textSize="16sp" />
             </LinearLayout>
