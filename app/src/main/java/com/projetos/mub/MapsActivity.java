@@ -37,6 +37,7 @@ public class MapsActivity extends SupportMapFragment implements OnMapReadyCallba
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setOnMapClickListener(this);
+        mMap.getUiSettings().setZoomControlsEnabled(true);
 
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-33.87365, 151.20689);
