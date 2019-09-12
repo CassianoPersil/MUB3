@@ -39,7 +39,9 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
                 android:gravity="center"
-                android:text="@string/Texto_Tipo_Ocorrencia_Listrar_Ocorrencia" />
+                android:text="@string/Texto_Tipo_Ocorrencia_Listrar_Ocorrencia"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <Spinner
                 android:id="@+id/spListaOcorrencia"
