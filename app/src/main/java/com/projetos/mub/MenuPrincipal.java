@@ -80,12 +80,14 @@ public class MenuPrincipal extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_conta) {
+        if (id == R.id.nav_conta_usuario) {
             Intent intent = new Intent(getBaseContext(), UsuarioMenu.class);
             startActivity(intent);
-        } else if (id == R.id.nav_Ocorrencias) {
+        } else if (id == R.id.nav_listrar_ocorrencias) {
+            Intent intent = new Intent(getBaseContext(), ListrarOcorrencias.class);
+            startActivity(intent);
 
-        } else if (id == R.id.nav_alterar_Ocorrencia) {
+        } else if (id == R.id.nav_alterar_ocorrencia) {
             Intent intent = new Intent(getBaseContext(), AlterarOcorrencia.class);
             startActivity(intent);
 

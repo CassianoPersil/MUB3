@@ -67,6 +67,7 @@
     <string name="Botao_Atender">Atender</string>
     <string name="botao_recusar">Recusar</string>
     <string name="Texto_Nascimento">Data de Nascimento</string>
+    <string name="Texto_Tipo_Ocorrencia_Listrar_Ocorrencia">Selecione o tipo de Ocorrência que deseja Pesquisar</string>
 
     <string-array name="spinner_meses">
         <item></item>
