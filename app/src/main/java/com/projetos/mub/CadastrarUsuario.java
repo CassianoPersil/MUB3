@@ -19,14 +19,8 @@ public class CadastrarUsuario extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar_usuario);
 
-        ctnomeUsu = (TextView) findViewById(R.id.ctNomeUsu);
-        ctemailUsu = (TextView) findViewById(R.id.ctEmailRecSenha);
-        ctsenhaUsu = (TextView) findViewById(R.id.ctSenhaUsu);
-        ctCpfUsu = (TextView) findViewById(R.id.ctCpfUsu);
-        btCadastrarUsu = (Button) findViewById(R.id.btEnviarDados);
-        ctTelefone = (TextView) findViewById(R.id.ctTelefone);
-        ctDataNasc = (TextView) findViewById(R.id.ctDataNasc);
-
+        //chamando o metodo
+        inicializacao();
 
         btCadastrarUsu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,9 +46,17 @@ public class CadastrarUsuario extends AppCompatActivity {
         ctDataNasc.addTextChangedListener(masknascimento);
 
 
-
-
-
-
     }
+    //metodo para inicializar as variaveis
+    public void inicializacao(){
+        ctnomeUsu = (TextView) findViewById(R.id.ctNomeUsu);
+        ctemailUsu = (TextView) findViewById(R.id.ctEmailRecSenha);
+        ctsenhaUsu = (TextView) findViewById(R.id.ctSenhaUsu);
+        ctCpfUsu = (TextView) findViewById(R.id.ctCpfUsu);
+        btCadastrarUsu = (Button) findViewById(R.id.btEnviarDados);
+        ctTelefone = (TextView) findViewById(R.id.ctTelefone);
+        ctDataNasc = (TextView) findViewById(R.id.ctDataNasc);
+    }
+
+
 }
