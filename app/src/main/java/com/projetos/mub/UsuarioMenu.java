@@ -22,7 +22,7 @@ public class UsuarioMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usuario_menu);
-
+        //chamando o metodo
         iniciarVariaveis();
 
         btSalvarUsu = (Button)findViewById(R.id.btAlterarDados);
@@ -44,7 +44,7 @@ public class UsuarioMenu extends AppCompatActivity {
         MaskTextWatcher masknascimento = new MaskTextWatcher(ctDataNasc, simpleMasknascimento);
         ctDataNasc.addTextChangedListener(masknascimento);
     }
-
+    //metodo para inicializar as variaveis
     public void iniciarVariaveis(){
         btNomeUsuario = (ImageButton) findViewById(R.id.btNomeUsuario);
         btEnderecoUsuario = (ImageButton) findViewById(R.id.btEnderecoUsuario);
