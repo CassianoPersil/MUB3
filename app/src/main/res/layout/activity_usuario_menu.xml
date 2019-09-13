@@ -67,7 +67,7 @@
                     android:inputType="textPersonName" />
 
                 <ImageButton
-                    android:id="@+id/btLocalOcorrencia"
+                    android:id="@+id/btNomeUsuario"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_weight="1"
@@ -83,7 +83,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/ctEndereçoUsuario"
+                    android:id="@+id/ctEnderecoUsuario"
                     android:layout_width="270dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -92,7 +92,7 @@
                     android:inputType="textPersonName" />
 
                 <ImageButton
-                    android:id="@+id/btEndereçoUsuario"
+                    android:id="@+id/btEnderecoUsuario"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_weight="1"
@@ -115,7 +115,7 @@
                     android:layout_marginRight="24dp"
                     android:layout_marginBottom="5dp"
                     android:ems="10"
-                    android:hint="CPF"
+                    android:hint="@string/Menu_Usuario_Texto_CPF"
                     android:inputType="number" />
             </LinearLayout>
 
@@ -167,6 +167,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:gravity="center"
+                    android:hint="@string/Menu_Usuario_Nascimento"
                     android:inputType="date" />
 
                 <ImageButton

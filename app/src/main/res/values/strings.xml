@@ -69,6 +69,8 @@
     <string name="Texto_Nascimento">Data de Nascimento</string>
     <string name="Texto_Tipo_Ocorrencia_Listrar_Ocorrencia">Selecione o tipo de Ocorrência que deseja Pesquisar</string>
     <string name="Texto_CPF">123.456.789-00</string>
+    <string name="Menu_Usuario_Texto_CPF">123.456.789-55</string>
+    <string name="Menu_Usuario_Nascimento">01/01/2019</string>
 
     <string-array name="spinner_meses">
         <item></item>
