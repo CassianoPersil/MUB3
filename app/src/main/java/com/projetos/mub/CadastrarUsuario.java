@@ -7,8 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.github.rtoshiro.util.format.SimpleMaskFormatter;
+import com.github.rtoshiro.util.format.text.MaskTextWatcher;
+
 public class CadastrarUsuario extends AppCompatActivity {
-    TextView ctnomeUsu, ctemailUsu, ctsenhaUsu, ctsenhaConfUsu, ctCpfUsu;
+    TextView ctnomeUsu, ctemailUsu, ctsenhaUsu, ctCpfUsu, ctTelefone, ctDataNasc;
     Button btCadastrarUsu;
 
     @Override
@@ -19,9 +22,10 @@ public class CadastrarUsuario extends AppCompatActivity {
         ctnomeUsu = (TextView) findViewById(R.id.ctNomeUsu);
         ctemailUsu = (TextView) findViewById(R.id.ctEmailRecSenha);
         ctsenhaUsu = (TextView) findViewById(R.id.ctSenhaUsu);
-        //ctsenhaConfUsu = (TextView) findViewById(R.id.ctConfSenhaUsu);
         ctCpfUsu = (TextView) findViewById(R.id.ctCpfUsu);
         btCadastrarUsu = (Button) findViewById(R.id.btEnviarDados);
+        ctTelefone = (TextView) findViewById(R.id.ctTelefone);
+        ctDataNasc = (TextView) findViewById(R.id.ctDataNasc);
 
 
         btCadastrarUsu.setOnClickListener(new View.OnClickListener() {
@@ -31,6 +35,16 @@ public class CadastrarUsuario extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        SimpleMaskFormatter simpleMasktelefone = new SimpleMaskFormatter("(NN) N NNNN-NNNN");
+        MaskTextWatcher masktelfone = new MaskTextWatcher(ctTelefone, simpleMasktelefone);
+
+        ctTelefone.addTextChangedListener(masktelfone);
+
+        SimpleMaskFormatter simpleMaskcpf = new SimpleMaskFormatter("NNN.NNN.NNN-NN");
+        MaskTextWatcher maskcpf = new MaskTextWatcher(ctCpfUsu, simpleMaskcpf);
+
+        ctCpfUsu.addTextChangedListener(maskcpf);
 
 
 

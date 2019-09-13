@@ -61,13 +61,14 @@
     <string name="id_Tipo_ocorrencia">Tipo de Ocorrência:</string>
     <string name="id_Img_ocorrencia">Imagem da Ocorrência</string>
     <string name="Texto_Data_Nascimento">Data de Nascimento</string>
-    <string name="Texto_Telefone">Telefone</string>
+    <string name="Texto_Telefone">(88) 9 9999-9999</string>
     <string name="Data_Ocorencia">Data:</string>
     <string name="horario_ocorrencia">Horário:</string>
     <string name="Botao_Atender">Atender</string>
     <string name="botao_recusar">Recusar</string>
     <string name="Texto_Nascimento">Data de Nascimento</string>
     <string name="Texto_Tipo_Ocorrencia_Listrar_Ocorrencia">Selecione o tipo de Ocorrência que deseja Pesquisar</string>
+    <string name="Texto_CPF">123.456.789-00</string>
 
     <string-array name="spinner_meses">
         <item></item>

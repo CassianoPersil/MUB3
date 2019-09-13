@@ -125,7 +125,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="CPF"
+                android:hint="@string/Texto_CPF"
                 android:inputType="number" />
         </LinearLayout>
 
