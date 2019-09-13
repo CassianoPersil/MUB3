@@ -36,15 +36,23 @@ public class CadastrarUsuario extends AppCompatActivity {
             }
         });
 
+        //Mascara do campo Telefone
         SimpleMaskFormatter simpleMasktelefone = new SimpleMaskFormatter("(NN) N NNNN-NNNN");
-        MaskTextWatcher masktelfone = new MaskTextWatcher(ctTelefone, simpleMasktelefone);
+        MaskTextWatcher masktelefone = new MaskTextWatcher(ctTelefone, simpleMasktelefone);
+        ctTelefone.addTextChangedListener(masktelefone);
 
-        ctTelefone.addTextChangedListener(masktelfone);
-
+        //Mascara do campo CPF
         SimpleMaskFormatter simpleMaskcpf = new SimpleMaskFormatter("NNN.NNN.NNN-NN");
         MaskTextWatcher maskcpf = new MaskTextWatcher(ctCpfUsu, simpleMaskcpf);
-
         ctCpfUsu.addTextChangedListener(maskcpf);
+
+        //Mascara do campo Data de Nascimento
+        SimpleMaskFormatter simpleMasknascimento = new SimpleMaskFormatter("NN/NN/NNNN");
+        MaskTextWatcher masknascimento = new MaskTextWatcher(ctDataNasc, simpleMasknascimento);
+        ctDataNasc.addTextChangedListener(masknascimento);
+
+
+
 
 
 

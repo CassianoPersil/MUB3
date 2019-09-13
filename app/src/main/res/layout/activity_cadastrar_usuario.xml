@@ -140,7 +140,7 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/ctDataNascimento"
+                android:id="@+id/ctDataNasc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

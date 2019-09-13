@@ -60,7 +60,7 @@
     <string name="Nav_AtenderOcorrencia">Atender Ocorrências</string>
     <string name="id_Tipo_ocorrencia">Tipo de Ocorrência:</string>
     <string name="id_Img_ocorrencia">Imagem da Ocorrência</string>
-    <string name="Texto_Data_Nascimento">Data de Nascimento</string>
+    <string name="Texto_Data_Nascimento">01/01/2019</string>
     <string name="Texto_Telefone">(88) 9 9999-9999</string>
     <string name="Data_Ocorencia">Data:</string>
     <string name="horario_ocorrencia">Horário:</string>
