@@ -63,7 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
             android:orientation="vertical">
 
@@ -71,7 +71,6 @@
                 android:id="@+id/btImgOcorrencia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:text="@string/id_Img_ocorrencia"
                 android:textStyle="bold" />
 
@@ -122,8 +121,27 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/ctObservacoes"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:ems="10"
+                android:hint="@string/Caixa_Observações"
+                android:inputType="textPersonName"
+                android:paddingLeft="5dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="75dp"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="10dp"
             android:orientation="horizontal">
 
