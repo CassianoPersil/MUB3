@@ -19,6 +19,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/layout_perfil"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -26,10 +27,10 @@
                 <ImageView
                     android:id="@+id/imgPerfilUsuario"
                     android:layout_width="match_parent"
-                    android:layout_height="99dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="5dp"
-                    app:srcCompat="@mipmap/ic_menuser2_round" />
+                    app:srcCompat="@drawable/icone_usuario" />
 
                 <TextView
                     android:id="@+id/NomeUsuario"
