@@ -28,10 +28,11 @@
 
                 <ImageView
                     android:id="@+id/imgPerfilUsuario"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_width="85dp"
+                    android:layout_height="90dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
+                    android:background="@drawable/icone_usuario"
                     app:srcCompat="@drawable/icone_usuario" />
 
                 <TextView
@@ -72,8 +73,8 @@
 
                 <ImageButton
                     android:id="@+id/btNomeUsuario"
-                    android:layout_width="45dp"
-                    android:layout_height="40dp"
+                    android:layout_width="40dp"
+                    android:layout_height="35dp"
                     android:layout_weight="1"
                     android:background="@drawable/icone_edicao" />
 
@@ -98,8 +99,8 @@
 
                 <ImageButton
                     android:id="@+id/btEnderecoUsuario"
-                    android:layout_width="45dp"
-                    android:layout_height="40dp"
+                    android:layout_width="40dp"
+                    android:layout_height="35dp"
                     android:layout_weight="1"
                     android:background="@drawable/icone_edicao" />
 
@@ -143,8 +144,8 @@
 
                 <ImageButton
                     android:id="@+id/btEmailUsuario"
-                    android:layout_width="45dp"
-                    android:layout_height="40dp"
+                    android:layout_width="40dp"
+                    android:layout_height="35dp"
                     android:layout_weight="1"
                     android:background="@drawable/icone_edicao" />
 
@@ -180,8 +181,8 @@
 
                 <ImageButton
                     android:id="@+id/btDataNasc"
-                    android:layout_width="45dp"
-                    android:layout_height="40dp"
+                    android:layout_width="40dp"
+                    android:layout_height="35dp"
                     android:layout_weight="1"
                     android:background="@drawable/icone_edicao" />
             </LinearLayout>
