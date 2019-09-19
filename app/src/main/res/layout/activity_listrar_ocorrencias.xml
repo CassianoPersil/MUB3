@@ -12,19 +12,27 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/imgListrarOcorrencia"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srcCompat="@mipmap/ic_menuser2_round" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/listrarOcorrenciaEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="@string/nav_header_subtitle" />
+            <ImageView
+                android:id="@+id/imgListrarOcorrencia"
+                android:layout_width="90dp"
+                android:layout_height="85dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                app:srcCompat="@drawable/icone_usuario" />
+
+            <TextView
+                android:id="@+id/listrarOcorrenciaEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/nav_header_subtitle" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/LayoutCorpo"
@@ -37,7 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:text="@string/Texto_Tipo_Ocorrencia_Listrar_Ocorrencia"
                 android:textSize="16sp"
@@ -45,7 +53,7 @@
 
             <Spinner
                 android:id="@+id/spListaOcorrencia"
-                android:layout_width="325dp"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
@@ -54,7 +62,8 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recListaOcorencia"
                 android:layout_width="match_parent"
-                android:layout_height="420dp"
+                android:layout_height="400dp"
+                android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp" />
