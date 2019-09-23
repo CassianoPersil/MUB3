@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     Button btLogar;
     TextView ctcadastrar;
     TextView ctEsqueceuSenha;
+    ImageButton imGoogle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         btLogar = (Button) findViewById(R.id.btLogar);
         ctcadastrar = (TextView) findViewById(R.id.ctCadastrar);
         ctEsqueceuSenha = (TextView) findViewById(R.id.ctEsqueceuSenha);
+        imGoogle = (ImageButton) findViewById(R.id.imGoogle);
 
         btLogar.setOnClickListener(new View.OnClickListener() {
             @Override

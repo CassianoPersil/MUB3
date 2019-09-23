@@ -114,7 +114,7 @@
                 android:id="@+id/btInserirImgOco"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Inserir Imegem" />
+                android:text="Inserir Imagem" />
 
             <ImageButton
                 android:id="@+id/imgOcorrencia"
