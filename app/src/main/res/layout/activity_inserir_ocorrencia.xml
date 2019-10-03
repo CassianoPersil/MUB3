@@ -63,9 +63,10 @@
             <ImageButton
                 android:id="@+id/imgData"
                 android:layout_width="120dp"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/data" />
+                android:background="?android:attr/panelBackground"
+                app:srcCompat="@drawable/calendar" />
 
             <EditText
                 android:id="@+id/ctHorarioOco"
@@ -81,9 +82,10 @@
             <ImageButton
                 android:id="@+id/imgHoras"
                 android:layout_width="120dp"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/horas" />
+                android:background="?android:attr/panelBackground"
+                app:srcCompat="@drawable/horario" />
         </LinearLayout>
 
         <LinearLayout
@@ -122,7 +124,7 @@
                 android:layout_height="200dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
-                android:background="@color/background"
+                android:background="?android:attr/panelBackground"
                 app:srcCompat="@drawable/camera_ocorrencia" />
 
         </LinearLayout>

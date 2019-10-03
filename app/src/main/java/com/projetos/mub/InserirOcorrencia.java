@@ -22,7 +22,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
-
 import java.util.Calendar;
 
 public class InserirOcorrencia extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
