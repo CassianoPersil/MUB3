@@ -82,7 +82,7 @@
             <ImageButton
                 android:id="@+id/imgHoras"
                 android:layout_width="120dp"
-                android:layout_height="35dp"
+                android:layout_height="45dp"
                 android:layout_weight="1"
                 android:background="?android:attr/panelBackground"
                 app:srcCompat="@drawable/horario" />
