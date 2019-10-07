@@ -6,11 +6,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class AlterarOcorrencia extends AppCompatActivity {
     ImageView ImgPerfilUsuario, ImgOcorrencia;
@@ -25,7 +23,7 @@ public class AlterarOcorrencia extends AppCompatActivity {
         setContentView(R.layout.activity_alterar_ocorrencia);
 
         ImgPerfilUsuario = (ImageView) findViewById(R.id.imgPerfilUsuario);
-        ImgOcorrencia = (ImageView) findViewById(R.id.imgOcorrencia);
+        ImgOcorrencia = (ImageView) findViewById(R.id.imgOcorrenciaConsulta);
         NomeUsuario = (TextView) findViewById(R.id.NomeUsuario);
         EmailUsuario = (TextView) findViewById(R.id.EmailUsuario);
         ctLocalOcorrencia = (TextView) findViewById(R.id.ctLocalOcorrencia);

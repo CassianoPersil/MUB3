@@ -17,7 +17,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/txSelecionar"
+                android:id="@+id/tvAlterarOcorrencia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -35,7 +35,7 @@
                 android:orientation="horizontal">
 
                 <Spinner
-                    android:id="@+id/spinnerOcorrencias"
+                    android:id="@+id/spinnerAtenderOcorrencias"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -49,7 +49,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/txSelecionarMes"
+                    android:id="@+id/tvSelecionarMesOcorrencia"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
@@ -67,7 +67,7 @@
                 android:orientation="horizontal">
 
                 <Spinner
-                    android:id="@+id/spMeses"
+                    android:id="@+id/spMesesOcorrencia"
                     android:layout_width="200dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="15dp"
@@ -75,7 +75,7 @@
                     android:layout_weight="1" />
 
                 <Button
-                    android:id="@+id/btPesquisar"
+                    android:id="@+id/btPesquisarOcorrencia"
                     android:layout_width="130dp"
                     android:layout_height="40dp"
                     android:layout_marginRight="10dp"
@@ -90,7 +90,7 @@
                 android:orientation="vertical">
 
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recListragem"
+                    android:id="@+id/recAlterarOcorrencia"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="5dp" />

@@ -1,5 +1,6 @@
 package com.projetos.mub;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -7,9 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.RadioButton;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 public class ConsultarOcorrencia extends AppCompatActivity {
@@ -23,12 +22,20 @@ public class ConsultarOcorrencia extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consultar_ocorrencia);
 
-        txSelecionar = (TextView) findViewById(R.id.txSelecionar);
-        txSelecionarMeses = (TextView) findViewById(R.id.txSelecionarMes);
-        spMeses = (Spinner) findViewById(R.id.spMeses);
-        spinnerOcorrencias = (Spinner) findViewById(R.id.spinnerOcorrencias);
-        btPesquisar = (Button) findViewById(R.id.btPesquisar);
-        recListragem = (RecyclerView) findViewById(R.id.recListragem);
+        txSelecionar = (TextView) findViewById(R.id.tvAlterarOcorrencia);
+        txSelecionarMeses = (TextView) findViewById(R.id.tvSelecionarMesOcorrencia);
+        spMeses = (Spinner) findViewById(R.id.spMesesOcorrencia);
+        spinnerOcorrencias = (Spinner) findViewById(R.id.spinnerAtenderOcorrencias);
+        btPesquisar = (Button) findViewById(R.id.btPesquisarOcorrencia);
+        recListragem = (RecyclerView) findViewById(R.id.recAlterarOcorrencia);
+
+        btPesquisar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(),SelecionarConsultarOcorrencia.class);
+                startActivity(intent);
+            }
+        });
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Status_Ocorrencias, R.layout.support_simple_spinner_dropdown_item);
 

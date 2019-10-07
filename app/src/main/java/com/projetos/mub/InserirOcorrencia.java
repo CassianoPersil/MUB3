@@ -21,7 +21,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
+
 import java.util.Calendar;
 
 public class InserirOcorrencia extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
@@ -44,7 +44,7 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
         setContentView(R.layout.activity_inserir_ocorrencia);
 
         sp = (Spinner) findViewById(R.id.sp);
-        imgOcorrencia = (ImageButton) findViewById(R.id.imgOcorrencia);
+        imgOcorrencia = (ImageButton) findViewById(R.id.imgOcorrenciaConsulta);
         ctDataOco = (TextView) findViewById(R.id.ctDataOco);
         ctHorarioOco = (TextView) findViewById(R.id.ctHorarioOco);
         btEnviarOco = (Button) findViewById(R.id.btEnviarOco);
@@ -146,7 +146,7 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
         if (requestCode == 1){
             Bundle extras = data.getExtras();
             Bitmap imagem = (Bitmap) extras.get("data");
-            ImageView imageViewFoto = (ImageView) findViewById(R.id.imgOcorrencia);
+            ImageView imageViewFoto = (ImageView) findViewById(R.id.imgOcorrenciaConsulta);
             imageViewFoto.setImageBitmap(imagem);
         }
         super.onActivityResult(requestCode, resultCode, data);

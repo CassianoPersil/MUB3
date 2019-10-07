@@ -9,26 +9,10 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_maps">Map</string>
 
-    <string-array name="ocorrencias">
-        <item></item>
-        <item>Semáforo Quebrado</item>
-        <item>Obstrução Acidental</item>
-        <item>Obstrução Veicular</item>
-        <item>Solicitação de Faixa de Pedestre</item>
-        <item>Placas Quebradas</item>
-        <item>Sinalização Incorreta</item>
-    </string-array>
-
-    <string-array name="Status_Ocorrencias">
-        <item></item>
-        <item>Em Andamento</item>
-        <item>Finalizada</item>
-        <item>Concluída</item>
-        <item>Cancelada</item>
-    </string-array>
-
     <string name="title_activity_menu_pincipal">MenuPrincipal</string>
+
     <string name="EsquceuSenha">Esqueceu a senha?</string>
+
     <string name="textoBotao">Login</string>
     <string name="TextoBotão">Salvar</string>
     <string name="botao_salvar">Salvar Dados</string>
@@ -49,10 +33,10 @@
     <string name="Texto_Botão_Alterar_Ocorrencia">Alterar Dados</string>
     <string name="Caixa_Observações">Observações:</string>
     <string name="Texto_Selecionar_Tipo_Ocorrencia">Selecione o tipo de ocorrência que deseja consultar</string>
-
-    //Tela Consultar Ocorrencia
     <string name="Texto_Radio_Button_1">Andamento</string>
     <string name="Texto_Radio_Button_2">Analisando</string>
+
+    //Tela Consultar Ocorrencia
     <string name="Texto_Radio_Button_3">Finalizada</string>
     <string name="Texto_Radio_Button_4">Concluida</string>
     <string name="Texo_Informativo_Mes">Selecione o mês desejavel</string>
@@ -72,6 +56,24 @@
     <string name="Menu_Usuario_Texto_CPF">123.456.789-55</string>
     <string name="Menu_Usuario_Nascimento">01/01/2019</string>
     <string name="Menu_principal_Conta">Dados da Conta</string>
+    <string name="Texto_Selecionar_Atender_Ocorrencia">Selecione a ocorrencia que deseja atender</string>
+    <string name="Texto_Alterar_Ococrrencia">Selecione a ocorrência que deseja alterar</string>
+    <string-array name="ocorrencias">
+        <item></item>
+        <item>Semáforo Quebrado</item>
+        <item>Obstrução Acidental</item>
+        <item>Obstrução Veicular</item>
+        <item>Solicitação de Faixa de Pedestre</item>
+        <item>Placas Quebradas</item>
+        <item>Sinalização Incorreta</item>
+    </string-array>
+    <string-array name="Status_Ocorrencias">
+        <item></item>
+        <item>Em Andamento</item>
+        <item>Finalizada</item>
+        <item>Concluída</item>
+        <item>Cancelada</item>
+    </string-array>
 
     <string-array name="spinner_meses">
         <item></item>

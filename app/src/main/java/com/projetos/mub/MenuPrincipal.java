@@ -88,7 +88,7 @@ public class MenuPrincipal extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_alterar_ocorrencia) {
-            Intent intent = new Intent(getBaseContext(), AlterarOcorrencia.class);
+            Intent intent = new Intent(getBaseContext(), SelecionarAlterarOcorrencia.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_consultar_ocorrencia) {
@@ -96,7 +96,7 @@ public class MenuPrincipal extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_atender_ocorrencia) {
-            Intent intent = new Intent(getBaseContext(), AtenderOcorrencia.class);
+            Intent intent = new Intent(getBaseContext(), SelecionarAtenderOcorrencia.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_send) {
