@@ -42,10 +42,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-
-
         //Atribuição de ID
         btLogar = (Button) findViewById(R.id.btLogin);
         ctCadastrar = (TextView) findViewById(R.id.ctCadastrar);
@@ -96,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             load = ProgressDialog.show(MainActivity.this,
-                    "Por favor aguarde...", "Recuperando informações...");
+                    "Por favor aguarde...", "Realizando login...");
         }
 
         @Override

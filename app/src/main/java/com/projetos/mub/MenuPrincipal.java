@@ -1,6 +1,8 @@
 package com.projetos.mub;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -12,16 +14,35 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+
+import com.projetos.mub.conexao.Utils;
 
 public class MenuPrincipal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    TextView tvNomeUsuario, tvEmailUsuario;
+    private ProgressDialog load;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
+
+        tvNomeUsuario = (TextView) findViewById(R.id.tvMenuNomeUsuario);
+        tvEmailUsuario = (TextView) findViewById(R.id.tvMenuEmailUsuario);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        CarregarDados load = null;
+        if (load == null){
+            load = new CarregarDados();
+        }else{
+            load.cancel(true);
+            load = new CarregarDados();
+        }
+        load.execute();
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -106,5 +127,26 @@ public class MenuPrincipal extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private class CarregarDados extends AsyncTask<Void, Void, String>{
+
+        Utils util = new Utils();
+
+        @Override
+        protected void onPreExecute() {
+            load = ProgressDialog.show(MenuPrincipal.this,
+                    "Por favor aguarde...", "Estamos carregando os seus dados! ;)");
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            return util.getInfFromGET("http://192.168.1.5:8080/user/buscar/" + 1);
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            load.dismiss();
+        }
     }
 }

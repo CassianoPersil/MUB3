@@ -21,6 +21,12 @@ public class Utils {
         return retorno;
     }
 
+    public String getInfFromGET(String endPoint){
+        String retorno = NetworkUtils.getJSONFromAPI(endPoint);
+        Log.i("Resultado: ", retorno);
+        return retorno;
+    }
+
     public String postTeste(String endPoint, JSONObject json) throws JSONException {
         String retorno = NetworkUtils.post(json, endPoint);
         Log.i("Resultado", retorno);
