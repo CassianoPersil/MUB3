@@ -2,8 +2,10 @@ package com.projetos.mub;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
@@ -40,8 +42,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Async Task
-        final GetJson login = new GetJson();
+
+
+
 
         //Atribuição de ID
         btLogar = (Button) findViewById(R.id.btLogin);
@@ -51,8 +54,17 @@ public class MainActivity extends AppCompatActivity {
         ctSenha = (EditText) findViewById(R.id.ctLoginSenha);
 
         btLogar.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
+                //Async Task
+                GetJson login = null;
+                if (login == null){
+                    login = new GetJson();
+                }else{
+                    login.cancel(true);
+                    login = new GetJson();
+                }
                 login.execute();
             }
         });
@@ -78,6 +90,9 @@ public class MainActivity extends AppCompatActivity {
 
     private class GetJson extends AsyncTask<Void, Void, String> {
 
+        private AlertDialog alert;
+        private Utils util = new Utils();
+
         @Override
         protected void onPreExecute() {
             load = ProgressDialog.show(MainActivity.this,
@@ -86,12 +101,12 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Void... voids) {
-            Utils util = new Utils();
+
             try {
                 JSONObject json = new JSONObject();
                 json.put("email", ctEmail.getText().toString());
                 json.put("senha", ctSenha.getText().toString());
-                return util.postTeste("http://192.168.137.1:8080/user/login", json);
+                return util.postTeste("http://192.168.1.5:8080/user/login", json);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -109,10 +124,27 @@ public class MainActivity extends AppCompatActivity {
                     System.out.println("Erro");
                 }
             } catch (JSONException e) {
-                Toast.makeText(getApplicationContext(),"Usuário ou senha incorretos", Toast.LENGTH_LONG);
+                modalErro();
                e.printStackTrace();
             }
             load.dismiss();
+        }
+
+        protected void modalErro(){
+            // Criando gerador de Alerta
+            final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setTitle("Erro...");
+            builder.setMessage("E-mail ou senha incorretos... :/");
+
+
+            builder.setPositiveButton("Tentar novamente", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    alert.dismiss();
+                }
+            });
+            alert = builder.create();
+            alert.show();
         }
     }
 

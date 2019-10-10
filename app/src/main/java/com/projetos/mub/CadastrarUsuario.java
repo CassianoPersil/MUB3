@@ -2,6 +2,7 @@ package com.projetos.mub;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -38,8 +39,6 @@ public class CadastrarUsuario extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 cp.execute();
-               /* Intent intent = new Intent(getBaseContext(), MainActivity.class);
-                startActivity(intent);*/
             }
         });
 
@@ -74,6 +73,8 @@ public class CadastrarUsuario extends AppCompatActivity {
 
     private class CadastrarUsuarioPost extends AsyncTask<Void, Void, String>{
 
+        private AlertDialog alert;
+
         @Override
         protected void onPreExecute() {
             load = ProgressDialog.show(CadastrarUsuario.this,
@@ -83,8 +84,7 @@ public class CadastrarUsuario extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             load.dismiss();
-            Intent intent = new Intent(getBaseContext(), MainActivity.class);
-            startActivity(intent);
+            modalSucesso();
         }
 
         @Override
@@ -98,11 +98,30 @@ public class CadastrarUsuario extends AppCompatActivity {
                 json.put("cpf", ctCpfUsuario.getText().toString());
                 json.put("senha", ctSenhaUsuario.getText().toString());
                 json.put("dataDeNascimento", ctNascimentoUsuario.getText().toString());
-                return util.postTeste("http://192.168.137.1:8080/user/cadastrar", json);
+                return util.postTeste("http://192.168.1.5:8080/user/cadastrar", json);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
             return null;
+        }
+
+        protected void modalSucesso(){
+            // Criando gerador de Alerta
+            final AlertDialog.Builder builder = new AlertDialog.Builder(CadastrarUsuario.this);
+            builder.setTitle("Sucesso!");
+            builder.setMessage("Você se cadastrou com sucesso... Agora só precisa fazer login!");
+
+
+            builder.setPositiveButton("Ok!", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    alert.dismiss();
+                    Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                    startActivity(intent);
+                }
+            });
+            alert = builder.create();
+            alert.show();
         }
     }
 }
