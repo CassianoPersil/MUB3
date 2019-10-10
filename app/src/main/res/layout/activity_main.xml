@@ -46,7 +46,7 @@
                 app:srcCompat="@mipmap/ic_user" />
 
             <EditText
-                android:id="@+id/ctNomeUsu"
+                android:id="@+id/ctLoginEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginRight="7dp"
@@ -74,7 +74,7 @@
                 app:srcCompat="@mipmap/ic_key" />
 
             <EditText
-                android:id="@+id/ctEmailRecSenha"
+                android:id="@+id/ctLoginSenha"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginRight="7dp"
@@ -126,7 +126,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/btLogar"
+                android:id="@+id/btLogin"
                 android:layout_width="320dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
