@@ -28,36 +28,36 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
 
     Button btLogar;
-    TextView ctcadastrar;
+    TextView ctCadastrar;
     TextView ctEsqueceuSenha;
     EditText ctEmail;
     EditText ctSenha;
-    ImageButton imGoogle;
     private ProgressDialog load;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Chamando view
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final GetJson download = new GetJson();
+        //Async Task
+        final GetJson login = new GetJson();
 
-
+        //Atribuição de ID
         btLogar = (Button) findViewById(R.id.btLogin);
-        ctcadastrar = (TextView) findViewById(R.id.ctCadastrar);
+        ctCadastrar = (TextView) findViewById(R.id.ctCadastrar);
         ctEsqueceuSenha = (TextView) findViewById(R.id.ctEsqueceuSenha);
-        imGoogle = (ImageButton) findViewById(R.id.imGoogle);
         ctEmail = (EditText) findViewById(R.id.ctLoginEmail);
         ctSenha = (EditText) findViewById(R.id.ctLoginSenha);
 
         btLogar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                download.execute();
+                login.execute();
             }
         });
 
-        ctcadastrar.setOnClickListener(new View.OnClickListener() {
+        ctCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getBaseContext(), CadastrarUsuario.class);
@@ -87,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(Void... voids) {
             Utils util = new Utils();
-
             try {
                 JSONObject json = new JSONObject();
                 json.put("email", ctEmail.getText().toString());
@@ -113,7 +112,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Usuário ou senha incorretos", Toast.LENGTH_LONG);
                e.printStackTrace();
             }
-
             load.dismiss();
         }
     }
