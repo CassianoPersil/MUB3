@@ -124,4 +124,43 @@ public class CadastrarUsuario extends AppCompatActivity {
             alert.show();
         }
     }
+    //metodo para validar o cpf
+    public static boolean validaCPF(String cpf) {
+        cpf = cpf.replace(".","").replace("-","").trim();
+        if (cpf == null || cpf.length() != 11)
+            return false;
+
+        try {
+            Long.parseLong(cpf);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+
+        return calcDigVerif(cpf.substring(0, 9)).equals(cpf.substring(9, 11));
+    }
+    private static String calcDigVerif(String num) {
+        Integer primDig, segDig;
+        int soma = 0, peso = 10;
+        for (int i = 0; i < num.length(); i++)
+            soma += Integer.parseInt(num.substring(i, i + 1)) * peso--;
+
+        if (soma % 11 == 0 | soma % 11 == 1)
+            primDig = new Integer(0);
+        else
+            primDig = new Integer(11 - (soma % 11));
+
+        soma = 0;
+        peso = 11;
+        for (int i = 0; i < num.length(); i++)
+            soma += Integer.parseInt(num.substring(i, i + 1)) * peso--;
+
+        soma += primDig.intValue() * 2;
+        if (soma % 11 == 0 | soma % 11 == 1)
+            segDig = new Integer(0);
+        else
+            segDig = new Integer(11 - (soma % 11));
+
+        return primDig.toString() + segDig.toString();
+    }
+
 }
