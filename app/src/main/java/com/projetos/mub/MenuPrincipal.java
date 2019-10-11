@@ -141,7 +141,7 @@ public class MenuPrincipal extends AppCompatActivity
 
         @Override
         protected String doInBackground(Void... voids) {
-            return util.getInfFromGET("http://192.168.1.5:8080/user/buscar/" + 1);
+            return util.getInfFromGET("http://192.168.137.1:8080/user/buscar/" + 1);
         }
 
         @Override
