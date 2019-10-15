@@ -58,6 +58,10 @@
     <string name="Menu_principal_Conta">Dados da Conta</string>
     <string name="Texto_Selecionar_Atender_Ocorrencia">Selecione a ocorrencia que deseja atender</string>
     <string name="Texto_Alterar_Ococrrencia">Selecione a ocorrência que deseja alterar</string>
+    <string name="nome_completo">Nome Completo</string>
+    <string name="email">Email</string>
+    <string name="senha">Senha</string>
+    <string name="todo">TODO</string>
     <string-array name="ocorrencias">
         <item></item>
         <item>Semáforo Quebrado</item>
