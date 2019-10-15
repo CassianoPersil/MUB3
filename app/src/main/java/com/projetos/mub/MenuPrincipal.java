@@ -11,12 +11,18 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.projetos.mub.conexao.Utils;
+import com.projetos.mub.roomDatabase.UsuarioDatabase;
+import com.projetos.mub.roomDatabase.entities.Usuario;
+
+import java.util.List;
 
 public class MenuPrincipal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -31,17 +37,33 @@ public class MenuPrincipal extends AppCompatActivity
 
         tvNomeUsuario = (TextView) findViewById(R.id.tvMenuNomeUsuario);
         tvEmailUsuario = (TextView) findViewById(R.id.tvMenuEmailUsuario);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        CarregarDados load = null;
-        if (load == null){
-            load = new CarregarDados();
-        }else{
+        InserirUsuarioLocal load = null;
+        if (load == null) {
+            load = new InserirUsuarioLocal();
+        } else {
             load.cancel(true);
-            load = new CarregarDados();
+            load = new InserirUsuarioLocal();
         }
         load.execute();
+        if (load.isCancelled() == false) {
+            load.cancel(true);
+        }
+
+
+        ConsultarUsuarioLocal cUsuario = null;
+        if (cUsuario == null) {
+            load.cancel(true);
+            cUsuario = new ConsultarUsuarioLocal();
+        } else {
+            load.cancel(true);
+            cUsuario.cancel(true);
+            cUsuario = new ConsultarUsuarioLocal();
+        }
+        cUsuario.execute();
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -61,6 +83,11 @@ public class MenuPrincipal extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View headerView = navigationView.getHeaderView(0);
+
+        tvNomeUsuario = (TextView) headerView.findViewById(R.id.tvMenuNomeUsuario);
+        tvEmailUsuario = (TextView) headerView.findViewById(R.id.tvMenuEmailUsuario);
     }
 
     @Override
@@ -113,7 +140,7 @@ public class MenuPrincipal extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_consultar_ocorrencia) {
-            Intent intent = new Intent(getBaseContext(),ConsultarOcorrencia.class);
+            Intent intent = new Intent(getBaseContext(), ConsultarOcorrencia.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_atender_ocorrencia) {
@@ -129,24 +156,73 @@ public class MenuPrincipal extends AppCompatActivity
         return true;
     }
 
-    private class CarregarDados extends AsyncTask<Void, Void, String>{
-
-        Utils util = new Utils();
+    private class InserirUsuarioLocal extends AsyncTask<Void, Void, Long> {
 
         @Override
         protected void onPreExecute() {
-            load = ProgressDialog.show(MenuPrincipal.this,
-                    "Por favor aguarde...", "Estamos carregando os seus dados! ;)");
+            /*load = ProgressDialog.show(MenuPrincipal.this,
+                    "Por favor aguarde...", "Estamos carregando os seus dados! ;)");*/
         }
 
         @Override
-        protected String doInBackground(Void... voids) {
-            return util.getInfFromGET("http://192.168.137.1:8080/user/buscar/" + 1);
+        protected Long doInBackground(Void... voids) {
+            Intent intent = getIntent();
+            Bundle inf = intent.getExtras();
+
+            try {
+                Long id = UsuarioDatabase
+                        .getInstance(getBaseContext())
+                        .getUsuarioDAO()
+                        .insert(new Usuario(1L, inf.getString("nome"), inf.getString("email"), false));
+                System.out.println("Identificador on INSERT: " + id);
+                return id;
+            } catch (Exception e) {
+                Log.i("Error ON INSERT", e.toString());
+            }
+            return null;
         }
 
         @Override
-        protected void onPostExecute(String s) {
+        protected void onPostExecute(Long id) {
+            System.out.println("Identificador on POST EXECUTE " + id);
             load.dismiss();
+
+        }
+    }
+
+    private class ConsultarUsuarioLocal extends AsyncTask<Void, Void, Usuario> {
+        ProgressDialog barra;
+
+        @Override
+        protected void onPreExecute() {
+            barra = ProgressDialog.show(MenuPrincipal.this,
+                    "Por favor aguarde...", "Estamos sincronizando os seus dados! ;)");
+        }
+
+        @Override
+        protected Usuario doInBackground(Void... voids) {
+            System.out.println("Consultando usuário localmente:");
+            try {
+                Usuario usuario = UsuarioDatabase
+                        .getInstance(getBaseContext())
+                        .getUsuarioDAO()
+                        .getUserById(1L);
+                System.out.println("Consulta concluída!");
+                return usuario;
+            } catch (Exception e) {
+                Log.i("Erro:", e.toString());
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Usuario u) {
+            //tvNomeUsuario.setText("Hiago");
+            //tvEmailUsuario.setText("hiago@hiago");
+            System.out.println("ON POST EXECUTE CONSULTA" + u.getNome());
+            tvNomeUsuario.setText(u.getNome());
+            tvEmailUsuario.setText(u.getEmail());
+            barra.dismiss();
         }
     }
 }

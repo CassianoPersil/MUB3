@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 JSONObject json = new JSONObject();
                 json.put("email", ctEmail.getText().toString());
                 json.put("senha", ctSenha.getText().toString());
-                return util.postTeste("http://192.168.137.1:8080/user/login", json);
+                return util.postTeste("http://192.168.1.3:8080/user/login", json);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -115,6 +115,14 @@ public class MainActivity extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject(string);
                 if (Boolean.parseBoolean(jsonObject.getString("statusLogin")) == true) {
                     Intent intent = new Intent(getBaseContext(), MenuPrincipal.class);
+                    Bundle inf = new Bundle();
+
+                    inf.putString("id", jsonObject.getString("id"));
+                    inf.putString("nome", jsonObject.getString("nomeUsuario"));
+                    inf.putString("email", jsonObject.getString("email"));
+                    inf.putString("statusLogin", jsonObject.getString("statusLogin"));
+                    intent.putExtras(inf);
+
                     startActivity(intent);
                 }else{
                     System.out.println("Erro");
