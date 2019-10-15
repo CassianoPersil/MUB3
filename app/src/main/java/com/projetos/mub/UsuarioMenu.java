@@ -18,14 +18,13 @@ import com.projetos.mub.conexao.Utils;
 import com.projetos.mub.roomDatabase.UsuarioDatabase;
 import com.projetos.mub.roomDatabase.entities.Usuario;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class UsuarioMenu extends AppCompatActivity {
     ImageView imgPerfilUsuario;
-    ImageButton btNomeUsuario, btEnderecoUsuario, btEmailUsuario, btDataNasc;
-    TextView tvNomeUsuario, tvEmailUsuario, ctNomeUsuario, ctEnderecoUsuario, ctCpf, ctEmailUsuario, ctDataNasc;
+    ImageButton btNomeUsuario, btSenhaUsuario, btEmailUsuario, btDataNasc;
+    TextView tvNomeUsuario, tvEmailUsuario, ctNomeUsuario, plainTextSenha, ctCpf, ctEmailUsuario, ctDataNasc;
     Button btAtualizarUsuario;
 
     @Override
@@ -82,14 +81,14 @@ public class UsuarioMenu extends AppCompatActivity {
     //metodo para inicializar as variaveis
     public void iniciarVariaveis() {
         btNomeUsuario = (ImageButton) findViewById(R.id.btNomeUsuario);
-        btEnderecoUsuario = (ImageButton) findViewById(R.id.btEnderecoUsuario);
+        btSenhaUsuario = (ImageButton) findViewById(R.id.btSenhaUsuario);
         btEmailUsuario = (ImageButton) findViewById(R.id.btEmailUsuario);
         btDataNasc = (ImageButton) findViewById(R.id.btDataNasc);
         imgPerfilUsuario = (ImageView) findViewById(R.id.imgPerfilUsuario);
         tvNomeUsuario = (TextView) findViewById(R.id.ctNomeUsuario);
         tvEmailUsuario = (TextView) findViewById(R.id.ctEmailUsuario);
         ctNomeUsuario = (TextView) findViewById(R.id.ctNomeUsuario);
-        ctEnderecoUsuario = (TextView) findViewById(R.id.ctEnderecoUsuario);
+        plainTextSenha = (TextView) findViewById(R.id.plainTextSenha);
         ctCpf = (TextView) findViewById(R.id.ctCpf);
         ctEmailUsuario = (TextView) findViewById(R.id.ctEmailUsuario);
         ctDataNasc = (TextView) findViewById(R.id.ctDataNasc);
