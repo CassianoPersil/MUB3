@@ -129,7 +129,6 @@ public class CadastrarUsuario extends AppCompatActivity {
         cpf = cpf.replace(".","").replace("-","").trim();
         if (cpf == null || cpf.length() != 11)
             return false;
-
         try {
             Long.parseLong(cpf);
         } catch (NumberFormatException e) {
