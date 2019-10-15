@@ -110,7 +110,7 @@ public class UsuarioMenu extends AppCompatActivity {
             Intent intent = getIntent();
             Bundle inf = intent.getExtras();
             try {
-                return util.getInfFromGET("http://192.168.1.3:8080/user/buscar/" + inf.getString("id"));
+                return util.getInfFromGET("http://192.168.137.1:8080/user/buscar/" + inf.getString("id"));
             } catch (Exception e) {
 
             }

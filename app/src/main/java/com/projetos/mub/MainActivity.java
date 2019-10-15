@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 JSONObject json = new JSONObject();
                 json.put("email", ctEmail.getText().toString());
                 json.put("senha", ctSenha.getText().toString());
-                return util.postTeste("http://192.168.1.3:8080/user/login", json);
+                return util.postTeste("http://192.168.137.1:8080/user/login", json);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
