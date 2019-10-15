@@ -129,7 +129,12 @@ public class MenuPrincipal extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_conta_usuario) {
-            Intent intent = new Intent(getBaseContext(), UsuarioMenu.class);
+            Intent intent = getIntent();
+            Bundle inf = intent.getExtras();
+
+            intent = new Intent(getBaseContext(), UsuarioMenu.class);
+            intent.putExtras(inf);
+
             startActivity(intent);
         } else if (id == R.id.nav_listrar_ocorrencias) {
             Intent intent = new Intent(getBaseContext(), ListrarOcorrencias.class);
@@ -217,8 +222,6 @@ public class MenuPrincipal extends AppCompatActivity
 
         @Override
         protected void onPostExecute(Usuario u) {
-            //tvNomeUsuario.setText("Hiago");
-            //tvEmailUsuario.setText("hiago@hiago");
             System.out.println("ON POST EXECUTE CONSULTA" + u.getNome());
             tvNomeUsuario.setText(u.getNome());
             tvEmailUsuario.setText(u.getEmail());

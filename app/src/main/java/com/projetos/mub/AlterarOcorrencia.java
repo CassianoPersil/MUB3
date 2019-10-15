@@ -25,14 +25,13 @@ public class AlterarOcorrencia extends AppCompatActivity {
         ImgPerfilUsuario = (ImageView) findViewById(R.id.imgPerfilUsuario);
         ImgOcorrencia = (ImageView) findViewById(R.id.imgOcorrenciaConsulta);
         NomeUsuario = (TextView) findViewById(R.id.NomeUsuario);
-        EmailUsuario = (TextView) findViewById(R.id.EmailUsuario);
         ctLocalOcorrencia = (TextView) findViewById(R.id.ctLocalOcorrencia);
         ctImagemOcorrencia = (TextView) findViewById(R.id.ctImagemOcorrencia);
         ctDataOcorrencia = (TextView) findViewById(R.id.ctDataOcorrencia);
         ctHorarioOcorrencia = (TextView)findViewById(R.id.ctHorarioOcorrencia);
         ctTextoStatusOcorrencia = (TextView) findViewById(R.id.ctTextoStatusOcorrencia);
         ctStautsOcorrencia = (TextView) findViewById(R.id.ctStatusOcorrencia);
-        btAlterarDados = (Button) findViewById(R.id.btAlterarDados);
+        btAlterarDados = (Button) findViewById(R.id.btAlterarDadosOcorrencia);
         spinnerStatus = (Spinner) findViewById(R.id.spinnerStatus);
         ctObservacoes = (TextView) findViewById(R.id.ctObservacoes);
 

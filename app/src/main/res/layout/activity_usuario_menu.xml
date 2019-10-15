@@ -36,7 +36,7 @@
                     app:srcCompat="@drawable/icone_usuario" />
 
                 <TextView
-                    android:id="@+id/NomeUsuario"
+                    android:id="@+id/tvPerfilNomeUsuario"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -45,7 +45,7 @@
                     android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/EmailUsuario"
+                    android:id="@+id/tvPerfilEmailUsuario"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
