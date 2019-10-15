@@ -98,7 +98,7 @@ public class CadastrarUsuario extends AppCompatActivity {
                 json.put("cpf", ctCpfUsuario.getText().toString());
                 json.put("senha", ctSenhaUsuario.getText().toString());
                 json.put("dataDeNascimento", ctNascimentoUsuario.getText().toString());
-                return util.postTeste("http://192.168.1.3:8080/user/cadastrar", json);
+                return util.postTeste("http://192.168.137.1:8080/user/cadastrar", json);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

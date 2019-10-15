@@ -49,22 +49,6 @@ public class MenuPrincipal extends AppCompatActivity
             load = new InserirUsuarioLocal();
         }
         load.execute();
-        if (load.isCancelled() == false) {
-            load.cancel(true);
-        }
-
-
-        ConsultarUsuarioLocal cUsuario = null;
-        if (cUsuario == null) {
-            load.cancel(true);
-            cUsuario = new ConsultarUsuarioLocal();
-        } else {
-            load.cancel(true);
-            cUsuario.cancel(true);
-            cUsuario = new ConsultarUsuarioLocal();
-        }
-        cUsuario.execute();
-
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -162,6 +146,8 @@ public class MenuPrincipal extends AppCompatActivity
     }
 
     private class InserirUsuarioLocal extends AsyncTask<Void, Void, Long> {
+        Intent intent = getIntent();
+        Bundle inf = intent.getExtras();
 
         @Override
         protected void onPreExecute() {
@@ -171,8 +157,6 @@ public class MenuPrincipal extends AppCompatActivity
 
         @Override
         protected Long doInBackground(Void... voids) {
-            Intent intent = getIntent();
-            Bundle inf = intent.getExtras();
 
             try {
                 Long id = UsuarioDatabase
@@ -190,42 +174,10 @@ public class MenuPrincipal extends AppCompatActivity
         @Override
         protected void onPostExecute(Long id) {
             System.out.println("Identificador on POST EXECUTE " + id);
-            load.dismiss();
+            tvNomeUsuario.setText(inf.getString("nome"));
+            tvEmailUsuario.setText(inf.getString("email"));
+            //load.dismiss();
 
-        }
-    }
-
-    private class ConsultarUsuarioLocal extends AsyncTask<Void, Void, Usuario> {
-        ProgressDialog barra;
-
-        @Override
-        protected void onPreExecute() {
-            barra = ProgressDialog.show(MenuPrincipal.this,
-                    "Por favor aguarde...", "Estamos sincronizando os seus dados! ;)");
-        }
-
-        @Override
-        protected Usuario doInBackground(Void... voids) {
-            System.out.println("Consultando usuário localmente:");
-            try {
-                Usuario usuario = UsuarioDatabase
-                        .getInstance(getBaseContext())
-                        .getUsuarioDAO()
-                        .getUserById(1L);
-                System.out.println("Consulta concluída!");
-                return usuario;
-            } catch (Exception e) {
-                Log.i("Erro:", e.toString());
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Usuario u) {
-            System.out.println("ON POST EXECUTE CONSULTA" + u.getNome());
-            tvNomeUsuario.setText(u.getNome());
-            tvEmailUsuario.setText(u.getEmail());
-            barra.dismiss();
         }
     }
 }
