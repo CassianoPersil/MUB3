@@ -36,7 +36,7 @@
                     app:srcCompat="@drawable/icone_usuario" />
 
                 <TextView
-                    android:id="@+id/tvPerfilNomeUsuario"
+                    android:id="@+id/tvEditNome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -45,7 +45,7 @@
                     android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/tvPerfilEmailUsuario"
+                    android:id="@+id/tvEditEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -106,7 +106,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/ctEmailUsuario"
+                    android:id="@+id/ctEditEmail"
                     android:layout_width="270dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -132,7 +132,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/plainTextSenha"
+                    android:id="@+id/ctEditSenha"
                     android:layout_width="270dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -171,7 +171,7 @@
                     android:textSize="18sp" />
 
                 <EditText
-                    android:id="@+id/ctDataNasc"
+                    android:id="@+id/ctEditDtNascimento"
                     android:layout_width="128dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"

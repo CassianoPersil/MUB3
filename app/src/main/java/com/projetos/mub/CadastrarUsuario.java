@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -83,13 +84,17 @@ public class CadastrarUsuario extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
+            Log.i("RESULTADO: ", s);
             load.dismiss();
-            modalSucesso();
+            String titulo = "Sucesso";
+            String texto = "Você se cadastrou com sucesso... Agora só precisa fazer login!";
+            modalAlert(titulo, texto);
         }
 
         @Override
         protected String doInBackground(Void... voids) {
             Utils util = new Utils();
+            String retornoCadastro = "";
             try {
                 JSONObject json = new JSONObject();
                 json.put("email", ctEmailUsuario.getText().toString());
@@ -98,18 +103,20 @@ public class CadastrarUsuario extends AppCompatActivity {
                 json.put("cpf", ctCpfUsuario.getText().toString());
                 json.put("senha", ctSenhaUsuario.getText().toString());
                 json.put("dataDeNascimento", ctNascimentoUsuario.getText().toString());
-                return util.postTeste("http://192.168.137.1:8080/user/cadastrar", json);
+
+                retornoCadastro = util.postTeste("http://192.168.137.1:8080/user/cadastrar", json);
+                return retornoCadastro;
             } catch (JSONException e) {
                 e.printStackTrace();
             }
             return null;
         }
 
-        protected void modalSucesso(){
+        protected void modalAlert(String titulo, String texto){
             // Criando gerador de Alerta
             final AlertDialog.Builder builder = new AlertDialog.Builder(CadastrarUsuario.this);
-            builder.setTitle("Sucesso!");
-            builder.setMessage("Você se cadastrou com sucesso... Agora só precisa fazer login!");
+            builder.setTitle(titulo);
+            builder.setMessage(texto);
 
 
             builder.setPositiveButton("Ok!", new DialogInterface.OnClickListener() {

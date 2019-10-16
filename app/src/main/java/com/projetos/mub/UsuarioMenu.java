@@ -60,10 +60,7 @@ public class UsuarioMenu extends AppCompatActivity {
                     atualizarUsuarioLocal = new AtualizarUsuarioLocal();
                 }
                 atualizarUsuarioLocal.execute();
-                atualizarUsuarioLocal.cancel(true);
-
-                Intent intent = new Intent(getBaseContext(), MenuPrincipal.class);
-                startActivity(intent);
+                System.out.println("BT OK");
             }
         });
 
@@ -86,14 +83,13 @@ public class UsuarioMenu extends AppCompatActivity {
         btDataNasc = (ImageButton) findViewById(R.id.btDataNasc);
         imgPerfilUsuario = (ImageView) findViewById(R.id.imgPerfilUsuario);
         tvNomeUsuario = (TextView) findViewById(R.id.ctNomeUsuario);
-        tvEmailUsuario = (TextView) findViewById(R.id.ctEmailUsuario);
         ctNomeUsuario = (TextView) findViewById(R.id.ctNomeUsuario);
-        plainTextSenha = (TextView) findViewById(R.id.plainTextSenha);
+        plainTextSenha = (TextView) findViewById(R.id.ctEditSenha);
         ctCpf = (TextView) findViewById(R.id.ctCpf);
-        ctEmailUsuario = (TextView) findViewById(R.id.ctEmailUsuario);
-        ctDataNasc = (TextView) findViewById(R.id.ctDataNasc);
-        tvNomeUsuario = (TextView) findViewById(R.id.tvPerfilNomeUsuario);
-        tvEmailUsuario = (TextView) findViewById(R.id.tvPerfilEmailUsuario);
+        ctEmailUsuario = (TextView) findViewById(R.id.ctEditEmail);
+        ctDataNasc = (TextView) findViewById(R.id.ctEditDtNascimento);
+        tvNomeUsuario = (TextView) findViewById(R.id.tvEditNome);
+        tvEmailUsuario = (TextView) findViewById(R.id.tvEditEmail);
     }
 
     private class RecuperarDadosPerfilTask extends AsyncTask<Void, Void, String> {
@@ -123,18 +119,22 @@ public class UsuarioMenu extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject(s);
                 JSONObject contatoObj = jsonObject.getJSONObject("contatoUsuario");
 
+                //Carregando CPF e deixando campo desativado
                 ctCpf.setEnabled(true);
                 ctCpf.setText(jsonObject.getString("cpf"));
                 ctCpf.setEnabled(false);
 
                 ctNomeUsuario.setText(jsonObject.getString("nome"));
                 tvNomeUsuario.setText(jsonObject.getString("nome"));
+
+                plainTextSenha.setText(jsonObject.getString("senha"));
+                ctDataNasc.setText(jsonObject.getString("dataNascimento"));
+
                 ctEmailUsuario.setText(contatoObj.getString("email"));
                 tvEmailUsuario.setText(contatoObj.getString("email"));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            super.onPostExecute(s);
         }
     }
 
@@ -164,6 +164,16 @@ public class UsuarioMenu extends AppCompatActivity {
         @Override
         protected void onPostExecute(Long id) {
             System.out.println("USUÁRIO ATUALIZADO COM SUCESSO: ID - " + id);
+            Intent intent = new Intent(getBaseContext(), MenuPrincipal.class);
+            Bundle inf = new Bundle();
+
+            inf.putString("id", "1");
+            inf.putString("nome", ctNomeUsuario.getText().toString());
+            inf.putString("email", ctEmailUsuario.getText().toString());
+            inf.putString("statusLogin", "true");
+            intent.putExtras(inf);
+
+            startActivity(intent);
         }
     }
 }
