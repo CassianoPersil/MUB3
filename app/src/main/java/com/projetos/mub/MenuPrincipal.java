@@ -41,12 +41,12 @@ public class MenuPrincipal extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        InserirUsuarioLocal load = null;
+        ConsultarLocalmenteTask load = null;
         if (load == null) {
-            load = new InserirUsuarioLocal();
+            load = new ConsultarLocalmenteTask();
         } else {
             load.cancel(true);
-            load = new InserirUsuarioLocal();
+            load = new ConsultarLocalmenteTask();
         }
         load.execute();
 
@@ -136,7 +136,7 @@ public class MenuPrincipal extends AppCompatActivity
         return true;
     }
 
-    private class InserirUsuarioLocal extends AsyncTask<Void, Void, Usuario> {
+    private class ConsultarLocalmenteTask extends AsyncTask<Void, Void, Usuario> {
 
         @Override
         protected void onPreExecute() {

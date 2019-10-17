@@ -41,8 +41,6 @@ public class UsuarioMenu extends AppCompatActivity {
 
         //Disparando AsyncTask onCreate
         RecuperarDadosPerfilTask recuperarDadosPerfilTask = null;
-
-
         if (recuperarDadosPerfilTask == null) {
             recuperarDadosPerfilTask = new RecuperarDadosPerfilTask();
         } else {
@@ -64,7 +62,6 @@ public class UsuarioMenu extends AppCompatActivity {
                     atualizarUsuarioLocal = new AtualizarUsuarioLocal();
                 }
                 atualizarUsuarioLocal.execute();
-                System.out.println("BT OK");
             }
         });
 
