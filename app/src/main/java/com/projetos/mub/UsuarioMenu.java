@@ -71,6 +71,11 @@ public class UsuarioMenu extends AppCompatActivity {
         MaskTextWatcher maskcpf = new MaskTextWatcher(ctCpf, simpleMaskcpf);
         ctCpf.addTextChangedListener(maskcpf);
 
+        //Mascara do campo Telefone
+        SimpleMaskFormatter simpleMasktelefone = new SimpleMaskFormatter("(NN) N NNNN-NNNN");
+        MaskTextWatcher masktelefone = new MaskTextWatcher(ctCpf, simpleMaskcpf);
+        ctCpf.addTextChangedListener(masktelefone);
+
         //Mascara do campo Data de Nascimento
         SimpleMaskFormatter simpleMasknascimento = new SimpleMaskFormatter("NN/NN/NNNN");
         MaskTextWatcher masknascimento = new MaskTextWatcher(ctDataNasc, simpleMasknascimento);
