@@ -13,10 +13,6 @@
             android:icon="@drawable/icon_occurrence"
             android:title="Minhas Ocorrências" />
         <item
-            android:id="@+id/nav_alterar_ocorrencia"
-            android:icon="@drawable/icon_occurrence_edit"
-            android:title="Alterar Ocorrência" />
-        <item
             android:id="@+id/nav_consultar_ocorrencia"
             android:icon="@drawable/icon_occurrence_consult"
             android:title="Consultar Ocorrências" />
