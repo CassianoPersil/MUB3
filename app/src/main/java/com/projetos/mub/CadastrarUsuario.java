@@ -11,12 +11,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 import com.projetos.mub.conexao.Utils;
-import com.projetos.mub.conexao.pojos.LoginPojo;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -68,7 +66,7 @@ public class CadastrarUsuario extends AppCompatActivity {
         ctSenhaUsuario = (TextView) findViewById(R.id.ctCadSenhaUsuario);
         ctCpfUsuario = (TextView) findViewById(R.id.ctCadCpfUsuario);
         btCadastrarUsuario = (Button) findViewById(R.id.btCadastrarUsuario);
-        ctTelefoneUsuario = (TextView) findViewById(R.id.ctCadTelefoneUsuario);
+        ctTelefoneUsuario = (TextView) findViewById(R.id.ctTelefone);
         ctNascimentoUsuario = (TextView) findViewById(R.id.ctCadNascimentoUsuario);
     }
 

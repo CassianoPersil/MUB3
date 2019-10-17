@@ -103,7 +103,7 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/ctCadTelefoneUsuario"
+                android:id="@+id/ctTelefone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
