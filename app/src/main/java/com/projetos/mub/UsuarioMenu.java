@@ -162,7 +162,8 @@ public class UsuarioMenu extends AppCompatActivity {
                 Long id = UsuarioDatabase
                         .getInstance(getBaseContext())
                         .getUsuarioDAO()
-                        .insert(new Usuario(1L, ctNomeUsuario.getText().toString(), ctEmailUsuario.getText().toString(), false));
+                        .insert(new Usuario(1L, ctNomeUsuario.getText().toString(),
+                                ctEmailUsuario.getText().toString(), false, true));
                 System.out.println("INSERÇÃO DE USUÁRIO LOCAL OK ID: " + id);
 
                 JSONObject json = new JSONObject();

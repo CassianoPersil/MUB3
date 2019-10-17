@@ -70,7 +70,7 @@ public class CadastrarUsuario extends AppCompatActivity {
         ctNascimentoUsuario = (TextView) findViewById(R.id.ctCadNascimentoUsuario);
     }
 
-    private class CadastrarUsuarioPost extends AsyncTask<Void, Void, String>{
+    private class CadastrarUsuarioPost extends AsyncTask<Void, Void, String> {
 
         private AlertDialog alert;
 
@@ -83,10 +83,29 @@ public class CadastrarUsuario extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             Log.i("RESULTADO: ", s);
+            String titulo = "", texto = "";
+            int status = 0;
+
             load.dismiss();
-            String titulo = "Sucesso";
-            String texto = "Você se cadastrou com sucesso... Agora só precisa fazer login!";
-            modalAlert(titulo, texto);
+
+            try {
+                JSONObject jsonObject = new JSONObject(s);
+                status = jsonObject.getInt("status");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            if (status == 500) {
+                titulo = "Erro ao cadastrar :(";
+                texto = "Seu e-mail ou CPF já estão cadastrados. Consulte contato@voxelsbrasil.com para mais informações!";
+                modalAlert(titulo, texto);
+            } else {
+                titulo = "Obrigado por se cadastrar!";
+                texto = "Agora é só realizar o login :)";
+                modalAlert(titulo, texto);
+                Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(intent);
+            }
         }
 
         @Override
@@ -110,28 +129,26 @@ public class CadastrarUsuario extends AppCompatActivity {
             return null;
         }
 
-        protected void modalAlert(String titulo, String texto){
+        protected void modalAlert(String titulo, String texto) {
             // Criando gerador de Alerta
             final AlertDialog.Builder builder = new AlertDialog.Builder(CadastrarUsuario.this);
             builder.setTitle(titulo);
             builder.setMessage(texto);
 
-
             builder.setPositiveButton("Ok!", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     alert.dismiss();
-                    Intent intent = new Intent(getBaseContext(), MainActivity.class);
-                    startActivity(intent);
                 }
             });
             alert = builder.create();
             alert.show();
         }
     }
+
     //metodo para validar o cpf
     public static boolean validaCPF(String cpf) {
-        cpf = cpf.replace(".","").replace("-","").trim();
+        cpf = cpf.replace(".", "").replace("-", "").trim();
         if (cpf == null || cpf.length() != 11)
             return false;
         try {
@@ -142,6 +159,7 @@ public class CadastrarUsuario extends AppCompatActivity {
 
         return calcDigVerif(cpf.substring(0, 9)).equals(cpf.substring(9, 11));
     }
+
     private static String calcDigVerif(String num) {
         Integer primDig, segDig;
         int soma = 0, peso = 10;

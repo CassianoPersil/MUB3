@@ -158,7 +158,7 @@ public class MenuPrincipal extends AppCompatActivity
                 Long id = UsuarioDatabase
                         .getInstance(getBaseContext())
                         .getUsuarioDAO()
-                        .insert(new Usuario(1L, inf.getString("nome"), inf.getString("email"), false));
+                        .insert(new Usuario(1L, inf.getString("nome"), inf.getString("email"), false, true));
                 System.out.println("Identificador on INSERT: " + id);
                 return id;
             } catch (Exception e) {
