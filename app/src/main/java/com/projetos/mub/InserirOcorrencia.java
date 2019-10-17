@@ -29,7 +29,7 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
     private Object ImageViewFoto;
 
     Spinner sp;
-    Button btEnviarOco, btInserirImagem;
+    Button btEnviarOco;
     TextView ctDataOco, ctHorarioOco;
     ImageButton imgOcorrencia, imgData,imgHoras;
     TimePickerDialog timePickerDialog;
@@ -50,7 +50,7 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
         btEnviarOco = (Button) findViewById(R.id.btEnviarOco);
         imgData = (ImageButton) findViewById(R.id.imgData);
         imgHoras = (ImageButton) findViewById(R.id.imgHoras);
-        btInserirImagem = (Button) findViewById(R.id.btInserirImgOco);
+
 
         //Criar array para receber os dados da String
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.ocorrencias, R.layout.support_simple_spinner_dropdown_item);
@@ -78,7 +78,7 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
 
 
         //recuperando os elementos da interface
-        Button tirar = (Button) findViewById(R.id.btInserirImgOco);
+        ImageButton tirar = (ImageButton) findViewById(R.id.imgOcorrenciaConsulta);
 
         //metodo para o click do botão
         tirar.setOnClickListener(new View.OnClickListener() {
