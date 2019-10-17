@@ -112,4 +112,49 @@ public class NetworkUtils {
         }
         return null;
     }
+
+    public static String put(final JSONObject data, String endPoint){
+        int codigoResposta;
+        InputStream is;
+        String retorno = "";
+        try{
+            final URL url = new URL(endPoint);
+            final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+            connection.setRequestProperty("Accept", "application/json");
+            connection.setRequestProperty("Content-type", "application/json");
+
+            connection.setRequestMethod("PUT");
+            connection.setDoInput(true);
+            connection.setDoOutput(true);
+
+            final OutputStream outputStream = connection.getOutputStream();
+            final BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+
+            bufferedWriter.write(data.toString());
+            bufferedWriter.flush();
+            bufferedWriter.close();
+
+            connection.connect();
+
+            codigoResposta = connection.getResponseCode();
+            if (codigoResposta < HttpURLConnection.HTTP_BAD_REQUEST) {
+                is = connection.getInputStream();
+            } else {
+                is = connection.getErrorStream();
+            }
+            retorno = converterInputStreamToString(is);
+            is.close();
+            connection.disconnect();
+
+            //final InputStream inputStream = connection.getInputStream();
+            return retorno;
+            //new Scanner(inputStream, "UTF-8").next();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

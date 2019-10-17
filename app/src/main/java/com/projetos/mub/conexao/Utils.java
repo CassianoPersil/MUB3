@@ -1,5 +1,6 @@
 package com.projetos.mub.conexao;
 
+import android.util.JsonReader;
 import android.util.Log;
 
 import com.projetos.mub.conexao.pojos.LoginPojo;
@@ -30,6 +31,12 @@ public class Utils {
     public String postTeste(String endPoint, JSONObject json) throws JSONException {
         String retorno = NetworkUtils.post(json, endPoint);
         Log.i("Resultado", retorno);
+        return retorno;
+    }
+
+    public String putSend(String endPoint, JSONObject json){
+        String retorno = NetworkUtils.put(json,endPoint);
+        Log.i("Resultado: ", retorno);
         return retorno;
     }
 

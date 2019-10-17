@@ -20,12 +20,14 @@ import com.projetos.mub.roomDatabase.entities.Usuario;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 public class UsuarioMenu extends AppCompatActivity {
-    ImageView imgPerfilUsuario;
-    ImageButton btNomeUsuario, btSenhaUsuario, btEmailUsuario, btDataNasc;
-    TextView tvNomeUsuario, tvEmailUsuario, ctNomeUsuario, plainTextSenha, ctCpf, ctEmailUsuario, ctDataNasc;
-    Button btAtualizarUsuario;
+    private ImageView imgPerfilUsuario;
+    private ImageButton btNomeUsuario, btSenhaUsuario, btEmailUsuario, btDataNasc;
+    private TextView tvNomeUsuario, tvEmailUsuario, ctNomeUsuario, ctSenhaUsuario, ctCpf, ctEmailUsuario, ctDataNasc, ctTelefone;
+    private Button btAtualizarUsuario;
+    private Long idUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,19 +79,16 @@ public class UsuarioMenu extends AppCompatActivity {
 
     //metodo para inicializar as variaveis
     public void iniciarVariaveis() {
-        btNomeUsuario = (ImageButton) findViewById(R.id.btNomeUsuario);
-        btSenhaUsuario = (ImageButton) findViewById(R.id.btSenhaUsuario);
-        btEmailUsuario = (ImageButton) findViewById(R.id.btEmailUsuario);
-        btDataNasc = (ImageButton) findViewById(R.id.btDataNasc);
         imgPerfilUsuario = (ImageView) findViewById(R.id.imgPerfilUsuario);
         tvNomeUsuario = (TextView) findViewById(R.id.ctNomeUsuario);
         ctNomeUsuario = (TextView) findViewById(R.id.ctNomeUsuario);
-        plainTextSenha = (TextView) findViewById(R.id.ctEditSenha);
+        ctSenhaUsuario = (TextView) findViewById(R.id.ctEditSenha);
         ctCpf = (TextView) findViewById(R.id.ctCpf);
         ctEmailUsuario = (TextView) findViewById(R.id.ctEditEmail);
         ctDataNasc = (TextView) findViewById(R.id.ctEditDtNascimento);
         tvNomeUsuario = (TextView) findViewById(R.id.tvEditNome);
         tvEmailUsuario = (TextView) findViewById(R.id.tvEditEmail);
+        ctTelefone = (TextView) findViewById(R.id.ctEditTelefone);
     }
 
     private class RecuperarDadosPerfilTask extends AsyncTask<Void, Void, String> {
@@ -105,10 +104,12 @@ public class UsuarioMenu extends AppCompatActivity {
         protected String doInBackground(Void... voids) {
             Intent intent = getIntent();
             Bundle inf = intent.getExtras();
-            try {
-                return util.getInfFromGET("http://192.168.137.1:8080/user/buscar/" + inf.getString("id"));
-            } catch (Exception e) {
 
+            idUsuario = Long.parseLong(inf.getString("id"));
+            try {
+                return util.getInfFromGET("http://192.168.137.1:8080/user/buscar/" + idUsuario);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
             return null;
         }
@@ -127,11 +128,13 @@ public class UsuarioMenu extends AppCompatActivity {
                 ctNomeUsuario.setText(jsonObject.getString("nome"));
                 tvNomeUsuario.setText(jsonObject.getString("nome"));
 
-                plainTextSenha.setText(jsonObject.getString("senha"));
+                ctSenhaUsuario.setText(jsonObject.getString("senha"));
                 ctDataNasc.setText(jsonObject.getString("dataNascimento"));
 
                 ctEmailUsuario.setText(contatoObj.getString("email"));
                 tvEmailUsuario.setText(contatoObj.getString("email"));
+
+                ctTelefone.setText(contatoObj.getString("telefone"));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -148,12 +151,24 @@ public class UsuarioMenu extends AppCompatActivity {
 
         @Override
         protected Long doInBackground(Void... voids) {
+            String retornoCadastro = "";
+            Utils util = new Utils();
             try {
                 Long id = UsuarioDatabase
                         .getInstance(getBaseContext())
                         .getUsuarioDAO()
                         .insert(new Usuario(1L, ctNomeUsuario.getText().toString(), ctEmailUsuario.getText().toString(), false));
-                System.out.println("Identificador on INSERT: " + id);
+                System.out.println("INSERÇÃO DE USUÁRIO LOCAL OK ID: " + id);
+
+                JSONObject json = new JSONObject();
+                json.put("email", ctEmailUsuario.getText().toString());
+                json.put("telefone", ctTelefone.getText().toString());
+                json.put("nome", ctNomeUsuario.getText().toString());
+                json.put("cpf", ctCpf.getText().toString());
+                json.put("senha", ctSenhaUsuario.getText().toString());
+                json.put("dataDeNascimento", ctDataNasc.getText().toString());
+                retornoCadastro = util.putSend("http://192.168.137.1:8080/user/alterar/" + idUsuario, json);
+                Log.i("RETORNO DO PUT: ", retornoCadastro);
                 return id;
             } catch (Exception e) {
                 Log.i("Error ON INSERT", e.toString());
@@ -167,12 +182,11 @@ public class UsuarioMenu extends AppCompatActivity {
             Intent intent = new Intent(getBaseContext(), MenuPrincipal.class);
             Bundle inf = new Bundle();
 
-            inf.putString("id", "1");
+            inf.putString("id", inf.getString("id"));
             inf.putString("nome", ctNomeUsuario.getText().toString());
             inf.putString("email", ctEmailUsuario.getText().toString());
             inf.putString("statusLogin", "true");
             intent.putExtras(inf);
-
             startActivity(intent);
         }
     }
