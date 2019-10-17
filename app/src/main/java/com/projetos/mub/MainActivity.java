@@ -23,6 +23,8 @@ import android.widget.Toast;
 
 import com.projetos.mub.conexao.Utils;
 import com.projetos.mub.conexao.pojos.LoginPojo;
+import com.projetos.mub.roomDatabase.UsuarioDatabase;
+import com.projetos.mub.roomDatabase.entities.Usuario;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -55,9 +57,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //Async Task
                 GetJson login = null;
-                if (login == null){
+                if (login == null) {
                     login = new GetJson();
-                }else{
+                } else {
                     login.cancel(true);
                     login = new GetJson();
                 }
@@ -114,33 +116,36 @@ public class MainActivity extends AppCompatActivity {
             try {
                 JSONObject jsonObject = new JSONObject(string);
                 if (Boolean.parseBoolean(jsonObject.getString("statusLogin")) == true) {
-                    Intent intent = new Intent(getBaseContext(), MenuPrincipal.class);
-                    Bundle inf = new Bundle();
-
-                    inf.putString("id", jsonObject.getString("id"));
-                    inf.putString("nome", jsonObject.getString("nomeUsuario"));
-                    inf.putString("email", jsonObject.getString("email"));
-                    inf.putString("statusLogin", jsonObject.getString("statusLogin"));
-                    intent.putExtras(inf);
-
-                    startActivity(intent);
-                }else{
+                    try {
+                        Long id = UsuarioDatabase
+                                .getInstance(getBaseContext())
+                                .getUsuarioDAO()
+                                .insert(new Usuario(1L,
+                                        Long.parseLong(jsonObject.getString("id")),
+                                        jsonObject.getString("nomeUsuario"),
+                                        jsonObject.getString("email"),
+                                        false, true));
+                        System.out.println("Identificador on INSERT: " + id);
+                        Intent intent = new Intent(getBaseContext(), MenuPrincipal.class);
+                        startActivity(intent);
+                    } catch (Exception e) {
+                        Log.i("Error ON INSERT", e.toString());
+                    }
+                } else {
                     System.out.println("Erro");
                 }
             } catch (JSONException e) {
                 modalErro();
-               e.printStackTrace();
+                e.printStackTrace();
             }
             load.dismiss();
         }
 
-        protected void modalErro(){
+        protected void modalErro() {
             // Criando gerador de Alerta
             final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
             builder.setTitle("Erro...");
             builder.setMessage("E-mail ou senha incorretos... :/");
-
-
             builder.setPositiveButton("Tentar novamente", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {

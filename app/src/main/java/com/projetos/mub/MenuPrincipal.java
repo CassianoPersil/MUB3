@@ -113,12 +113,7 @@ public class MenuPrincipal extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_conta_usuario) {
-            Intent intent = getIntent();
-            Bundle inf = intent.getExtras();
-
-            intent = new Intent(getBaseContext(), UsuarioMenu.class);
-            intent.putExtras(inf);
-
+            Intent intent = new Intent(getBaseContext(), UsuarioMenu.class);
             startActivity(intent);
         } else if (id == R.id.nav_listrar_ocorrencias) {
             Intent intent = new Intent(getBaseContext(), ListrarOcorrencias.class);
@@ -141,9 +136,7 @@ public class MenuPrincipal extends AppCompatActivity
         return true;
     }
 
-    private class InserirUsuarioLocal extends AsyncTask<Void, Void, Long> {
-        Intent intent = getIntent();
-        Bundle inf = intent.getExtras();
+    private class InserirUsuarioLocal extends AsyncTask<Void, Void, Usuario> {
 
         @Override
         protected void onPreExecute() {
@@ -152,15 +145,15 @@ public class MenuPrincipal extends AppCompatActivity
         }
 
         @Override
-        protected Long doInBackground(Void... voids) {
+        protected Usuario doInBackground(Void... voids) {
 
             try {
-                Long id = UsuarioDatabase
+                Usuario usuario = UsuarioDatabase
                         .getInstance(getBaseContext())
                         .getUsuarioDAO()
-                        .insert(new Usuario(1L, inf.getString("nome"), inf.getString("email"), false, true));
-                System.out.println("Identificador on INSERT: " + id);
-                return id;
+                        .getUserById(1L);
+                System.out.println("Identificador on INSERT: " + usuario.getId());
+                return usuario;
             } catch (Exception e) {
                 Log.i("Error ON INSERT", e.toString());
             }
@@ -168,12 +161,11 @@ public class MenuPrincipal extends AppCompatActivity
         }
 
         @Override
-        protected void onPostExecute(Long id) {
-            System.out.println("Identificador on POST EXECUTE " + id);
-            tvNomeUsuario.setText(inf.getString("nome"));
-            tvEmailUsuario.setText(inf.getString("email"));
+        protected void onPostExecute(Usuario usuario) {
+            System.out.println("Identificador on POST EXECUTE " + usuario.getNome());
+            tvNomeUsuario.setText(usuario.getNome());
+            tvEmailUsuario.setText(usuario.getEmail());
             //load.dismiss();
-
         }
     }
 }

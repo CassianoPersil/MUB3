@@ -10,6 +10,7 @@ public class Usuario {
     @PrimaryKey(autoGenerate = true)
     @NonNull()
     private Long id;
+    private Long idUsuarioAPI;
     private String nome;
     private String email;
     private boolean agente;
@@ -20,8 +21,9 @@ public class Usuario {
 
     }
 
-    public Usuario(Long id, String nome, String email, boolean agente, boolean manterLogado) {
+    public Usuario(Long id, Long idUsuarioAPI, String nome, String email, boolean agente, boolean manterLogado) {
         this.id = id;
+        this.idUsuarioAPI = idUsuarioAPI;
         this.nome = nome;
         this.email = email;
         this.agente = agente;
@@ -34,6 +36,14 @@ public class Usuario {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getIdUsuarioAPI() {
+        return idUsuarioAPI;
+    }
+
+    public void setIdUsuarioAPI(Long idUsuarioAPI) {
+        this.idUsuarioAPI = idUsuarioAPI;
     }
 
     public String getNome() {

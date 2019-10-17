@@ -37,6 +37,8 @@ public class UsuarioMenu extends AppCompatActivity {
         iniciarVariaveis();
         ctCpf.setEnabled(false);
 
+
+
         //Disparando AsyncTask onCreate
         RecuperarDadosPerfilTask recuperarDadosPerfilTask = null;
 
@@ -107,13 +109,17 @@ public class UsuarioMenu extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Void... voids) {
-            Intent intent = getIntent();
-            Bundle inf = intent.getExtras();
-
-            idUsuario = Long.parseLong(inf.getString("id"));
+            Usuario usuario;
             try {
-                return util.getInfFromGET("http://192.168.137.1:8080/user/buscar/" + idUsuario);
+                usuario = UsuarioDatabase
+                        .getInstance(getBaseContext())
+                        .getUsuarioDAO()
+                        .getUserById(1L);
+                System.out.println("Identificador do usuário na API: " + usuario.getIdUsuarioAPI());
+                idUsuario = usuario.getIdUsuarioAPI();
+                return util.getInfFromGET("http://192.168.137.1:8080/user/buscar/" + usuario.getIdUsuarioAPI());
             } catch (Exception e) {
+                Log.i("Error ON INSERT", e.toString());
                 e.printStackTrace();
             }
             return null;
@@ -146,26 +152,17 @@ public class UsuarioMenu extends AppCompatActivity {
         }
     }
 
-    private class AtualizarUsuarioLocal extends AsyncTask<Void, Void, Long> {
+    private class AtualizarUsuarioLocal extends AsyncTask<Void, Void, String> {
 
         @Override
         protected void onPreExecute() {
-            /*load = ProgressDialog.show(MenuPrincipal.this,
-                    "Por favor aguarde...", "Estamos carregando os seus dados! ;)");*/
         }
 
         @Override
-        protected Long doInBackground(Void... voids) {
+        protected String doInBackground(Void... voids) {
             String retornoCadastro = "";
             Utils util = new Utils();
             try {
-                Long id = UsuarioDatabase
-                        .getInstance(getBaseContext())
-                        .getUsuarioDAO()
-                        .insert(new Usuario(1L, ctNomeUsuario.getText().toString(),
-                                ctEmailUsuario.getText().toString(), false, true));
-                System.out.println("INSERÇÃO DE USUÁRIO LOCAL OK ID: " + id);
-
                 JSONObject json = new JSONObject();
                 json.put("email", ctEmailUsuario.getText().toString());
                 json.put("telefone", ctTelefone.getText().toString());
@@ -174,8 +171,7 @@ public class UsuarioMenu extends AppCompatActivity {
                 json.put("senha", ctSenhaUsuario.getText().toString());
                 json.put("dataDeNascimento", ctDataNasc.getText().toString());
                 retornoCadastro = util.putSend("http://192.168.137.1:8080/user/alterar/" + idUsuario, json);
-                Log.i("RETORNO DO PUT: ", retornoCadastro);
-                return id;
+                return retornoCadastro;
             } catch (Exception e) {
                 Log.i("Error ON INSERT", e.toString());
             }
@@ -183,17 +179,23 @@ public class UsuarioMenu extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(Long id) {
-            System.out.println("USUÁRIO ATUALIZADO COM SUCESSO: ID - " + id);
-            Intent intent = new Intent(getBaseContext(), MenuPrincipal.class);
-            Bundle inf = new Bundle();
-
-            inf.putString("id", inf.getString("id"));
-            inf.putString("nome", ctNomeUsuario.getText().toString());
-            inf.putString("email", ctEmailUsuario.getText().toString());
-            inf.putString("statusLogin", "true");
-            intent.putExtras(inf);
-            startActivity(intent);
+        protected void onPostExecute(String retorno) {
+            Log.i("RETORNO DO PUT: ", retorno);
+            try {
+                Long id = UsuarioDatabase
+                        .getInstance(getBaseContext())
+                        .getUsuarioDAO()
+                        .insert(new Usuario(1L,
+                                idUsuario,
+                                ctNomeUsuario.getText().toString(),
+                                ctEmailUsuario.getText().toString(),
+                                false, true));
+                System.out.println("Identificador on UPDATE: " + id);
+                Intent intent = new Intent(getBaseContext(), MenuPrincipal.class);
+                startActivity(intent);
+            } catch (Exception e) {
+                Log.i("Error ON UPDATE", e.toString());
+            }
         }
     }
 }
