@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                //Async Task
+                /*//Async Task
                 GetJson login = null;
                 if (login == null) {
                     login = new GetJson();
@@ -63,7 +63,10 @@ public class MainActivity extends AppCompatActivity {
                     login.cancel(true);
                     login = new GetJson();
                 }
-                login.execute();
+                login.execute();*/
+
+                Intent intent = new Intent(getBaseContext(), MenuPrincipal.class);
+                startActivity(intent);
             }
         });
 

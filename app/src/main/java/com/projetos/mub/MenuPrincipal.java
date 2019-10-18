@@ -41,14 +41,14 @@ public class MenuPrincipal extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ConsultarLocalmenteTask load = null;
+        /*ConsultarLocalmenteTask load = null;
         if (load == null) {
             load = new ConsultarLocalmenteTask();
         } else {
             load.cancel(true);
             load = new ConsultarLocalmenteTask();
         }
-        load.execute();
+        load.execute();*/
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
