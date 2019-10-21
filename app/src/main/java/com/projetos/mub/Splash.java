@@ -32,8 +32,8 @@ public class Splash extends AppCompatActivity {
 
         new Handler().postDelayed(new Runnable() {
             public void run() {
-                //Disparando AsyncTask onClick
-                ConsultarLocalmenteTask atualizarUsuarioLocal = null;
+                //DESCOMENTAR PARA FUNFAR
+                /*ConsultarLocalmenteTask atualizarUsuarioLocal = null;
                 if (atualizarUsuarioLocal == null) {
                     atualizarUsuarioLocal = new ConsultarLocalmenteTask();
                 } else {
@@ -41,7 +41,11 @@ public class Splash extends AppCompatActivity {
                     atualizarUsuarioLocal = new ConsultarLocalmenteTask();
                 }
                 atualizarUsuarioLocal.execute();
-                finish();
+                finish();*/
+
+                /*
+                COMENTAR APÓS DESCOMENTAR A DE CIMA
+                 */
                 Intent intent = new Intent(Splash.this, MenuPrincipal.class);
                 startActivity(intent);
             }

@@ -42,6 +42,8 @@ public class MenuPrincipal extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        /*
+        * DESCOMENTAR ESSE TRECHO
         ConsultarLocalmenteTask load = null;
         if (load == null) {
             load = new ConsultarLocalmenteTask();
@@ -50,7 +52,7 @@ public class MenuPrincipal extends AppCompatActivity
             load = new ConsultarLocalmenteTask();
         }
         load.execute();
-
+        */
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,14 +97,17 @@ public class MenuPrincipal extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+       /*
+       * Handler do botào de Logout
+        */
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+
+            /*DESCOMENTAR
             LogoutTask logout = null;
+
             if(logout == null){
                 logout = new LogoutTask();
             }else{
@@ -110,7 +115,7 @@ public class MenuPrincipal extends AppCompatActivity
                 logout = new LogoutTask();
             }
 
-            logout.execute();
+            logout.execute();*/
             return true;
         }
 
@@ -147,6 +152,9 @@ public class MenuPrincipal extends AppCompatActivity
         return true;
     }
 
+    /*
+    ** Task responsável por puxar os dados armazenados no banco de dados local.
+     */
     private class ConsultarLocalmenteTask extends AsyncTask<Void, Void, Usuario> {
 
         @Override
@@ -157,7 +165,6 @@ public class MenuPrincipal extends AppCompatActivity
 
         @Override
         protected Usuario doInBackground(Void... voids) {
-
             try {
                 Usuario usuario = UsuarioDatabase
                         .getInstance(getBaseContext())
@@ -182,6 +189,10 @@ public class MenuPrincipal extends AppCompatActivity
         }
     }
 
+
+    /*
+    ** Task criada para realizar logou do usuário.
+     */
     private class LogoutTask extends AsyncTask<Void, Void, String> {
 
         @Override

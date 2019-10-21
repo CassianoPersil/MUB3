@@ -43,7 +43,6 @@ public class Utils {
     public LoginPojo parseJson(String json) {
         try {
             LoginPojo login = new LoginPojo();
-
             JSONObject jsonObject = new JSONObject(json);
 
             /*JSONArray array = new JSONArray("login");

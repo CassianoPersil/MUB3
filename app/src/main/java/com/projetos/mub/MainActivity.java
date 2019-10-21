@@ -55,7 +55,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                //Async Task
+                /*DESCOMENTAR ESSE TRECHO
+
+                **Async Task
                 GetJson login = null;
                 if (login == null) {
                     login = new GetJson();
@@ -64,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                     login = new GetJson();
                 }
                 login.execute();
-
+                */
                 Intent intent = new Intent(getBaseContext(), MenuPrincipal.class);
                 startActivity(intent);
             }
@@ -118,21 +120,21 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String string) {
             try {
                 JSONObject jsonObject = new JSONObject(string);
-                    try {
-                        Long id = UsuarioDatabase
-                                .getInstance(getBaseContext())
-                                .getUsuarioDAO()
-                                .insert(new Usuario(1L,
-                                        Long.parseLong(jsonObject.getString("id")),
-                                        jsonObject.getString("nomeUsuario"),
-                                        jsonObject.getString("email"),
-                                        jsonObject.getInt("nvAcesso"), true));
-                        System.out.println("Identificador on INSERT: " + id);
-                        Intent intent = new Intent(getBaseContext(), MenuPrincipal.class);
-                        startActivity(intent);
-                    } catch (Exception e) {
-                        Log.i("Error ON INSERT", e.toString());
-                    }
+                try {
+                    Long id = UsuarioDatabase
+                            .getInstance(getBaseContext())
+                            .getUsuarioDAO()
+                            .insert(new Usuario(1L,
+                                    Long.parseLong(jsonObject.getString("id")),
+                                    jsonObject.getString("nomeUsuario"),
+                                    jsonObject.getString("email"),
+                                    jsonObject.getInt("nvAcesso"), true));
+                    System.out.println("Identificador on INSERT: " + id);
+                    Intent intent = new Intent(getBaseContext(), MenuPrincipal.class);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    Log.i("Error ON INSERT", e.toString());
+                }
             } catch (JSONException e) {
                 modalErro();
                 e.printStackTrace();

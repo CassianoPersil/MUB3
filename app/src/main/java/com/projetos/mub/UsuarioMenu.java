@@ -38,29 +38,29 @@ public class UsuarioMenu extends AppCompatActivity {
         iniciarVariaveis();
         ctCpf.setEnabled(false);
 
-        //Disparando AsyncTask onCreate
-        RecuperarDadosPerfilTask recuperarDadosPerfilTask = null;
+        //Disparando AsyncTask onCreate DESCOMENTAR
+        /*RecuperarDadosPerfilTask recuperarDadosPerfilTask = null;
         if (recuperarDadosPerfilTask == null) {
             recuperarDadosPerfilTask = new RecuperarDadosPerfilTask();
         } else {
             recuperarDadosPerfilTask.cancel(true);
             recuperarDadosPerfilTask = new RecuperarDadosPerfilTask();
         }
-        recuperarDadosPerfilTask.execute();
+        recuperarDadosPerfilTask.execute();*/
 
         btAtualizarUsuario = (Button) findViewById(R.id.btAlterarDados);
         btAtualizarUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Disparando AsyncTask onClick
-                AtualizarUsuarioLocal atualizarUsuarioLocal = null;
+                /*AtualizarUsuarioLocal atualizarUsuarioLocal = null;
                 if (atualizarUsuarioLocal == null) {
                     atualizarUsuarioLocal = new AtualizarUsuarioLocal();
                 } else {
                     atualizarUsuarioLocal.cancel(true);
                     atualizarUsuarioLocal = new AtualizarUsuarioLocal();
                 }
-                atualizarUsuarioLocal.execute();
+                atualizarUsuarioLocal.execute();*/
             }
         });
 
