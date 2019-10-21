@@ -28,6 +28,7 @@ public class UsuarioMenu extends AppCompatActivity {
     private TextView tvNomeUsuario, tvEmailUsuario, ctNomeUsuario, ctSenhaUsuario, ctCpf, ctEmailUsuario, ctDataNasc, ctTelefone;
     private Button btAtualizarUsuario;
     private Long idUsuario;
+    private Usuario usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +37,6 @@ public class UsuarioMenu extends AppCompatActivity {
         //chamando o metodo
         iniciarVariaveis();
         ctCpf.setEnabled(false);
-
-
 
         //Disparando AsyncTask onCreate
         RecuperarDadosPerfilTask recuperarDadosPerfilTask = null;
@@ -95,7 +94,23 @@ public class UsuarioMenu extends AppCompatActivity {
         ctTelefone = (TextView) findViewById(R.id.ctEditTelefone);
     }
 
-    private class RecuperarDadosPerfilTask extends AsyncTask<Void, Void, String> {
+    public void setIdUsuario(Long id){
+        this.idUsuario = id;
+    }
+
+    public Long getIdUsuario(){
+        return this.idUsuario;
+    }
+
+    public void setUsuario(Usuario usuario){
+        this.usuario = usuario;
+    }
+
+    public Usuario getUsuario(){
+        return this.usuario;
+    }
+
+    protected class RecuperarDadosPerfilTask extends AsyncTask<Void, Void, String> {
         private AlertDialog alert;
         private Utils util = new Utils();
 
@@ -113,7 +128,8 @@ public class UsuarioMenu extends AppCompatActivity {
                         .getUsuarioDAO()
                         .getUserById(1L);
                 System.out.println("Identificador do usuário na API: " + usuario.getIdUsuarioAPI());
-                idUsuario = usuario.getIdUsuarioAPI();
+                setIdUsuario(usuario.getIdUsuarioAPI());
+                setUsuario(usuario);
                 return util.getInfFromGET("http://192.168.137.1:8080/user/buscar/" + usuario.getIdUsuarioAPI());
             } catch (Exception e) {
                 Log.i("Error ON INSERT", e.toString());
@@ -149,7 +165,7 @@ public class UsuarioMenu extends AppCompatActivity {
         }
     }
 
-    private class AtualizarUsuarioLocal extends AsyncTask<Void, Void, String> {
+    protected class AtualizarUsuarioLocal extends AsyncTask<Void, Void, String> {
 
         @Override
         protected void onPreExecute() {
@@ -159,6 +175,8 @@ public class UsuarioMenu extends AppCompatActivity {
         protected String doInBackground(Void... voids) {
             String retornoCadastro = "";
             Utils util = new Utils();
+            Usuario usuario = getUsuario();
+
             try {
                 JSONObject json = new JSONObject();
                 json.put("email", ctEmailUsuario.getText().toString());
@@ -167,7 +185,12 @@ public class UsuarioMenu extends AppCompatActivity {
                 json.put("cpf", ctCpf.getText().toString());
                 json.put("senha", ctSenhaUsuario.getText().toString());
                 json.put("dataDeNascimento", ctDataNasc.getText().toString());
-                retornoCadastro = util.putSend("http://192.168.137.1:8080/user/alterar/" + idUsuario, json);
+                json.put("statusUsuario", 1);
+
+                json.put("nvAcesso", 1);
+                System.out.println( "IDENTIFICADOR DO USUARIO: " + idUsuario);
+                retornoCadastro = util.putSend("http://192.168.137.1:8080/user/alterar/" + getIdUsuario(), json);
+                System.out.println(retornoCadastro);
                 return retornoCadastro;
             } catch (Exception e) {
                 Log.i("Error ON INSERT", e.toString());
@@ -186,7 +209,7 @@ public class UsuarioMenu extends AppCompatActivity {
                                 idUsuario,
                                 ctNomeUsuario.getText().toString(),
                                 ctEmailUsuario.getText().toString(),
-                                false, true));
+                                usuario.getNvAcesso(),true));
                 System.out.println("Identificador on UPDATE: " + id);
                 Intent intent = new Intent(getBaseContext(), MenuPrincipal.class);
                 startActivity(intent);

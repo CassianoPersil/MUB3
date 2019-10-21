@@ -1,7 +1,6 @@
 package com.projetos.mub.roomDatabase.entities;
 
 import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
@@ -13,20 +12,19 @@ public class Usuario {
     private Long idUsuarioAPI;
     private String nome;
     private String email;
-    private boolean agente;
     private boolean manterLogado;
-
+    private int nvAcesso;
 
     public Usuario(){
 
     }
 
-    public Usuario(Long id, Long idUsuarioAPI, String nome, String email, boolean agente, boolean manterLogado) {
+    public Usuario(Long id, Long idUsuarioAPI, String nome, String email, int nvAcesso, boolean manterLogado) {
         this.id = id;
         this.idUsuarioAPI = idUsuarioAPI;
         this.nome = nome;
         this.email = email;
-        this.agente = agente;
+        this.nvAcesso = nvAcesso;
         this.manterLogado = manterLogado;
     }
 
@@ -62,12 +60,12 @@ public class Usuario {
         this.email = email;
     }
 
-    public boolean isAgente() {
-        return agente;
+    public int getNvAcesso() {
+        return nvAcesso;
     }
 
-    public void setAgente(boolean agente) {
-        this.agente = agente;
+    public void setNvAcesso(int nvAcesso) {
+        this.nvAcesso = nvAcesso;
     }
 
     public boolean isManterLogado() {

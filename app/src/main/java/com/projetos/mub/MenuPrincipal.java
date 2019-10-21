@@ -22,6 +22,9 @@ import com.projetos.mub.conexao.Utils;
 import com.projetos.mub.roomDatabase.UsuarioDatabase;
 import com.projetos.mub.roomDatabase.entities.Usuario;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.List;
 
 public class MenuPrincipal extends AppCompatActivity
@@ -29,26 +32,24 @@ public class MenuPrincipal extends AppCompatActivity
 
     TextView tvNomeUsuario, tvEmailUsuario;
     private ProgressDialog load;
+    private Usuario usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
 
-        tvNomeUsuario = (TextView) findViewById(R.id.tvMenuNomeUsuario);
-        tvEmailUsuario = (TextView) findViewById(R.id.tvMenuEmailUsuario);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        /*ConsultarLocalmenteTask load = null;
+        ConsultarLocalmenteTask load = null;
         if (load == null) {
             load = new ConsultarLocalmenteTask();
         } else {
             load.cancel(true);
             load = new ConsultarLocalmenteTask();
         }
-        load.execute();*/
+        load.execute();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +60,7 @@ public class MenuPrincipal extends AppCompatActivity
             }
         });
 
+        //Intância dos itens do menu
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -68,8 +70,8 @@ public class MenuPrincipal extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        // Chamando views que contém informações do usuário
         View headerView = navigationView.getHeaderView(0);
-
         tvNomeUsuario = (TextView) headerView.findViewById(R.id.tvMenuNomeUsuario);
         tvEmailUsuario = (TextView) headerView.findViewById(R.id.tvMenuEmailUsuario);
     }
@@ -100,6 +102,15 @@ public class MenuPrincipal extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            LogoutTask logout = null;
+            if(logout == null){
+                logout = new LogoutTask();
+            }else{
+                logout.cancel(true);
+                logout = new LogoutTask();
+            }
+
+            logout.execute();
             return true;
         }
 
@@ -109,7 +120,7 @@ public class MenuPrincipal extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+        // Handle para navegação dos itens do menu.
         int id = item.getItemId();
 
         if (id == R.id.nav_conta_usuario) {
@@ -140,8 +151,8 @@ public class MenuPrincipal extends AppCompatActivity
 
         @Override
         protected void onPreExecute() {
-            /*load = ProgressDialog.show(MenuPrincipal.this,
-                    "Por favor aguarde...", "Estamos carregando os seus dados! ;)");*/
+            load = ProgressDialog.show(MenuPrincipal.this,
+                    "Por favor aguarde...", "Estamos carregando os seus dados! ;)");
         }
 
         @Override
@@ -153,6 +164,7 @@ public class MenuPrincipal extends AppCompatActivity
                         .getUsuarioDAO()
                         .getUserById(1L);
                 System.out.println("Identificador on INSERT: " + usuario.getId());
+                setUsuario(usuario);
                 return usuario;
             } catch (Exception e) {
                 Log.i("Error ON INSERT", e.toString());
@@ -165,7 +177,38 @@ public class MenuPrincipal extends AppCompatActivity
             System.out.println("Identificador on POST EXECUTE " + usuario.getNome());
             tvNomeUsuario.setText(usuario.getNome());
             tvEmailUsuario.setText(usuario.getEmail());
-            //load.dismiss();
+            load.dismiss();
+
         }
+    }
+
+    private class LogoutTask extends AsyncTask<Void, Void, String> {
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            Usuario obj = getUsuario();
+                try {
+                    obj.setManterLogado(false);
+                    Long id = UsuarioDatabase
+                            .getInstance(getBaseContext())
+                            .getUsuarioDAO()
+                            .insert(obj);
+                    System.out.println("Logout do usuário " + id +
+                            " realizado com sucesso!");
+                    Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    Log.i("Erro ao fazer logout ", e.toString());
+                }
+                return null;
+        }
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

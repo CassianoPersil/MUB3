@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                /*//Async Task
+                //Async Task
                 GetJson login = null;
                 if (login == null) {
                     login = new GetJson();
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                     login.cancel(true);
                     login = new GetJson();
                 }
-                login.execute();*/
+                login.execute();
 
                 Intent intent = new Intent(getBaseContext(), MenuPrincipal.class);
                 startActivity(intent);
@@ -118,7 +118,6 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String string) {
             try {
                 JSONObject jsonObject = new JSONObject(string);
-                if (Boolean.parseBoolean(jsonObject.getString("statusLogin")) == true) {
                     try {
                         Long id = UsuarioDatabase
                                 .getInstance(getBaseContext())
@@ -127,16 +126,13 @@ public class MainActivity extends AppCompatActivity {
                                         Long.parseLong(jsonObject.getString("id")),
                                         jsonObject.getString("nomeUsuario"),
                                         jsonObject.getString("email"),
-                                        false, true));
+                                        jsonObject.getInt("nvAcesso"), true));
                         System.out.println("Identificador on INSERT: " + id);
                         Intent intent = new Intent(getBaseContext(), MenuPrincipal.class);
                         startActivity(intent);
                     } catch (Exception e) {
                         Log.i("Error ON INSERT", e.toString());
                     }
-                } else {
-                    System.out.println("Erro");
-                }
             } catch (JSONException e) {
                 modalErro();
                 e.printStackTrace();
