@@ -24,7 +24,9 @@ import android.widget.TimePicker;
 
 import java.util.Calendar;
 
+
 public class InserirOcorrencia extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
+    static final int REQUEST_IMAGE_CAPTURE = 1;
 
     private Object ImageViewFoto;
 
@@ -84,7 +86,8 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
         tirar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tirarFoto();
+                //tirarFoto();
+                dispatchTakePictureIntent();
             }
         });
 
@@ -135,13 +138,18 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
     }
 
     //metodo para realizar a foto
-    private void tirarFoto() {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(intent, 1);
+   /* private void tirarFoto() {
+        if (MediaStore.ACTION_IMAGE_CAPTURE != null){
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(intent, 1);
+        }else{
+            return;
+        }
+
     }
 
     //retornar o resultado da camera
-    @Override
+   /* @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == 1){
             Bundle extras = data.getExtras();
@@ -151,7 +159,7 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
-
+*/
 //metodo para setar a data no calendario
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -169,6 +177,25 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
 
         datePickerDialog.show();
     }
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            ImageView imageViewFoto = (ImageView) findViewById(R.id.imgOcorrenciaConsulta);
+            imageViewFoto.setImageBitmap(imageBitmap);
+        }
+    }
+
+
 
 
 }
