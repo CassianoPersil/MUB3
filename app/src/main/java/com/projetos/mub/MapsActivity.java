@@ -37,7 +37,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private String[] permitir = new String[]{
-            Manifest.permission.ACCESS_FINE_LOCATION};
+            Manifest.permission.ACCESS_FINE_LOCATION
+    };
     private LocationManager locationManager;
     private LocationListener locationListener;
 
@@ -71,6 +72,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         mMap.getUiSettings().setZoomControlsEnabled(true);
+
 
 
         //objeto responsavel por gerenciar a localização
@@ -250,6 +252,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onMapClick(LatLng latLng) {
-        Toast.makeText(getBaseContext(), "Coordenadas: " + latLng, Toast.LENGTH_LONG ).show();
+
     }
 }

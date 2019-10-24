@@ -138,7 +138,7 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
     }
 
     //metodo para realizar a foto
-   /* private void tirarFoto() {
+    private void tirarFoto() {
         if (MediaStore.ACTION_IMAGE_CAPTURE != null){
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             startActivityForResult(intent, 1);
