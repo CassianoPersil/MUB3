@@ -15,21 +15,6 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <EditText
-                android:id="@+id/ctLocalOco"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:ems="10"
-                android:hint="@string/Texto_Local_Ocorrencia"
-                android:inputType="textPersonName" />
-        </LinearLayout>
-
-        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -98,15 +83,65 @@
             android:layout_marginTop="20dp"
             android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/imgOcorrenciaConsulta"
+            <TextView
+                android:id="@+id/textView"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:background="?android:attr/panelBackground"
-                app:srcCompat="@drawable/camera_ocorrencia" />
+                android:gravity="center"
+                android:text="@string/Texto_Informativo"
+                android:textColor="@android:color/background_dark"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
+            <EditText
+                android:id="@+id/editCEP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:hint="@string/Texto_Cep"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/editRUA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/Texto_Rua"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editNumero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/Texto_Numero"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/editBairro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/Texto_Bairro"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editCidade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/Texto_Cidade"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editEstado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/Texto_Estado"
+                android:inputType="textPersonName" />
         </LinearLayout>
 
         <LinearLayout
