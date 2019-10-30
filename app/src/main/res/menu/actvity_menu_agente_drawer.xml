@@ -16,7 +16,14 @@
             android:id="@+id/nav_consultar_ocorrencia"
             android:icon="@drawable/icon_occurrence_consult"
             android:title="Consultar Ocorrências" />
-
+        <item
+            android:id="@+id/nav_atender_ocorrencia"
+            android:icon="@drawable/icon_meet_occurrence"
+            android:title="@string/Nav_AtenderOcorrencia" />
+        <item
+            android:id="@+id/nav_inserir_ocorrencia"
+            android:icon="@drawable/icon_occurrence"
+            android:title="Inserir Ocorrência" />
     </group>
 
 </menu>
