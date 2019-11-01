@@ -5,6 +5,7 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
+
 @Entity
 public class Usuario {
     @PrimaryKey(autoGenerate = true)

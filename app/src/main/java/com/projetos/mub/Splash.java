@@ -4,9 +4,8 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.JsonReader;
 import android.util.Log;
 import android.view.WindowManager;
 
@@ -15,8 +14,6 @@ import com.projetos.mub.roomDatabase.UsuarioDatabase;
 import com.projetos.mub.roomDatabase.entities.Usuario;
 
 import org.json.JSONObject;
-
-import java.text.ParseException;
 
 public class Splash extends AppCompatActivity {
 

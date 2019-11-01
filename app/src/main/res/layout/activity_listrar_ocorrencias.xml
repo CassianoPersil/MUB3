@@ -59,7 +59,7 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center" />
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recListaOcorencia"
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
