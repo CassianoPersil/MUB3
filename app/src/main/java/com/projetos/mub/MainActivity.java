@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     EditText ctEmail;
     EditText ctSenha;
     private ProgressDialog load;
+    private String emailLogin, senhaLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                /*DESCOMENTAR ESSE TRECHO
-
-                **Async Task
+                emailLogin = ctEmail.getText().toString();
+                senhaLogin = ctSenha.getText().toString();
                 GetJson login = null;
                 if (login == null) {
                     login = new GetJson();
@@ -66,9 +66,6 @@ public class MainActivity extends AppCompatActivity {
                     login = new GetJson();
                 }
                 login.execute();
-                */
-                Intent intent = new Intent(getBaseContext(), MenuPrincipal.class);
-                startActivity(intent);
             }
         });
 
@@ -95,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
         private AlertDialog alert;
         private Utils util = new Utils();
+        private int aux = 0;
 
         @Override
         protected void onPreExecute() {
@@ -104,12 +102,11 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Void... voids) {
-
             try {
                 JSONObject json = new JSONObject();
-                json.put("email", ctEmail.getText().toString());
-                json.put("senha", ctSenha.getText().toString());
-                return util.postTeste("http://192.168.137.1:8080/user/login", json);
+                json.put("email", emailLogin);
+                json.put("senha", senhaLogin);
+                return util.postTeste("http://192.168.137.1:8080/user/login-mobile", json);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -118,25 +115,49 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String string) {
+            Usuario usuario = new Usuario();
             try {
                 JSONObject jsonObject = new JSONObject(string);
+                Log.w("RETORNO LOGIN: ", string);
+
                 try {
-                    Long id = UsuarioDatabase
-                            .getInstance(getBaseContext())
-                            .getUsuarioDAO()
-                            .insert(new Usuario(1L,
-                                    Long.parseLong(jsonObject.getString("id")),
-                                    jsonObject.getString("nomeUsuario"),
-                                    jsonObject.getString("email"),
-                                    jsonObject.getInt("nvAcesso"), true));
-                    System.out.println("Identificador on INSERT: " + id);
+                    /*
+                     ** Atualizando no objeto usuário
+                     */
+
+                    System.out.println("ID DO USUÁRIOOOOOOOOOOOOOO" + jsonObject.getLong("id"));
+
+                    usuario.setId(1L);
+
+                    usuario.setNome(jsonObject.getString("nomeUsuario"));
+                    usuario.setEmail(jsonObject.getString("email"));
+                    usuario.setNvAcesso(jsonObject.getInt("nvAcesso"));
+                    usuario.setManterLogado(true);
+                    usuario.setStAtividade(true);
+
+                    /*
+                     ** Verificando se o usuário é um agente de trânsito
+                     */
+                    if(usuario.getNvAcesso() == 2){
+                        usuario.setIdUsuarioAPI(Long.parseLong(jsonObject.getString("idUsuarioAPI")));
+                        usuario.setAgente(true);
+                        usuario.setCidade(jsonObject.getString("cidade"));
+                    }else{
+                        usuario.setIdUsuarioAPI(Long.parseLong(jsonObject.getString("id")));
+                        usuario.setAgente(false);
+                        usuario.setCidade("Não informada");
+                    }
+                    /*
+                     ** Inserindo/Atualizando dados do usuário LOCALMENTE
+                     */
+                    Log.d("INSERIDO LOCALMENTE", atualizarUsuarioLocal(usuario).toString()) ;
                     Intent intent = new Intent(getBaseContext(), MenuPrincipal.class);
                     startActivity(intent);
                 } catch (Exception e) {
-                    Log.i("Error ON INSERT", e.toString());
+                    Log.e("Error ON LOGIN", e.toString());
+                    modalErro();
                 }
             } catch (JSONException e) {
-                modalErro();
                 e.printStackTrace();
             }
             load.dismiss();
@@ -155,6 +176,14 @@ public class MainActivity extends AppCompatActivity {
             });
             alert = builder.create();
             alert.show();
+        }
+
+        private Long atualizarUsuarioLocal(Usuario usuario) {
+            Long id = UsuarioDatabase
+                    .getInstance(getBaseContext())
+                    .getUsuarioDAO()
+                    .insert(usuario);
+            return id;
         }
     }
 

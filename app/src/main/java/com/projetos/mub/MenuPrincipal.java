@@ -42,8 +42,6 @@ public class MenuPrincipal extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        /*
-        * DESCOMENTAR ESSE TRECHO
         ConsultarLocalmenteTask load = null;
         if (load == null) {
             load = new ConsultarLocalmenteTask();
@@ -52,7 +50,7 @@ public class MenuPrincipal extends AppCompatActivity
             load = new ConsultarLocalmenteTask();
         }
         load.execute();
-        */
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,14 +96,12 @@ public class MenuPrincipal extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
        /*
-       * Handler do botào de Logout
+       * Handler do botão de Logout
         */
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-
-            /*DESCOMENTAR
             LogoutTask logout = null;
 
             if(logout == null){
@@ -115,7 +111,7 @@ public class MenuPrincipal extends AppCompatActivity
                 logout = new LogoutTask();
             }
 
-            logout.execute();*/
+            logout.execute();
             return true;
         }
 
@@ -170,7 +166,7 @@ public class MenuPrincipal extends AppCompatActivity
                         .getInstance(getBaseContext())
                         .getUsuarioDAO()
                         .getUserById(1L);
-                System.out.println("Identificador on INSERT: " + usuario.getId());
+                System.out.println("Usuário buscado MENU_PRINCIPAL: " + usuario.getId());
                 setUsuario(usuario);
                 return usuario;
             } catch (Exception e) {
@@ -185,7 +181,6 @@ public class MenuPrincipal extends AppCompatActivity
             tvNomeUsuario.setText(usuario.getNome());
             tvEmailUsuario.setText(usuario.getEmail());
             load.dismiss();
-
         }
     }
 
