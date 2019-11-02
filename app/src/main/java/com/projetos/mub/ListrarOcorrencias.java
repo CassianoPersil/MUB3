@@ -1,9 +1,9 @@
 package com.projetos.mub;
 
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -16,7 +16,11 @@ import android.widget.TextView;
 import com.projetos.mub.roomDatabase.UsuarioDatabase;
 import com.projetos.mub.roomDatabase.entities.Usuario;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ListrarOcorrencias extends AppCompatActivity {
+    List<Cards> listCard;
     ImageView listrarOcorrenciaImg;
     TextView textolista, listarOcorrenciaEmail;
     Spinner spListaOcorrencia;
@@ -38,30 +42,24 @@ public class ListrarOcorrencias extends AppCompatActivity {
         }
         consultarLocalmenteTask.execute();
         */
-        listrarOcorrenciaImg = (ImageView) findViewById(R.id.imgListrarOcorrencia);
-        textolista = (TextView) findViewById(R.id.textoLista);
-        listarOcorrenciaEmail = (TextView) findViewById(R.id.listarOcorrenciaEmail);
-        spListaOcorrencia = (Spinner) findViewById(R.id.spListaOcorrencia);
-        reclistaOcorrencia = (RecyclerView) findViewById(R.id.recListaOcorencia);
+       // listrarOcorrenciaImg = (ImageView) findViewById(R.id.imgListrarOcorrencia);
+       // textolista = (TextView) findViewById(R.id.textoLista);
+       // listarOcorrenciaEmail = (TextView) findViewById(R.id.listarOcorrenciaEmail);
+       // spListaOcorrencia = (Spinner) findViewById(R.id.spListaOcorrencia);
+        reclistaOcorrencia = (RecyclerView) findViewById(R.id.recCards);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.Status_Ocorrencias, R.layout.support_simple_spinner_dropdown_item);
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        spListaOcorrencia.setAdapter(adapter);
-
-        spListaOcorrencia.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                //Toast.makeText(getBaseContext(),spinnerStatus.getSelectedItem().toString(),Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
+        listCard = new ArrayList<>();
+        listCard.add(new Cards());
+        listCard.add(new Cards());
+        listCard.add(new Cards());
+        listCard.add(new Cards());
+        listCard.add(new Cards());
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recCards);
+        RecycleViewAdapter recycleViewAdapter = new RecycleViewAdapter(this, listCard);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
+        recyclerView.setAdapter(recycleViewAdapter);
 
     }
 
