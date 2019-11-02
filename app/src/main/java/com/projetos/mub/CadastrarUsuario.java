@@ -23,7 +23,6 @@ public class CadastrarUsuario extends AppCompatActivity {
     TextView ctNomeUsuario, ctEmailUsuario, ctSenhaUsuario, ctCpfUsuario, ctTelefoneUsuario, ctNascimentoUsuario;
     Button btCadastrarUsuario;
     private ProgressDialog load;
-    private String nome, email, telefone, cpf, senha, dataNascimento;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,21 +37,7 @@ public class CadastrarUsuario extends AppCompatActivity {
         btCadastrarUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nome = ctNomeUsuario.getText().toString();
-                email = ctEmailUsuario.getText().toString();
-                telefone = ctTelefoneUsuario.getText().toString();
-                cpf = ctCpfUsuario.getText().toString();
-                senha = ctSenhaUsuario.getText().toString();
-                dataNascimento = ctNascimentoUsuario.getText().toString();
-
-                CadastrarUsuarioPost cadastrarUsuarioPost = null;
-                if (cadastrarUsuarioPost == null) {
-                    cadastrarUsuarioPost = new CadastrarUsuarioPost();
-                } else {
-                    cadastrarUsuarioPost.cancel(true);
-                    cadastrarUsuarioPost = new CadastrarUsuarioPost();
-                }
-                cadastrarUsuarioPost.execute();
+                cp.execute();
             }
         });
 
@@ -103,15 +88,23 @@ public class CadastrarUsuario extends AppCompatActivity {
 
             load.dismiss();
 
+            try {
+                JSONObject jsonObject = new JSONObject(s);
+                status = jsonObject.getInt("status");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
             if (status == 500) {
                 titulo = "Erro ao cadastrar :(";
                 texto = "Seu e-mail ou CPF já estão cadastrados. Consulte contato@voxelsbrasil.com para mais informações!";
-                modalAlert(titulo, texto, false);
+                modalAlert(titulo, texto);
             } else {
                 titulo = "Obrigado por se cadastrar!";
                 texto = "Agora é só realizar o login :)";
-                modalAlert(titulo, texto, true);
-
+                modalAlert(titulo, texto);
+                Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(intent);
             }
         }
 
@@ -121,16 +114,14 @@ public class CadastrarUsuario extends AppCompatActivity {
             String retornoCadastro = "";
             try {
                 JSONObject json = new JSONObject();
-                json.put("email", email);
-                json.put("telefone", telefone);
-                json.put("nome", nome);
-                json.put("cpf", cpf);
-                json.put("senha", senha);
-                json.put("dataDeNascimento", dataNascimento);
-                json.put("nvAcesso", 1);
-                json.put("statusUsuario", 1);
+                json.put("email", ctEmailUsuario.getText().toString());
+                json.put("telefone", ctTelefoneUsuario.getText().toString());
+                json.put("nome", ctNomeUsuario.getText().toString());
+                json.put("cpf", ctCpfUsuario.getText().toString());
+                json.put("senha", ctSenhaUsuario.getText().toString());
+                json.put("dataDeNascimento", ctNascimentoUsuario.getText().toString());
 
-                retornoCadastro = util.postTeste("http://192.168.137.1:8080/user/inserir", json);
+                retornoCadastro = util.postTeste("http://192.168.137.1:8080/user/cadastrar", json);
                 return retornoCadastro;
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -138,7 +129,7 @@ public class CadastrarUsuario extends AppCompatActivity {
             return null;
         }
 
-        protected void modalAlert(String titulo, String texto, final boolean redirecionar){
+        protected void modalAlert(String titulo, String texto) {
             // Criando gerador de Alerta
             final AlertDialog.Builder builder = new AlertDialog.Builder(CadastrarUsuario.this);
             builder.setTitle(titulo);
@@ -148,10 +139,6 @@ public class CadastrarUsuario extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     alert.dismiss();
-                    if(redirecionar == true){
-                        Intent intent = new Intent(getBaseContext(), MainActivity.class);
-                        startActivity(intent);
-                    }
                 }
             });
             alert = builder.create();

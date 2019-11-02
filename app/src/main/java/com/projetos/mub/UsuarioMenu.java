@@ -28,7 +28,6 @@ public class UsuarioMenu extends AppCompatActivity {
     private Button btAtualizarUsuario;
     private Long idUsuario;
     private Usuario usuario;
-    private String nome, email, telefone, cpf, senha, dataNascimento;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,46 +35,31 @@ public class UsuarioMenu extends AppCompatActivity {
         setContentView(R.layout.activity_usuario_menu);
         //chamando o metodo
         iniciarVariaveis();
-        /*
-         ** Desativando campo de CPF
-         */
         ctCpf.setEnabled(false);
 
-        /*
-         ** Executando Task de recuperação de informações através da API
-         */
-        RecuperarDadosPerfilTask recuperarDadosPerfilTask = null;
+        //Disparando AsyncTask onCreate DESCOMENTAR
+        /*RecuperarDadosPerfilTask recuperarDadosPerfilTask = null;
         if (recuperarDadosPerfilTask == null) {
             recuperarDadosPerfilTask = new RecuperarDadosPerfilTask();
         } else {
             recuperarDadosPerfilTask.cancel(true);
             recuperarDadosPerfilTask = new RecuperarDadosPerfilTask();
         }
-        recuperarDadosPerfilTask.execute();
-
-        /*
-         ** Executando Task de ATUALIZAÇÃO de informações através da API e atualização LOCAL
-         */
+        recuperarDadosPerfilTask.execute();*/
 
         btAtualizarUsuario = (Button) findViewById(R.id.btAlterarDados);
         btAtualizarUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                nome = ctNomeUsuario.getText().toString();
-                email = ctEmailUsuario.getText().toString();
-                telefone = ctTelefone.getText().toString();
-                senha = ctSenhaUsuario.getText().toString();
-                dataNascimento = ctDataNasc.getText().toString();
-
                 //Disparando AsyncTask onClick
-                AtualizarUsuarioLocal atualizarUsuarioLocal = null;
+                /*AtualizarUsuarioLocal atualizarUsuarioLocal = null;
                 if (atualizarUsuarioLocal == null) {
                     atualizarUsuarioLocal = new AtualizarUsuarioLocal();
                 } else {
                     atualizarUsuarioLocal.cancel(true);
                     atualizarUsuarioLocal = new AtualizarUsuarioLocal();
                 }
-                atualizarUsuarioLocal.execute();
+                atualizarUsuarioLocal.execute();*/
             }
         });
 
@@ -109,19 +93,19 @@ public class UsuarioMenu extends AppCompatActivity {
         ctTelefone = (TextView) findViewById(R.id.ctEditTelefone);
     }
 
-    public void setIdUsuario(Long id) {
+    public void setIdUsuario(Long id){
         this.idUsuario = id;
     }
 
-    public Long getIdUsuario() {
+    public Long getIdUsuario(){
         return this.idUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(Usuario usuario){
         this.usuario = usuario;
     }
 
-    public Usuario getUsuario() {
+    public Usuario getUsuario(){
         return this.usuario;
     }
 
@@ -130,10 +114,18 @@ public class UsuarioMenu extends AppCompatActivity {
         private Utils util = new Utils();
 
         @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
         protected String doInBackground(Void... voids) {
             Usuario usuario;
             try {
-                usuario = consultarLocalmente();
+                usuario = UsuarioDatabase
+                        .getInstance(getBaseContext())
+                        .getUsuarioDAO()
+                        .getUserById(1L);
                 System.out.println("Identificador do usuário na API: " + usuario.getIdUsuarioAPI());
                 setIdUsuario(usuario.getIdUsuarioAPI());
                 setUsuario(usuario);
@@ -186,16 +178,16 @@ public class UsuarioMenu extends AppCompatActivity {
 
             try {
                 JSONObject json = new JSONObject();
-                json.put("email", email);
-                json.put("telefone", telefone);
-                json.put("nome", nome);
-                json.put("cpf", cpf);
-                json.put("senha", senha);
-                json.put("dataDeNascimento", dataNascimento);
+                json.put("email", ctEmailUsuario.getText().toString());
+                json.put("telefone", ctTelefone.getText().toString());
+                json.put("nome", ctNomeUsuario.getText().toString());
+                json.put("cpf", ctCpf.getText().toString());
+                json.put("senha", ctSenhaUsuario.getText().toString());
+                json.put("dataDeNascimento", ctDataNasc.getText().toString());
                 json.put("statusUsuario", 1);
 
                 json.put("nvAcesso", 1);
-                System.out.println("IDENTIFICADOR DO USUARIO: " + idUsuario);
+                System.out.println( "IDENTIFICADOR DO USUARIO: " + idUsuario);
                 retornoCadastro = util.putSend("http://192.168.137.1:8080/user/alterar/" + getIdUsuario(), json);
                 System.out.println(retornoCadastro);
                 return retornoCadastro;
@@ -208,20 +200,15 @@ public class UsuarioMenu extends AppCompatActivity {
         @Override
         protected void onPostExecute(String retorno) {
             Log.i("RETORNO DO PUT: ", retorno);
-            Usuario usuario = getUsuario();
             try {
-                usuario = consultarLocalmente();
-                usuario.setIdUsuarioAPI(idUsuario);
-                usuario.setNome(ctNomeUsuario.getText().toString());
-                usuario.setEmail(ctEmailUsuario.getText().toString());
-                usuario.setNvAcesso(usuario.getNvAcesso());
-                usuario.setManterLogado(true);
-
                 Long id = UsuarioDatabase
                         .getInstance(getBaseContext())
                         .getUsuarioDAO()
-                        .insert(usuario);
-
+                        .insert(new Usuario(1L,
+                                idUsuario,
+                                ctNomeUsuario.getText().toString(),
+                                ctEmailUsuario.getText().toString(),
+                                usuario.getNvAcesso(),true));
                 System.out.println("Identificador on UPDATE: " + id);
                 Intent intent = new Intent(getBaseContext(), MenuPrincipal.class);
                 startActivity(intent);
@@ -229,13 +216,5 @@ public class UsuarioMenu extends AppCompatActivity {
                 Log.i("Error ON UPDATE", e.toString());
             }
         }
-    }
-
-    private Usuario consultarLocalmente() {
-        Usuario usuario = UsuarioDatabase
-                .getInstance(getBaseContext())
-                .getUsuarioDAO()
-                .getUserById(1L);
-        return usuario;
     }
 }
