@@ -39,7 +39,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         holder.Cards.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, InserirOcorrencia.class);
+                Intent intent = new Intent(context, Ocorrencias.class);
                 context.startActivity(intent);
             }
         });
@@ -58,6 +58,11 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         TextView Tipo;
         TextView textStatus;
         TextView Status;
+        TextView Protocolo;
+        TextView textData;
+        TextView Data;
+        TextView textHora;
+        TextView Horario;
         CardView Cards;
 
 
@@ -68,7 +73,13 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
             Tipo = (TextView) itemView.findViewById(R.id.Tipo);
             textStatus = (TextView) itemView.findViewById(R.id.textStatus);
             Status = (TextView) itemView.findViewById(R.id.Status);
+            Protocolo = (TextView) itemView.findViewById(R.id.Protocolo);
+            textData = (TextView) itemView.findViewById(R.id.textData);
+            Data = (TextView) itemView.findViewById(R.id.Data);
+            textHora = (TextView) itemView.findViewById(R.id.textHora);
+            Horario = (TextView) itemView.findViewById(R.id.Horario);
             Cards = (CardView) itemView.findViewById(R.id.Card);
+
 
 
 
