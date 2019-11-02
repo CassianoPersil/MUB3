@@ -33,9 +33,11 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
-        //holder.textOcorrencia.setText(mCard.get(position).getTextOcorrencia());
-        //holder.Tipo.setText(mCard.get(position).getTipo());
-        //holder.Status.setText(mCard.get(position).getStatus());
+        for (int i = 0; i <= position; i++){
+            holder.Tipo.setText(mCard.get(i).getTipo());
+            holder.Status.setText(mCard.get(i).getStatus());
+        }
+
         holder.Cards.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,8 +45,6 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
                 context.startActivity(intent);
             }
         });
-
-
     }
 
     @Override
@@ -69,9 +69,6 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
             textStatus = (TextView) itemView.findViewById(R.id.textStatus);
             Status = (TextView) itemView.findViewById(R.id.Status);
             Cards = (CardView) itemView.findViewById(R.id.Card);
-
-
-
         }
     }
 
