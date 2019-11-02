@@ -62,13 +62,6 @@
     <string name="email">Email</string>
     <string name="senha">Senha</string>
     <string name="todo">TODO</string>
-    <string name="Texto_Cep">CEP</string>
-    <string name="Texto_Rua">RUA</string>
-    <string name="Texto_Numero">Número</string>
-    <string name="Texto_Bairro">Bairro</string>
-    <string name="Texto_Cidade">Cidade</string>
-    <string name="Texto_Estado">Estado</string>
-    <string name="Texto_Informativo">Preencha as informações sobre a localidade</string>
     <string-array name="ocorrencias">
         <item></item>
         <item>Semáforo Quebrado</item>

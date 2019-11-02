@@ -4,24 +4,28 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.navigation.NavigationView;
-
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.projetos.mub.conexao.Utils;
 import com.projetos.mub.roomDatabase.UsuarioDatabase;
 import com.projetos.mub.roomDatabase.entities.Usuario;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.List;
 
 public class MenuPrincipal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -57,7 +61,6 @@ public class MenuPrincipal extends AppCompatActivity
         });
 
         //Intância dos itens do menu
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -92,18 +95,18 @@ public class MenuPrincipal extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        /*
-         * Handler do botào de Logout
-         */
+       /*
+       * Handler do botão de Logout
+        */
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             LogoutTask logout = null;
 
-            if (logout == null) {
+            if(logout == null){
                 logout = new LogoutTask();
-            } else {
+            }else{
                 logout.cancel(true);
                 logout = new LogoutTask();
             }
@@ -136,9 +139,7 @@ public class MenuPrincipal extends AppCompatActivity
             Intent intent = new Intent(getBaseContext(), SelecionarAtenderOcorrencia.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_inserir_ocorrencia) {
-            Intent intent = new Intent(getBaseContext(), InserirOcorrencia.class);
-            startActivity(intent);
+        } else if (id == R.id.nav_send) {
 
         }
 
@@ -148,7 +149,7 @@ public class MenuPrincipal extends AppCompatActivity
     }
 
     /*
-     ** Task responsável por puxar os dados armazenados no banco de dados local.
+    ** Task responsável por puxar os dados armazenados no banco de dados local.
      */
     private class ConsultarLocalmenteTask extends AsyncTask<Void, Void, Usuario> {
 
@@ -165,7 +166,7 @@ public class MenuPrincipal extends AppCompatActivity
                         .getInstance(getBaseContext())
                         .getUsuarioDAO()
                         .getUserById(1L);
-                System.out.println("Identificador on INSERT: " + usuario.getId());
+                System.out.println("Usuário buscado MENU_PRINCIPAL: " + usuario.getId());
                 setUsuario(usuario);
                 return usuario;
             } catch (Exception e) {
@@ -180,33 +181,32 @@ public class MenuPrincipal extends AppCompatActivity
             tvNomeUsuario.setText(usuario.getNome());
             tvEmailUsuario.setText(usuario.getEmail());
             load.dismiss();
-
         }
     }
 
 
     /*
-     ** Task criada para realizar logou do usuário.
+    ** Task criada para realizar logou do usuário.
      */
     private class LogoutTask extends AsyncTask<Void, Void, String> {
 
         @Override
         protected String doInBackground(Void... voids) {
             Usuario obj = getUsuario();
-            try {
-                obj.setManterLogado(false);
-                Long id = UsuarioDatabase
-                        .getInstance(getBaseContext())
-                        .getUsuarioDAO()
-                        .insert(obj);
-                System.out.println("Logout do usuário " + id +
-                        " realizado com sucesso!");
-                Intent intent = new Intent(getBaseContext(), MainActivity.class);
-                startActivity(intent);
-            } catch (Exception e) {
-                Log.i("Erro ao fazer logout ", e.toString());
-            }
-            return null;
+                try {
+                    obj.setManterLogado(false);
+                    Long id = UsuarioDatabase
+                            .getInstance(getBaseContext())
+                            .getUsuarioDAO()
+                            .insert(obj);
+                    System.out.println("Logout do usuário " + id +
+                            " realizado com sucesso!");
+                    Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    Log.i("Erro ao fazer logout ", e.toString());
+                }
+                return null;
         }
     }
 

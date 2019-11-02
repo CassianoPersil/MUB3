@@ -1,8 +1,8 @@
 package com.projetos.mub;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import androidx.recyclerview.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
 public class SelecionarAtenderOcorrencia extends AppCompatActivity {

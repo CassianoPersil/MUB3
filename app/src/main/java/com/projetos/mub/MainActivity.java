@@ -1,23 +1,28 @@
 package com.projetos.mub;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
-
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.projetos.mub.conexao.Utils;
+import com.projetos.mub.conexao.pojos.LoginPojo;
 import com.projetos.mub.roomDatabase.UsuarioDatabase;
 import com.projetos.mub.roomDatabase.entities.Usuario;
 
@@ -51,10 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-
                 emailLogin = ctEmail.getText().toString();
                 senhaLogin = ctSenha.getText().toString();
-
                 GetJson login = null;
                 if (login == null) {
                     login = new GetJson();
@@ -135,11 +138,11 @@ public class MainActivity extends AppCompatActivity {
                     /*
                      ** Verificando se o usuário é um agente de trânsito
                      */
-                    if (usuario.getNvAcesso() == 2) {
+                    if(usuario.getNvAcesso() == 2){
                         usuario.setIdUsuarioAPI(Long.parseLong(jsonObject.getString("idUsuarioAPI")));
                         usuario.setAgente(true);
                         usuario.setCidade(jsonObject.getString("cidade"));
-                    } else {
+                    }else{
                         usuario.setIdUsuarioAPI(Long.parseLong(jsonObject.getString("id")));
                         usuario.setAgente(false);
                         usuario.setCidade("Não informada");
@@ -147,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
                     /*
                      ** Inserindo/Atualizando dados do usuário LOCALMENTE
                      */
-                    Log.d("INSERIDO LOCALMENTE", atualizarUsuarioLocal(usuario).toString());
+                    Log.d("INSERIDO LOCALMENTE", atualizarUsuarioLocal(usuario).toString()) ;
                     Intent intent = new Intent(getBaseContext(), MenuPrincipal.class);
                     startActivity(intent);
                 } catch (Exception e) {
@@ -183,4 +186,5 @@ public class MainActivity extends AppCompatActivity {
             return id;
         }
     }
+
 }

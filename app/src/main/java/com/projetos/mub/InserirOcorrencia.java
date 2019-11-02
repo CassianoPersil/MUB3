@@ -7,16 +7,15 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.appcompat.app.AppCompatActivity;
+import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -33,7 +32,6 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
 
     Spinner sp;
     Button btEnviarOco;
-    EditText editCEP, editRUA, editNumero, editBairro, editCidade, editEstado;
     TextView ctDataOco, ctHorarioOco;
     ImageButton imgOcorrencia, imgData,imgHoras;
     TimePickerDialog timePickerDialog;
@@ -48,13 +46,7 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
         setContentView(R.layout.activity_inserir_ocorrencia);
 
         sp = (Spinner) findViewById(R.id.sp);
-        //imgOcorrencia = (ImageButton) findViewById(R.id.imgOcorrenciaConsulta);
-        editCEP = (EditText) findViewById(R.id.editCEP);
-        editRUA = (EditText) findViewById(R.id.editRUA);
-        editNumero = (EditText) findViewById(R.id.editNumero);
-        editBairro = (EditText) findViewById(R.id.editBairro);
-        editCidade = (EditText) findViewById(R.id.editCidade);
-        editEstado = (EditText) findViewById(R.id.editEstado);
+        imgOcorrencia = (ImageButton) findViewById(R.id.imgOcorrenciaConsulta);
         ctDataOco = (TextView) findViewById(R.id.ctDataOco);
         ctHorarioOco = (TextView) findViewById(R.id.ctHorarioOco);
         btEnviarOco = (Button) findViewById(R.id.btEnviarOco);
@@ -88,18 +80,16 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
 
 
         //recuperando os elementos da interface
-        //ImageButton tirar = (ImageButton) findViewById(R.id.imgOcorrenciaConsulta);
+        ImageButton tirar = (ImageButton) findViewById(R.id.imgOcorrenciaConsulta);
 
         //metodo para o click do botão
-       /* tirar.setOnClickListener(new View.OnClickListener() {
+        tirar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //tirarFoto();
                 dispatchTakePictureIntent();
             }
         });
-
-        */
 
         btEnviarOco = (Button)findViewById(R.id.btEnviarOco);
         btEnviarOco.setOnClickListener(new View.OnClickListener() {
@@ -195,7 +185,7 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
         }
     }
 
-   /* @Override
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
@@ -205,7 +195,7 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
         }
     }
 
-*/
+
 
 
 }
