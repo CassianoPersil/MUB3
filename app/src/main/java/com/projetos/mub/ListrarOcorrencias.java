@@ -13,93 +13,108 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.projetos.mub.conexao.Utils;
 import com.projetos.mub.roomDatabase.UsuarioDatabase;
 import com.projetos.mub.roomDatabase.entities.Usuario;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ListrarOcorrencias extends AppCompatActivity {
-    List<Cards> listCard;
-    ImageView listrarOcorrenciaImg;
-    TextView textolista, listarOcorrenciaEmail;
-    Spinner spListaOcorrencia;
-    RecyclerView reclistaOcorrencia;
+    private List<Cards> listCard = new ArrayList<>();
+    private ImageView listrarOcorrenciaImg;
+    private TextView textolista, listarOcorrenciaEmail;
+    private Spinner spListaOcorrencia;
+    private RecyclerView reclistaOcorrencia;
     private Usuario usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listrar_ocorrencias);
-        /*
-        * DESCOMENTAR ESSE TRECHO!
-        ConsultarLocalmenteTask consultarLocalmenteTask = null;
-        if (consultarLocalmenteTask == null) {
-            consultarLocalmenteTask = new ConsultarLocalmenteTask();
-        } else {
-            consultarLocalmenteTask.cancel(true);
-            consultarLocalmenteTask = new ConsultarLocalmenteTask();
-        }
-        consultarLocalmenteTask.execute();
-        */
-       // listrarOcorrenciaImg = (ImageView) findViewById(R.id.imgListrarOcorrencia);
-       // textolista = (TextView) findViewById(R.id.textoLista);
-       // listarOcorrenciaEmail = (TextView) findViewById(R.id.listarOcorrenciaEmail);
-       // spListaOcorrencia = (Spinner) findViewById(R.id.spListaOcorrencia);
         reclistaOcorrencia = (RecyclerView) findViewById(R.id.recCards);
 
+        BuscarOcorrenciasTask consultarLocalmenteTask = null;
+        if (consultarLocalmenteTask == null) {
+            consultarLocalmenteTask = new BuscarOcorrenciasTask();
+        } else {
+            consultarLocalmenteTask.cancel(true);
+            consultarLocalmenteTask = new BuscarOcorrenciasTask();
+        }
+        consultarLocalmenteTask.execute();
 
 
-        listCard = new ArrayList<>();
-        listCard.add(new Cards());
-        listCard.add(new Cards());
-        listCard.add(new Cards());
-        listCard.add(new Cards());
-        listCard.add(new Cards());
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recCards);
-        RecycleViewAdapter recycleViewAdapter = new RecycleViewAdapter(this, listCard);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
-        recyclerView.setAdapter(recycleViewAdapter);
 
     }
 
-    /*
-    * Task para atualização de dados locais.
-     */
-    private class ConsultarLocalmenteTask extends AsyncTask<Void, Void, Usuario> {
 
-        @Override
-        protected void onPreExecute() {
-        }
-
-        @Override
-        protected Usuario doInBackground(Void... voids) {
-            try {
-                Usuario usuario = UsuarioDatabase
-                        .getInstance(getBaseContext())
-                        .getUsuarioDAO()
-                        .getUserById(1L);
-                System.out.println("BUSCA DE USUÁRIO: ID " + usuario.getNome() + " SUCESSO!");
-                setUsuario(usuario);
-                return usuario;
-            } catch (Exception e) {
-                Log.i("Error ON INSERT", e.toString());
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Usuario usuario) {
-            listarOcorrenciaEmail.setText(usuario.getEmail());
-            System.out.println("Identificador on POST EXECUTE " + usuario.getNome());
-        }
-    }
-
-    private class BuscarOcorrenciasTask extends AsyncTask<Void, Void, String>{
+    private class BuscarOcorrenciasTask extends AsyncTask<Void, Void, String> {
 
         @Override
         protected String doInBackground(Void... voids) {
-            return null;
+            Utils util = new Utils();
+            try {
+                /*
+                 ** Dispara consulta no ROOM database, verificando se ja há um usuário logado
+                 ** previamente...
+                 */
+                Usuario usuario = consultarLocalmente();
+
+                /*
+                 ** Verifica se o usuário deve manter-se logado e se está ATIVO.
+                 */
+                if (usuario.isManterLogado() == true && usuario.isStAtividade() == true && !usuario.isAgente()) {
+
+                    /*
+                     ** Consulta as informações na API para atualização no banco local baseado no ID do usuário.
+                     */
+                    String consultaApi = util.getInfFromGET("http://192.168.137.1:8080/ocorrencia/buscar-usuario/4");
+                    //+ usuario.getIdUsuarioAPI());
+                    return consultaApi;
+                }
+                return null;
+            } catch (Exception e) {
+                Log.i("Error ON INSERT", e.toString());
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            try {
+                JSONArray jsonArrayOcorrencias = new JSONArray(s);
+                Log.i("Resultado ocorrência ", jsonArrayOcorrencias.toString());
+
+                for (int i = 0; i < jsonArrayOcorrencias.length(); i++) {
+                     Cards card = new Cards();
+                    JSONObject jsonOcorrencia = jsonArrayOcorrencias.getJSONObject(i);
+                    System.out.println(jsonOcorrencia.getString("protocolo"));
+                    card.setTipo(jsonOcorrencia.getJSONObject("tipoOcorrencia").getString("nome"));
+                    card.setStatus(jsonOcorrencia.getJSONObject("statusOcorrencia").getString("nome"));
+                    listCard.add(card);
+                }
+
+                RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recCards);
+                RecycleViewAdapter recycleViewAdapter = new RecycleViewAdapter(getBaseContext(), listCard);
+                recyclerView.setLayoutManager(new GridLayoutManager(getBaseContext(), 1));
+                recyclerView.setAdapter(recycleViewAdapter);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+        }
+
+        private Usuario consultarLocalmente() {
+            Usuario usuario = UsuarioDatabase
+                    .getInstance(getBaseContext())
+                    .getUsuarioDAO()
+                    .getUserById(1L);
+            return usuario;
         }
     }
 
