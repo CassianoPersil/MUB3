@@ -4,13 +4,16 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,8 +38,6 @@ public class MenuPrincipal extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        /*
-        * DESCOMENTAR ESSE TRECHO
         ConsultarLocalmenteTask load = null;
         if (load == null) {
             load = new ConsultarLocalmenteTask();
@@ -45,7 +46,7 @@ public class MenuPrincipal extends AppCompatActivity
             load = new ConsultarLocalmenteTask();
         }
         load.execute();
-        */
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,25 +92,23 @@ public class MenuPrincipal extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-       /*
-       * Handler do botào de Logout
-        */
+        /*
+         * Handler do botào de Logout
+         */
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-
-            /*DESCOMENTAR
             LogoutTask logout = null;
 
-            if(logout == null){
+            if (logout == null) {
                 logout = new LogoutTask();
-            }else{
+            } else {
                 logout.cancel(true);
                 logout = new LogoutTask();
             }
 
-            logout.execute();*/
+            logout.execute();
             return true;
         }
 
@@ -149,7 +148,7 @@ public class MenuPrincipal extends AppCompatActivity
     }
 
     /*
-    ** Task responsável por puxar os dados armazenados no banco de dados local.
+     ** Task responsável por puxar os dados armazenados no banco de dados local.
      */
     private class ConsultarLocalmenteTask extends AsyncTask<Void, Void, Usuario> {
 
@@ -187,27 +186,27 @@ public class MenuPrincipal extends AppCompatActivity
 
 
     /*
-    ** Task criada para realizar logou do usuário.
+     ** Task criada para realizar logou do usuário.
      */
     private class LogoutTask extends AsyncTask<Void, Void, String> {
 
         @Override
         protected String doInBackground(Void... voids) {
             Usuario obj = getUsuario();
-                try {
-                    obj.setManterLogado(false);
-                    Long id = UsuarioDatabase
-                            .getInstance(getBaseContext())
-                            .getUsuarioDAO()
-                            .insert(obj);
-                    System.out.println("Logout do usuário " + id +
-                            " realizado com sucesso!");
-                    Intent intent = new Intent(getBaseContext(), MainActivity.class);
-                    startActivity(intent);
-                } catch (Exception e) {
-                    Log.i("Erro ao fazer logout ", e.toString());
-                }
-                return null;
+            try {
+                obj.setManterLogado(false);
+                Long id = UsuarioDatabase
+                        .getInstance(getBaseContext())
+                        .getUsuarioDAO()
+                        .insert(obj);
+                System.out.println("Logout do usuário " + id +
+                        " realizado com sucesso!");
+                Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(intent);
+            } catch (Exception e) {
+                Log.i("Erro ao fazer logout ", e.toString());
+            }
+            return null;
         }
     }
 

@@ -11,7 +11,7 @@ import com.projetos.mub.roomDatabase.entities.Usuario;
 @Database(entities = {Usuario.class}, version = 2, exportSchema = false)
 public abstract class UsuarioDatabase extends RoomDatabase {
 
-    private static final String DB_NAME = "usuarioDatabase6.db";
+    private static final String DB_NAME = "usuarioDatabase7.db";
     private static volatile UsuarioDatabase instace;
 
     public static synchronized UsuarioDatabase getInstance(Context context){
