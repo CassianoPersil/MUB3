@@ -21,9 +21,9 @@ public class SelecionarConsultarOcorrencia extends AppCompatActivity {
     public void inicializarVariaveis() {
         imgUsuario = (ImageView) findViewById(R.id.imagemUsuario);
         imgOcorrencia = (ImageView) findViewById(R.id.imgOcorrenciaConsulta);
-        idNomeUsuario = (TextView) findViewById(R.id.NomeUsuario);
-        idTipoOcorrencia = (TextView) findViewById(R.id.OcorrenciaTipo);
-        idOcorrencia = (TextView) findViewById(R.id.OcorrenciaTipo);
+        idNomeUsuario = (TextView) findViewById(R.id.nomeUsuario);
+        idTipoOcorrencia = (TextView) findViewById(R.id.Ocorrencia);
+        idOcorrencia = (TextView) findViewById(R.id.Ocorrencia);
         idImagemOcorrencia = (TextView) findViewById(R.id.btImgOcorrencia);
         iddataOcorrencia = (TextView) findViewById(R.id.dataOcorrencia);
         data = (TextView) findViewById(R.id.dataOcorrencia);

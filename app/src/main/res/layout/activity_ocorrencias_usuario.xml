@@ -223,23 +223,6 @@
                     android:hint="Horário" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="100dp"
-                android:orientation="vertical">
-
-                <Button
-                    android:id="@+id/btAtender"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/botao_customizado"
-                    android:text="@string/Nav_AtenderOcorrencia"
-                    android:textColor="@color/background"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
         </LinearLayout>
 
     </LinearLayout>

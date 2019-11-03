@@ -28,7 +28,7 @@
                 app:srcCompat="@drawable/icone_usuario" />
 
             <TextView
-                android:id="@+id/NomeUsuario"
+                android:id="@+id/nomeUsuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -42,19 +42,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="30dp"
             android:layout_marginRight="10dp"
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/OcorrenciaTipo"
+                android:id="@+id/textOcorrencia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/id_Tipo_ocorrencia" />
 
             <TextView
-                android:id="@+id/OcorrenciaTipo"
+                android:id="@+id/Ocorrencia"
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
@@ -64,56 +64,56 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="15dp"
             android:layout_marginRight="10dp"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/btImgOcorrencia"
+                android:id="@+id/textStatus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/id_Img_ocorrencia"
+                android:gravity="center"
+                android:text="Selecione o Status da Ocorrência que deseja Alterar"
+                android:textColor="@android:color/background_dark"
                 android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/imgOcorrenciaConsulta"
+            <Spinner
+                android:id="@+id/spinnerStatus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                app:srcCompat="@drawable/camera_ocorrencia" />
+                android:layout_marginTop="10dp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="10dp"
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/dataOcorrencia"
+                android:id="@+id/textData"
                 android:layout_width="10dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/Data_Ocorencia" />
 
             <TextView
-                android:id="@+id/dataOcorrencia"
+                android:id="@+id/data"
                 android:layout_width="10dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/HorasOcorrencia"
+                android:id="@+id/textHorario"
                 android:layout_width="10dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/horario_ocorrencia" />
 
             <TextView
-                android:id="@+id/horasOcorrencia"
+                android:id="@+id/horario"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
@@ -122,6 +122,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:orientation="vertical">
 
             <EditText
@@ -134,9 +135,6 @@
                 android:ems="10"
                 android:hint="@string/Caixa_Observações"
                 android:inputType="textPersonName"
-                android:paddingLeft="5dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="75dp"
                 android:textSize="16sp" />
 
         </LinearLayout>
@@ -151,21 +149,16 @@
 
             <Button
                 android:id="@+id/btAtender"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
+                android:layout_gravity="center"
                 android:layout_weight="1"
                 android:background="@drawable/botao_customizado"
-                android:text="@string/Botao_Atender" />
+                android:gravity="center"
+                android:text="@string/Botao_Atender"
+                android:textColor="@color/background"
+                android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/btRecusar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/botao_customizado"
-                android:text="@string/botao_recusar" />
         </LinearLayout>
 
     </LinearLayout>

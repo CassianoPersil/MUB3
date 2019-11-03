@@ -29,7 +29,7 @@
                 app:srcCompat="@drawable/icone_usuario" />
 
             <TextView
-                android:id="@+id/NomeUsuario"
+                android:id="@+id/nomeUsuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -48,7 +48,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/OcorrenciaTipo"
+                android:id="@+id/Ocorrencia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

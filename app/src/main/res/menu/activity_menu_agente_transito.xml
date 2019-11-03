@@ -16,6 +16,10 @@
             android:id="@+id/nav_consultar_ocorrencia"
             android:icon="@drawable/icon_occurrence_consult"
             android:title="@string/nav_consultar_ocorrencias" /> -->
+     <!--   <item
+            android:id="@+id/nav_alterar_ocorrencia"
+            android:icon="@drawable/icon_occurrence_edit"
+            android:title="@string/nav_alterar_ocorrencia" /> -->
         <item
             android:id="@+id/nav_inserir_ocorrencia"
             android:icon="@mipmap/ic_mais_add"
