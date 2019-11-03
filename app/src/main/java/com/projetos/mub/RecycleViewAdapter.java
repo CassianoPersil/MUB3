@@ -89,7 +89,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
             Data = (TextView) itemView.findViewById(R.id.Data);
             textHora = (TextView) itemView.findViewById(R.id.textHora);
             Horario = (TextView) itemView.findViewById(R.id.Horario);
-            Cards = (CardView) itemView.findViewById(R.id.Card);
+            Cards = (CardView) itemView.findViewById(R.id.Cards);
         }
     }
 
