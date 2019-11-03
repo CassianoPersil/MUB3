@@ -17,14 +17,15 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/textOcorrencia"
-                android:layout_width="120dp"
+                android:layout_width="143dp"
                 android:layout_height="20dp"
                 android:layout_marginLeft="10dp"
-                android:text="Ocorrencia "
+                android:text="Ocorrencia:"
                 android:textColor="@android:color/background_dark"
                 android:textStyle="bold" />
 
@@ -40,11 +41,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textTipo"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
@@ -56,8 +58,9 @@
                 android:id="@+id/Tipo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="30dp"
                 android:layout_weight="1"
-                android:paddingLeft="15dp"
+                android:gravity="center|left"
                 android:text="Semáforo Quebrado"
                 android:textColor="@android:color/background_dark" />
 
@@ -66,11 +69,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textStatus"
-                android:layout_width="wrap_content"
+                android:layout_width="55dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
@@ -90,6 +94,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <TextView
@@ -114,6 +119,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <TextView

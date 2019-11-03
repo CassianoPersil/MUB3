@@ -38,13 +38,15 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
             holder.Status.setText(mCard.get(i).getStatus());
         }
 
-        holder.Cards.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, Ocorrencias.class);
-                context.startActivity(intent);
-            }
-        });
+       holder.Cards.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Intent intent = new Intent(context, Ocorrencias.class);
+               intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+               context.startActivity(intent);
+
+           }
+       });
     }
 
     @Override
