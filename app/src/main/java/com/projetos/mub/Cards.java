@@ -11,6 +11,7 @@ public class Cards {
     private String Data;
     private String textHora;
     private String Horario;
+    private Long idOcorrencia;
 
     public Cards() {
     }
@@ -93,5 +94,13 @@ public class Cards {
 
     public void setHorario(String horario) {
         Horario = horario;
+    }
+
+    public Long getIdOcorrencia() {
+        return idOcorrencia;
+    }
+
+    public void setIdOcorrencia(Long idOcorrencia) {
+        this.idOcorrencia = idOcorrencia;
     }
 }

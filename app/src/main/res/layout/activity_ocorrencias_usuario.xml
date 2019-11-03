@@ -54,13 +54,63 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/Protocolo"
+                    android:id="@+id/tvProtocoloOcorrencia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:hint="Nº Protocolo" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:text="Data:"
+                    android:textColor="@android:color/background_dark"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvDataOcorrencia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:hint="@string/Data_Ocorencia" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textHorario"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:text="Horário:"
+                    android:textColor="@android:color/background_dark"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvHorarioOcorrencia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:hint="Horário" />
             </LinearLayout>
 
             <LinearLayout
@@ -82,7 +132,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/Tipo"
+                    android:id="@+id/tvTipoOcorrencia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
@@ -110,7 +160,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/Status"
+                    android:id="@+id/tvStatusOcorrencia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
@@ -136,7 +186,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/Endereco"
+                    android:id="@+id/tvEnderecoOcorrencia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
@@ -164,7 +214,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/Descricao"
+                    android:id="@+id/tvDescricaoOcorrencia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
@@ -176,51 +226,19 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                android:layout_marginTop="100dp"
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/textData"
-                    android:layout_width="wrap_content"
+                <Button
+                    android:id="@+id/btAtenderOcorrencia"
+                    android:layout_width="250dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:text="Data:"
-                    android:textColor="@android:color/background_dark"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/Data"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:layout_weight="1"
-                    android:hint="@string/Data_Ocorencia" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textHorario"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:text="Horário:"
-                    android:textColor="@android:color/background_dark"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/Horario"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:layout_weight="1"
-                    android:hint="Horário" />
+                    android:layout_gravity="center"
+                    android:background="@drawable/botao_customizado"
+                    android:text="@string/Nav_AtenderOcorrencia"
+                    android:textColor="@color/background"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
             </LinearLayout>
 
         </LinearLayout>

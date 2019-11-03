@@ -67,12 +67,18 @@ public class ListrarOcorrencias extends AppCompatActivity {
                  ** Verifica se o usuário deve manter-se logado e se está ATIVO.
                  */
                 if (usuario.isManterLogado() == true && usuario.isStAtividade() == true && !usuario.isAgente()) {
-
                     /*
                      ** Consulta as informações na API para atualização no banco local baseado no ID do usuário.
                      */
-                    String consultaApi = util.getInfFromGET("http://192.168.137.1:8080/ocorrencia/buscar-usuario/4");
-                    //+ usuario.getIdUsuarioAPI());
+                    String consultaApi = util.getInfFromGET("http://192.168.137.1:8080/ocorrencia/buscar-usuario/" + usuario.getIdUsuarioAPI());
+                    return consultaApi;
+                } else if (usuario.isManterLogado() == true && usuario.isStAtividade() == true && usuario.isAgente()) {
+                    String cidade = usuario.getCidade();
+                    cidade = cidade.replaceAll(" ", "%20");
+                    /*
+                     ** Consulta as informações na API para atualização no banco local baseado na CIDADE do agente.
+                     */
+                    String consultaApi = util.getInfFromGET("http://192.168.137.1:8080/ocorrencia/buscar-localidade/" + cidade);
                     return consultaApi;
                 }
                 return null;
@@ -84,16 +90,24 @@ public class ListrarOcorrencias extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
+            String dataHora;
             try {
                 JSONArray jsonArrayOcorrencias = new JSONArray(s);
                 Log.i("Resultado ocorrência ", jsonArrayOcorrencias.toString());
 
                 for (int i = 0; i < jsonArrayOcorrencias.length(); i++) {
-                    Cards card = new Cards();
                     JSONObject jsonOcorrencia = jsonArrayOcorrencias.getJSONObject(i);
-                    System.out.println(jsonOcorrencia.getString("protocolo"));
+                    dataHora = jsonOcorrencia.getString("data");
+                    String[] textoSeparado = dataHora.split(" ");
+                    Cards card = new Cards();
+
+
                     card.setTipo(jsonOcorrencia.getJSONObject("tipoOcorrencia").getString("nome"));
                     card.setStatus(jsonOcorrencia.getJSONObject("statusOcorrencia").getString("nome"));
+                    card.setProtocolo(jsonOcorrencia.getString("protocolo"));
+                    card.setData(textoSeparado[0]);
+                    card.setHorario(textoSeparado[1]);
+                    card.setIdOcorrencia(jsonOcorrencia.getLong("id"));
                     listCard.add(card);
                 }
 

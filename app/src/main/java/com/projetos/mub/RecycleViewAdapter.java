@@ -2,6 +2,7 @@ package com.projetos.mub;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -26,27 +28,34 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        view = layoutInflater.inflate(R.layout.cards, parent,false);
+        view = layoutInflater.inflate(R.layout.cards, parent, false);
 
         return new MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
-        for (int i = 0; i <= position; i++){
-            holder.Tipo.setText(mCard.get(i).getTipo());
-            holder.Status.setText(mCard.get(i).getStatus());
-        }
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
+        holder.Tipo.setText(mCard.get(position).getTipo());
+        holder.Status.setText(mCard.get(position).getStatus());
+        holder.Protocolo.setText(mCard.get(position).getProtocolo());
+        holder.Data.setText(mCard.get(position).getData());
+        holder.Horario.setText(mCard.get(position).getHorario());
 
-       holder.Cards.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               Intent intent = new Intent(context, OcorrenciasUsuario.class);
-               intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-               context.startActivity(intent);
+        holder.Cards.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, OcorrenciasUsuario.class);
 
-           }
-       });
+                Bundle informacoes = new Bundle();
+                informacoes.putLong("idOcorrencia", mCard.get(position).getIdOcorrencia());
+
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtras(informacoes);
+                context.startActivity(intent);
+            }
+        });
+
+
     }
 
     @Override
@@ -54,7 +63,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         return mCard.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView textOcorrencia;
         TextView textTipo;
         TextView Tipo;

@@ -124,12 +124,9 @@ public class MainActivity extends AppCompatActivity {
                     /*
                      ** Atualizando no objeto usuário
                      */
-
-                    System.out.println("ID DO USUÁRIOOOOOOOOOOOOOO" + jsonObject.getLong("id"));
-
                     usuario.setId(1L);
 
-                    usuario.setNome(jsonObject.getString("nomeUsuario"));
+                    usuario.setNome(jsonObject.getString("nome"));
                     usuario.setEmail(jsonObject.getString("email"));
                     usuario.setNvAcesso(jsonObject.getInt("nvAcesso"));
                     usuario.setManterLogado(true);
