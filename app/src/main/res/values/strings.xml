@@ -69,6 +69,7 @@
     <string name="nav_atender_ocorrencias">Atender Ocorrências</string>
     <string name="nav_alterar_ocorrencia">Alterar Ocorrências</string>
     <string name="nav_inserir_ocorrencia">Inserir Ocorrências</string>
+    <string name="Texto_Informativo_Orgao">Área destinada para Avisos, Departamentos, Estados, Vigência</string>
 
 
     //Array para tipo de ocorrencias

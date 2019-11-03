@@ -10,6 +10,8 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -25,10 +27,13 @@ import com.projetos.mub.roomDatabase.entities.Usuario;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MenuPrincipal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    List<Cards> mCard;
+
 
     TextView tvNomeUsuario, tvEmailUsuario;
     private ProgressDialog load;
@@ -38,6 +43,19 @@ public class MenuPrincipal extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
+
+        mCard = new ArrayList<>();
+        mCard.add(new Cards());
+        mCard.add(new Cards());
+        mCard.add(new Cards());
+        mCard.add(new Cards());
+        mCard.add(new Cards());
+        mCard.add(new Cards());
+        mCard.add(new Cards());
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recGeral);
+        RecycleViewAdapter recycleViewAdapter = new RecycleViewAdapter(this, mCard);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
+        recyclerView.setAdapter(recycleViewAdapter);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
