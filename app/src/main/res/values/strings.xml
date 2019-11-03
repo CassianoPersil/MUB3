@@ -8,11 +8,11 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_maps">Map</string>
-
     <string name="title_activity_menu_pincipal">MenuPrincipal</string>
-
     <string name="EsquceuSenha">Esqueceu a senha?</string>
 
+
+    //Telas do aplicativo
     <string name="textoBotao">Login</string>
     <string name="TextoBotão">Salvar</string>
     <string name="botao_salvar">Salvar Dados</string>
@@ -36,7 +36,8 @@
     <string name="Texto_Radio_Button_1">Andamento</string>
     <string name="Texto_Radio_Button_2">Analisando</string>
 
-    //Tela Consultar Ocorrencia
+
+    //Tela do aplicativo
     <string name="Texto_Radio_Button_3">Finalizada</string>
     <string name="Texto_Radio_Button_4">Concluida</string>
     <string name="Texo_Informativo_Mes">Selecione o mês desejavel</string>
@@ -62,6 +63,15 @@
     <string name="email">Email</string>
     <string name="senha">Senha</string>
     <string name="todo">TODO</string>
+    <string name="nav_conta_usuario">Conta</string>
+    <string name="nav_listar_ocorrencias">Listar Ocorrências</string>
+    <string name="nav_consultar_ocorrencias">Consultar Ocorrências</string>
+    <string name="nav_atender_ocorrencias">Atender Ocorrências</string>
+    <string name="nav_alterar_ocorrencia">Alterar Ocorrências</string>
+    <string name="nav_inserir_ocorrencia">Inserir Ocorrências</string>
+
+
+    //Array para tipo de ocorrencias
     <string-array name="ocorrencias">
         <item></item>
         <item>Semáforo Quebrado</item>
@@ -71,6 +81,9 @@
         <item>Placas Quebradas</item>
         <item>Sinalização Incorreta</item>
     </string-array>
+
+
+    //Array para o status da ocorrencia
     <string-array name="Status_Ocorrencias">
         <item></item>
         <item>Em Andamento</item>
@@ -79,6 +92,8 @@
         <item>Cancelada</item>
     </string-array>
 
+
+    //Array para os meses
     <string-array name="spinner_meses">
         <item></item>
         <item>Janeiro</item>
@@ -94,6 +109,8 @@
         <item>Novembro</item>
         <item>Dezembro</item>
     </string-array>
+
+
 </resources>
 
 

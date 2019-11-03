@@ -24,7 +24,7 @@ public class AlterarOcorrencia extends AppCompatActivity {
 
         ImgPerfilUsuario = (ImageView) findViewById(R.id.imgPerfilUsuario);
         ImgOcorrencia = (ImageView) findViewById(R.id.imgOcorrenciaConsulta);
-        NomeUsuario = (TextView) findViewById(R.id.NomeUsuario);
+        NomeUsuario = (TextView) findViewById(R.id.nomeUsuario);
         ctLocalOcorrencia = (TextView) findViewById(R.id.ctLocalOcorrencia);
         ctImagemOcorrencia = (TextView) findViewById(R.id.ctImagemOcorrencia);
         ctDataOcorrencia = (TextView) findViewById(R.id.ctDataOcorrencia);

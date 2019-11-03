@@ -1,14 +1,8 @@
 package com.projetos.mub;
 
-import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.provider.MediaStore;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -32,8 +25,8 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
 
     Spinner sp;
     Button btEnviarOco;
-    TextView ctDataOco, ctHorarioOco;
-    ImageButton imgOcorrencia, imgData,imgHoras;
+    TextView textLocal, textDescricaoOco, textDataOco, textHorarioOco;
+    ImageButton imgData,imgHoras;
     TimePickerDialog timePickerDialog;
     Calendar calendar;
     int currentHour;
@@ -46,9 +39,10 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
         setContentView(R.layout.activity_inserir_ocorrencia);
 
         sp = (Spinner) findViewById(R.id.sp);
-        imgOcorrencia = (ImageButton) findViewById(R.id.imgOcorrenciaConsulta);
-        ctDataOco = (TextView) findViewById(R.id.ctDataOco);
-        ctHorarioOco = (TextView) findViewById(R.id.ctHorarioOco);
+        textDataOco = (TextView) findViewById(R.id.textDataOco);
+        textLocal = (TextView) findViewById(R.id.textLocal);
+        textDescricaoOco = (TextView) findViewById(R.id.textDescricaoOco);
+        textHorarioOco = (TextView) findViewById(R.id.textHorarioOco);
         btEnviarOco = (Button) findViewById(R.id.btEnviarOco);
         imgData = (ImageButton) findViewById(R.id.imgData);
         imgHoras = (ImageButton) findViewById(R.id.imgHoras);
@@ -73,7 +67,7 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
             }
         });
 
-        //verifica se foi permitido o uso da camera
+       /* //verifica se foi permitido o uso da camera
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 0);
         }
@@ -90,6 +84,9 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
                 dispatchTakePictureIntent();
             }
         });
+
+
+        */
 
         btEnviarOco = (Button)findViewById(R.id.btEnviarOco);
         btEnviarOco.setOnClickListener(new View.OnClickListener() {
@@ -117,7 +114,7 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
                         } else {
                             amPm = "AM";
                         }
-                        ctHorarioOco.setText(String.format("%02d:%02d", hourOfDay, minutes) + amPm);
+                        textHorarioOco.setText(String.format("%02d:%02d", hourOfDay, minutes) + amPm);
                     }
                 }, currentHour, currentMinute, false);
 
@@ -137,7 +134,7 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
 
     }
 
-    //metodo para realizar a foto
+   /* //metodo para realizar a foto
     private void tirarFoto() {
         if (MediaStore.ACTION_IMAGE_CAPTURE != null){
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -147,6 +144,8 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
         }
 
     }
+
+    */
 
     //retornar o resultado da camera
    /* @Override
@@ -164,7 +163,7 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         String Date = dayOfMonth + "/" + month + "/" + year;
-        ctDataOco.setText(Date);
+        textDataOco.setText(Date);
 
     }
 
@@ -178,14 +177,16 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
         datePickerDialog.show();
     }
 
-    private void dispatchTakePictureIntent() {
+   /* private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
     }
 
-    @Override
+    */
+
+  /*  @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
@@ -195,6 +196,8 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
         }
     }
 
+
+   */
 
 
 

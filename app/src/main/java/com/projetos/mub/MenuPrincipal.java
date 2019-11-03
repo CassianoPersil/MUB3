@@ -124,6 +124,7 @@ public class MenuPrincipal extends AppCompatActivity
         // Handle para navegação dos itens do menu.
         int id = item.getItemId();
 
+        // menu para usuario comum e agente de transito
         if (id == R.id.nav_conta_usuario) {
             Intent intent = new Intent(getBaseContext(), UsuarioMenu.class);
             startActivity(intent);
@@ -131,15 +132,19 @@ public class MenuPrincipal extends AppCompatActivity
             Intent intent = new Intent(getBaseContext(), ListrarOcorrencias.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_consultar_ocorrencia) {
+       /* } else if (id == R.id.nav_consultar_ocorrencia) {
             Intent intent = new Intent(getBaseContext(), ConsultarOcorrencia.class);
-            startActivity(intent);
+            startActivity(intent); */
 
-        } else if (id == R.id.nav_atender_ocorrencia) {
-            Intent intent = new Intent(getBaseContext(), SelecionarAtenderOcorrencia.class);
+        } else if (id == R.id.nav_inserir_ocorrencia) {
+            Intent intent = new Intent(getBaseContext(), InserirOcorrencia.class);
             startActivity(intent);
+        //fim para usuario comum
 
-        } else if (id == R.id.nav_send) {
+        //complemento para agente de transito
+      /*  } else if (id == R.id.nav_alterar_ocorrencia) {
+            Intent intent = new Intent(getBaseContext(), AlterarOcorrencia.class);
+            startActivity(intent); */
 
         }
 
