@@ -26,14 +26,14 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        view = layoutInflater.inflate(R.layout.cards, parent,false);
+        view = layoutInflater.inflate(R.layout.cards, parent, false);
 
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
-        for (int i = 0; i <= position; i++){
+        for (int i = 0; i <= position; i++) {
             holder.Tipo.setText(mCard.get(i).getTipo());
             holder.Status.setText(mCard.get(i).getStatus());
         }
@@ -42,6 +42,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, InserirOcorrencia.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
         });
@@ -52,7 +53,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         return mCard.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView textOcorrencia;
         TextView textTipo;
         TextView Tipo;

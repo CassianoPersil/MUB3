@@ -48,7 +48,6 @@ public class ListrarOcorrencias extends AppCompatActivity {
         consultarLocalmenteTask.execute();
 
 
-
     }
 
 
@@ -90,7 +89,7 @@ public class ListrarOcorrencias extends AppCompatActivity {
                 Log.i("Resultado ocorrência ", jsonArrayOcorrencias.toString());
 
                 for (int i = 0; i < jsonArrayOcorrencias.length(); i++) {
-                     Cards card = new Cards();
+                    Cards card = new Cards();
                     JSONObject jsonOcorrencia = jsonArrayOcorrencias.getJSONObject(i);
                     System.out.println(jsonOcorrencia.getString("protocolo"));
                     card.setTipo(jsonOcorrencia.getJSONObject("tipoOcorrencia").getString("nome"));
@@ -99,7 +98,7 @@ public class ListrarOcorrencias extends AppCompatActivity {
                 }
 
                 RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recCards);
-                RecycleViewAdapter recycleViewAdapter = new RecycleViewAdapter(getBaseContext(), listCard);
+                RecycleViewAdapter recycleViewAdapter = new RecycleViewAdapter(getApplicationContext(), listCard);
                 recyclerView.setLayoutManager(new GridLayoutManager(getBaseContext(), 1));
                 recyclerView.setAdapter(recycleViewAdapter);
             } catch (JSONException e) {
