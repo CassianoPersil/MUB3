@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -18,9 +17,9 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     private Context context;
     private List<Cards> mCard;
 
-    public RecycleViewAdapter(Context context, List<Cards> mCard) {
+    public RecycleViewAdapter(Context context, List<Cards> card) {
         this.context = context;
-        this.mCard = mCard;
+        this.mCard = card;
     }
 
     @NonNull
