@@ -43,6 +43,8 @@ public class RecycleViewAdapterGeral extends RecyclerView.Adapter<RecycleViewAda
         holder.Card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(context, OcorrenciaOrgao.class);
+                context.startActivity(intent);
 
             }
         });

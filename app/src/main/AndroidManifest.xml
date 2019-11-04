@@ -18,7 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".OcorrenciasUsuario"></activity>
+        <activity android:name=".OcorrenciaOrgao"></activity>
+        <activity android:name=".OcorrenciasUsuario" />
         <activity android:name=".Ocorrencias" />
         <activity android:name=".SelecionarConsultarOcorrencia" />
         <activity android:name=".SelecionarAlterarOcorrencia" />
