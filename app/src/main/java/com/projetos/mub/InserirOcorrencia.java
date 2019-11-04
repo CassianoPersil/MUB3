@@ -41,6 +41,12 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
     String amPm;
 
     @Override
+    public void onBackPressed() {
+        Intent i = new Intent(getBaseContext(), MenuPrincipal.class);
+        startActivity(i);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inserir_ocorrencia);

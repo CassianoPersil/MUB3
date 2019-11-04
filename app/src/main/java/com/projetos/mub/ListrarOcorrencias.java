@@ -1,5 +1,6 @@
 package com.projetos.mub;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -50,6 +51,11 @@ public class ListrarOcorrencias extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(getBaseContext(), MenuPrincipal.class);
+        startActivity(i);
+    }
 
     private class BuscarOcorrenciasTask extends AsyncTask<Void, Void, String> {
 

@@ -32,6 +32,12 @@ public class UsuarioMenu extends AppCompatActivity {
     private String nome, email, telefone, cpf, senha, dataNascimento;
 
     @Override
+    public void onBackPressed() {
+        Intent i = new Intent(getBaseContext(), MenuPrincipal.class);
+        startActivity(i);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usuario_menu);
