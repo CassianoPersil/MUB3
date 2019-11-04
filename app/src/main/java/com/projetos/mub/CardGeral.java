@@ -1,88 +1,88 @@
 package com.projetos.mub;
 
 public class CardGeral {
-    private String textOcorrencia;
-    private String textTipo;
-    private String textStatus;
-    private String Tipo;
-    private String Status;
-    private String textData;
-    private String Data;
-    private String textHora;
-    private String Horario;
+    private String textOrgao;
+    private String textAlerta;
+    private String Alerta;
+    private String tipoText;
+    private String tipoInformacao;
+    private String Vigencia;
+    private String textVigencia;
+    private String statusInformacao;
+    private String statusInfo;
 
     public CardGeral() {
     }
 
-    public String getTextOcorrencia() {
-        return textOcorrencia;
+    public String getTextOrgao() {
+        return textOrgao;
     }
 
-    public void setTextOcorrencia(String textOcorrencia) {
-        this.textOcorrencia = textOcorrencia;
+    public void setTextOrgao(String textOrgao) {
+        this.textOrgao = textOrgao;
     }
 
-    public String getTextTipo() {
-        return textTipo;
+    public String getTextAlerta() {
+        return textAlerta;
     }
 
-    public void setTextTipo(String textTipo) {
-        this.textTipo = textTipo;
+    public void setTextAlerta(String textAlerta) {
+        this.textAlerta = textAlerta;
     }
 
-    public String getTextStatus() {
-        return textStatus;
+    public String getAlerta() {
+        return Alerta;
     }
 
-    public void setTextStatus(String textStatus) {
-        this.textStatus = textStatus;
+    public void setAlerta(String alerta) {
+        Alerta = alerta;
     }
 
-    public String getTipo() {
-        return Tipo;
+    public String getTipoText() {
+        return tipoText;
     }
 
-    public void setTipo(String tipo) {
-        Tipo = tipo;
+    public void setTipoText(String tipoText) {
+        this.tipoText = tipoText;
     }
 
-    public String getStatus() {
-        return Status;
+    public String getTipoInformacao() {
+        return tipoInformacao;
     }
 
-    public void setStatus(String status) {
-        Status = status;
+    public void setTipoInformacao(String tipoInformacao) {
+        this.tipoInformacao = tipoInformacao;
     }
 
-    public String getTextData() {
-        return textData;
+    public String getVigencia() {
+        return Vigencia;
     }
 
-    public void setTextData(String textData) {
-        this.textData = textData;
+    public void setVigencia(String vigencia) {
+        Vigencia = vigencia;
     }
 
-    public String getData() {
-        return Data;
+    public String getTextVigencia() {
+        return textVigencia;
     }
 
-    public void setData(String data) {
-        Data = data;
+    public void setTextVigencia(String textVigencia) {
+        this.textVigencia = textVigencia;
     }
 
-    public String getTextHora() {
-        return textHora;
+    public String getStatusInformacao() {
+        return statusInformacao;
     }
 
-    public void setTextHora(String textHora) {
-        this.textHora = textHora;
+    public void setStatusInformacao(String statusInformacao) {
+        this.statusInformacao = statusInformacao;
     }
 
-    public String getHorario() {
-        return Horario;
+    public String getStatusInfo() {
+        return statusInfo;
     }
 
-    public void setHorario(String horario) {
-        Horario = horario;
+    public void setStatusInfo(String statusInfo) {
+        this.statusInfo = statusInfo;
     }
 }

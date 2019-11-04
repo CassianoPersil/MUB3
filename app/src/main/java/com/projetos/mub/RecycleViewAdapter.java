@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -18,9 +17,9 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     private Context context;
     private List<Cards> mCard;
 
-    public RecycleViewAdapter(Context context, List<Cards> mCard) {
+    public RecycleViewAdapter(Context context, List<Cards> card) {
         this.context = context;
-        this.mCard = mCard;
+        this.mCard = card;
     }
 
     @NonNull
@@ -88,7 +87,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
             Data = (TextView) itemView.findViewById(R.id.Data);
             textHora = (TextView) itemView.findViewById(R.id.textHora);
             Horario = (TextView) itemView.findViewById(R.id.Horario);
-            Cards = (CardView) itemView.findViewById(R.id.Card);
+            Cards = (CardView) itemView.findViewById(R.id.Cards);
         }
     }
 

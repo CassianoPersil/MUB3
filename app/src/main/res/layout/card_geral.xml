@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="150dp"
     android:layout_margin="20dp"
-    android:background="#dfe3eb">
+    android:background="#dfe3eb"
+    app:cardBackgroundColor="#dfe3eb">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,11 +24,11 @@
             android:gravity="center">
 
             <TextView
-                android:id="@+id/textOcorrencia"
+                android:id="@+id/textOrgao"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:layout_marginLeft="10dp"
-                android:text="Ocorrencia:"
+                android:text="Órgão ou Departamento"
                 android:textColor="@android:color/background_dark"
                 android:textStyle="bold" />
 
@@ -41,17 +42,17 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textTipo"
+                android:id="@+id/textAlerta"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:text="Tipo:"
+                android:text="Alerta:"
                 android:textColor="@android:color/background_dark"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/Tipo"
+                android:id="@+id/Alerta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="30dp"
@@ -70,17 +71,17 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textStatus"
+                android:id="@+id/tipoText"
                 android:layout_width="55dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:text="Status:"
+                android:text="Tipo:"
                 android:textColor="@android:color/background_dark"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/Status"
+                android:id="@+id/tipoInformacao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -96,21 +97,20 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textData"
+                android:id="@+id/textVigencia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:text="Data:"
+                android:text="Vigência:"
                 android:textColor="@android:color/background_dark"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/Data"
+                android:id="@+id/Vigencia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="@string/Data_Ocorencia" />
+                android:layout_weight="1" />
 
         </LinearLayout>
 
@@ -122,21 +122,20 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textHora"
+                android:id="@+id/statusInformacao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:text="Horário:"
+                android:text="Status:"
                 android:textColor="@android:color/background_dark"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/Horario"
+                android:id="@+id/StatusInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="Horário" />
+                android:layout_weight="1" />
         </LinearLayout>
 
     </LinearLayout>

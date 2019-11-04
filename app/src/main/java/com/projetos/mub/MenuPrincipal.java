@@ -32,7 +32,7 @@ import java.util.List;
 
 public class MenuPrincipal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    List<Cards> mCard;
+    List<CardGeral> Card;
 
 
     TextView tvNomeUsuario, tvEmailUsuario;
@@ -44,16 +44,16 @@ public class MenuPrincipal extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
 
-        mCard = new ArrayList<>();
-        mCard.add(new Cards());
-        mCard.add(new Cards());
-        mCard.add(new Cards());
-        mCard.add(new Cards());
-        mCard.add(new Cards());
-        mCard.add(new Cards());
-        mCard.add(new Cards());
+        Card = new ArrayList<>();
+        Card.add(new CardGeral());
+        Card.add(new CardGeral());
+        Card.add(new CardGeral());
+        Card.add(new CardGeral());
+        Card.add(new CardGeral());
+        Card.add(new CardGeral());
+        Card.add(new CardGeral());
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recGeral);
-        RecycleViewAdapter recycleViewAdapter = new RecycleViewAdapter(this, mCard);
+        RecycleViewAdapterGeral recycleViewAdapter = new RecycleViewAdapterGeral(this, Card);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
         recyclerView.setAdapter(recycleViewAdapter);
 
