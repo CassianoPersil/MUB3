@@ -1,18 +1,10 @@
 package com.projetos.mub;
 
-import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -80,27 +72,6 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
             }
         });
 
-       /* //verifica se foi permitido o uso da camera
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 0);
-        }
-
-
-        //recuperando os elementos da interface
-        ImageButton tirar = (ImageButton) findViewById(R.id.imgOcorrenciaConsulta);
-
-        //metodo para o click do botão
-        tirar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //tirarFoto();
-                dispatchTakePictureIntent();
-            }
-        });
-
-
-        */
-
         btEnviarOco = (Button) findViewById(R.id.btEnviarOco);
         btEnviarOco.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,32 +118,7 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
 
     }
 
-   /* //metodo para realizar a foto
-    private void tirarFoto() {
-        if (MediaStore.ACTION_IMAGE_CAPTURE != null){
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(intent, 1);
-        }else{
-            return;
-        }
-
-    }
-
-    */
-
-    //retornar o resultado da camera
-   /* @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (requestCode == 1){
-            Bundle extras = data.getExtras();
-            Bitmap imagem = (Bitmap) extras.get("data");
-            ImageView imageViewFoto = (ImageView) findViewById(R.id.imgOcorrenciaConsulta);
-            imageViewFoto.setImageBitmap(imagem);
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-    }
-*/
-//metodo para setar a data no calendario
+    //metodo para setar a data no calendario
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         String Date = dayOfMonth + "/" + month + "/" + year;
@@ -189,28 +135,5 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
 
         datePickerDialog.show();
     }
-
-   /* private void dispatchTakePictureIntent() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-        }
-    }
-
-    */
-
-  /*  @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            ImageView imageViewFoto = (ImageView) findViewById(R.id.imgOcorrenciaConsulta);
-            imageViewFoto.setImageBitmap(imageBitmap);
-        }
-    }
-
-
-   */
-
 
 }

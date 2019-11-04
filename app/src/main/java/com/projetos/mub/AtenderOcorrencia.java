@@ -1,20 +1,16 @@
 package com.projetos.mub;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -22,10 +18,11 @@ import com.projetos.mub.conexao.Utils;
 import com.projetos.mub.roomDatabase.UsuarioDatabase;
 import com.projetos.mub.roomDatabase.entities.Usuario;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class AtenderOcorrencia extends AppCompatActivity {
     private TextView tipoOcorrencia, dataOcorrencia, horarioOcorrencia, descOcorrencia;
@@ -39,6 +36,13 @@ public class AtenderOcorrencia extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_atender_ocorrencia);
         inicializarVariaveis();
+
+        Date d = new Date();
+        SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
+
+        dataOcorrencia.setText(sdf1.format(d));
+        horarioOcorrencia.setText(sdf2.format(d));
 
         this.usuario = consultarLocalmente();
         Intent intent = getIntent();
@@ -102,7 +106,7 @@ public class AtenderOcorrencia extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Void... voids) {
-            String dataHora = informacoes.getString("data") + " " + informacoes.getString("hora");
+            String dataHora = dataOcorrencia.getText().toString() + " " + horarioOcorrencia.getText().toString();
             try {
                 JSONObject json = new JSONObject();
                 json.put("idStatusAtendimento", statusOcorrencia.getSelectedItemPosition() + 1);

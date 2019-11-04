@@ -20,7 +20,6 @@ import com.projetos.mub.roomDatabase.entities.Usuario;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 public class UsuarioMenu extends AppCompatActivity {
     private ImageView imgPerfilUsuario;
