@@ -18,7 +18,7 @@ import android.widget.TimePicker;
 import java.util.Calendar;
 
 
-public class InserirOcorrencia extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class InserirOcorrencia extends AppCompatActivity /*implements DatePickerDialog.OnDateSetListener*/ {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     private Object ImageViewFoto;
 
@@ -83,7 +83,7 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
         });
 
         //evento para chamar o relogio
-        imgHoras.setOnClickListener(new View.OnClickListener() {
+      /*  imgHoras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 calendar = Calendar.getInstance();
@@ -107,18 +107,22 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
             }
         });
 
+       */
+
         //evento para chamar o calendario
 
-        imgData.setOnClickListener(new View.OnClickListener() {
+      /*  imgData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDatePickerDialog();
             }
         });
 
+       */
+
     }
 
-    //metodo para setar a data no calendario
+  /*  //metodo para setar a data no calendario
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         String Date = dayOfMonth + "/" + month + "/" + year;
@@ -135,5 +139,7 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
 
         datePickerDialog.show();
     }
+
+   */
 
 }
