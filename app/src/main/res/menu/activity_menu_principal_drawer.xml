@@ -18,7 +18,7 @@
             android:title="@string/nav_consultar_ocorrencias" /> -->
         <item
             android:id="@+id/nav_inserir_ocorrencia"
-            android:icon="@mipmap/ic_mais_add"
+            android:icon="@drawable/icon_occurrence_add"
             android:title="@string/nav_inserir_ocorrencia" />
 
     </group>
