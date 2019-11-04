@@ -138,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
                     if(usuario.getNvAcesso() == 2){
                         usuario.setIdUsuarioAPI(Long.parseLong(jsonObject.getString("idUsuarioAPI")));
                         usuario.setAgente(true);
+                        usuario.setIdAgenteAPI(jsonObject.getLong("idAgenteAPI"));
                         usuario.setCidade(jsonObject.getString("cidade"));
                     }else{
                         usuario.setIdUsuarioAPI(Long.parseLong(jsonObject.getString("id")));

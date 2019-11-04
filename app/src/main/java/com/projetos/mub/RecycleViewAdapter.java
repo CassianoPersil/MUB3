@@ -45,7 +45,6 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, OcorrenciasUsuario.class);
-
                 Bundle informacoes = new Bundle();
                 informacoes.putLong("idOcorrencia", mCard.get(position).getIdOcorrencia());
 

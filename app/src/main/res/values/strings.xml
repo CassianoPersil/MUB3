@@ -86,11 +86,10 @@
 
     //Array para o status da ocorrencia
     <string-array name="Status_Ocorrencias">
-        <item></item>
-        <item>Em Andamento</item>
-        <item>Finalizada</item>
-        <item>Concluída</item>
-        <item>Cancelada</item>
+        <item>Em espera</item>
+        <item>Em atendimento</item>
+        <item>Atendimento</item>
+        <item>Recusada</item>
     </string-array>
 
 

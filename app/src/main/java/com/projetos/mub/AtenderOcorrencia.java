@@ -1,8 +1,15 @@
 package com.projetos.mub;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -11,11 +18,21 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.projetos.mub.conexao.Utils;
+import com.projetos.mub.roomDatabase.UsuarioDatabase;
+import com.projetos.mub.roomDatabase.entities.Usuario;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.w3c.dom.Text;
+
 public class AtenderOcorrencia extends AppCompatActivity {
-    ImageView imgUsuario;
-    Spinner spinnerStatus;
-    TextView nomeUsuario, textOcorrencia, Ocorrencia, textData, data, textHorario, horario , ctObservacoes, textStatus;
-    Button btAtender;
+    private TextView tipoOcorrencia, dataOcorrencia, horarioOcorrencia, descOcorrencia;
+    private Spinner statusOcorrencia;
+    private Button btAtender;
+    private Usuario usuario;
+    private Bundle informacoes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,14 +40,17 @@ public class AtenderOcorrencia extends AppCompatActivity {
         setContentView(R.layout.activity_atender_ocorrencia);
         inicializarVariaveis();
 
+        this.usuario = consultarLocalmente();
+        Intent intent = getIntent();
+        informacoes = intent.getExtras();
+
+
         //Criar array para receber os dados da String
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Status_Ocorrencias, R.layout.support_simple_spinner_dropdown_item);
-
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        statusOcorrencia.setAdapter(adapter);
 
-        spinnerStatus.setAdapter(adapter);
-
-        spinnerStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        statusOcorrencia.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 // Toast.makeText(getBaseContext(),sp.getSelectedItem().toString(),Toast.LENGTH_LONG).show();
@@ -41,32 +61,98 @@ public class AtenderOcorrencia extends AppCompatActivity {
 
             }
 
-    });
+        });
 
         btAtender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), MenuPrincipal.class);
-                startActivity(intent);
+                AtenderOcorrenciasTask atenderOcorrenciasTask = null;
+                if (atenderOcorrenciasTask == null) {
+                    atenderOcorrenciasTask = new AtenderOcorrenciasTask();
+                } else {
+                    atenderOcorrenciasTask.cancel(true);
+                    atenderOcorrenciasTask = new AtenderOcorrenciasTask();
+                }
+                atenderOcorrenciasTask.execute();
             }
         });
 
     }
 
-    public void inicializarVariaveis(){
-        imgUsuario = (ImageView) findViewById(R.id.imagemUsuario);
-        nomeUsuario= (TextView) findViewById(R.id.nomeUsuario);
-        textOcorrencia = (TextView) findViewById(R.id.textOcorrencia);
-        Ocorrencia = (TextView) findViewById(R.id.Ocorrencia);
-        spinnerStatus = (Spinner) findViewById(R.id.spinnerStatus);
-        textData = (TextView) findViewById(R.id.textData);
-        data = (TextView) findViewById(R.id.data);
-        textHorario = (TextView) findViewById(R.id.textHorario);
-        horario = (TextView) findViewById(R.id.horario);
-        ctObservacoes = (TextView) findViewById(R.id.ctObservacoes);
-        textStatus = (TextView) findViewById(R.id.textStatus);
-        btAtender = (Button) findViewById(R.id.btAtender);
+    public void inicializarVariaveis() {
+        tipoOcorrencia = findViewById(R.id.tipoOcorrenciaAtd);
+        dataOcorrencia = findViewById(R.id.dataOcorrenciaAtd);
+        horarioOcorrencia = findViewById(R.id.horarioOcorrenciaAtd);
+        descOcorrencia = findViewById(R.id.ctObsOcorrenciaAtd);
+        statusOcorrencia = findViewById(R.id.spinnerStatusOcorrenciaAtd);
+        btAtender = findViewById(R.id.btAtenderOcorrenciaAtd);
+    }
 
+    private Usuario consultarLocalmente() {
+        Usuario usuario = UsuarioDatabase
+                .getInstance(getBaseContext())
+                .getUsuarioDAO()
+                .getUserById(1L);
+        return usuario;
+    }
 
+    private class AtenderOcorrenciasTask extends AsyncTask<Void, Void, String> {
+        private Utils util = new Utils();
+        private AlertDialog alert;
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            String dataHora = informacoes.getString("data") + " " + informacoes.getString("hora");
+            try {
+                JSONObject json = new JSONObject();
+                json.put("idStatusAtendimento", statusOcorrencia.getSelectedItemPosition() + 1);
+                json.put("data", dataHora);
+                json.put("obs", descOcorrencia.getText().toString());
+                json.put("idOcorrencia", informacoes.getLong("idOcorrencia"));
+                json.put("idAgente", usuario.getIdAgenteAPI());
+                return util.postTeste("http://192.168.137.1:8080/ocorrencia/atender", json);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            Log.i("Res ATEND", s);
+            try {
+                JSONObject json = new JSONObject(s);
+                if(json.getString("id") != null){
+                    modal("Sucesso!", "Alteração de status ocorrida com sucesso", true);
+                }else{
+                    modal("Desculpe-nos :(", "Algo de errado aconteceu... Contate um administrador.", false);
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        protected void modal(String title, String message, final boolean sucess) {
+            // Criando gerador de Alerta
+            final AlertDialog.Builder builder = new AlertDialog.Builder(AtenderOcorrencia.this);
+            builder.setTitle(title);
+            builder.setMessage(message);
+            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    if(sucess == true){
+                        alert.dismiss();
+                        Intent i = new Intent(getBaseContext(),ListrarOcorrencias.class);
+                        startActivity(i);
+                    }else{
+                        alert.dismiss();
+                    }
+                }
+            });
+            alert = builder.create();
+            alert.show();
+        }
     }
 }

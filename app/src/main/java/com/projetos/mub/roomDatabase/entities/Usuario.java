@@ -11,6 +11,7 @@ public class Usuario {
     @NonNull()
     private Long id;
     private Long idUsuarioAPI;
+    private Long idAgenteAPI;
     private String nome;
     private String email;
     private String cidade;
@@ -19,9 +20,10 @@ public class Usuario {
     private boolean agente;
     private int nvAcesso;
 
-    public Usuario(Long id, Long idUsuarioAPI, String nome, String email, String cidade, boolean manterLogado, boolean stAtividade, boolean agente, int nvAcesso) {
+    public Usuario(Long id, Long idUsuarioAPI,Long idAgenteAPI, String nome, String email, String cidade, boolean manterLogado, boolean stAtividade, boolean agente, int nvAcesso) {
         this.id = id;
         this.idUsuarioAPI = idUsuarioAPI;
+        this.idAgenteAPI = idAgenteAPI;
         this.nome = nome;
         this.email = email;
         this.cidade = cidade;
@@ -50,6 +52,14 @@ public class Usuario {
 
     public void setIdUsuarioAPI(Long idUsuarioAPI) {
         this.idUsuarioAPI = idUsuarioAPI;
+    }
+
+    public Long getIdAgenteAPI() {
+        return idAgenteAPI;
+    }
+
+    public void setIdAgenteAPI(Long idAgenteAPI) {
+        this.idAgenteAPI = idAgenteAPI;
     }
 
     public String getNome() {

@@ -24,6 +24,7 @@ public class OcorrenciasUsuario extends AppCompatActivity {
     private TextView tvProtocolo, tvTipo, tvStatus, tvEndereco, tvDescricao, tvData, tvHorario;
     private Button btAtender;
     private Usuario usuario;
+    protected Bundle informacoes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,7 @@ public class OcorrenciasUsuario extends AppCompatActivity {
         setContentView(R.layout.activity_ocorrencias_usuario);
 
         usuario = consultarLocalmente();
-
+        this.informacoes =  new Bundle();
         /*
          ** Declarando VIEWS
          */
@@ -56,6 +57,15 @@ public class OcorrenciasUsuario extends AppCompatActivity {
             buscarOcorrenciasTask = new BuscarOcorrenciasTask();
         }
         buscarOcorrenciasTask.execute();
+
+        btAtender.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(), AtenderOcorrencia.class);
+                intent.putExtras(informacoes);
+                startActivity(intent);
+            }
+        });
     }
 
     private class BuscarOcorrenciasTask extends AsyncTask<Void, Void, String> {
@@ -109,6 +119,10 @@ public class OcorrenciasUsuario extends AppCompatActivity {
                 tvDescricao.setText(jsonObject.getString("descricao"));
                 tvData.setText(textoSeparado[0]);
                 tvHorario.setText(textoSeparado[1]);
+
+                informacoes.putString("data", textoSeparado[0]);
+                informacoes.putString("hora", textoSeparado[1]);
+                informacoes.putLong("idOcorrencia", jsonObject.getLong("id"));
 
                 switch (status) {
                     case "Em espera":

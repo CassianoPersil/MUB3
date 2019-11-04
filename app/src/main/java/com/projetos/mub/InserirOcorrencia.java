@@ -1,10 +1,18 @@
 package com.projetos.mub;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -18,15 +26,14 @@ import android.widget.TimePicker;
 import java.util.Calendar;
 
 
-public class InserirOcorrencia extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
+public class InserirOcorrencia extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     static final int REQUEST_IMAGE_CAPTURE = 1;
-
     private Object ImageViewFoto;
 
     Spinner sp;
     Button btEnviarOco;
     TextView textLocal, textDescricaoOco, textDataOco, textHorarioOco;
-    ImageButton imgData,imgHoras;
+    ImageButton imgData, imgHoras;
     TimePickerDialog timePickerDialog;
     Calendar calendar;
     int currentHour;
@@ -58,7 +65,7 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
         sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-               // Toast.makeText(getBaseContext(),sp.getSelectedItem().toString(),Toast.LENGTH_LONG).show();
+                // Toast.makeText(getBaseContext(),sp.getSelectedItem().toString(),Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -88,7 +95,7 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
 
         */
 
-        btEnviarOco = (Button)findViewById(R.id.btEnviarOco);
+        btEnviarOco = (Button) findViewById(R.id.btEnviarOco);
         btEnviarOco.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -167,8 +174,8 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
 
     }
 
-//metodo para capturar a data
-    private void showDatePickerDialog(){
+    //metodo para capturar a data
+    private void showDatePickerDialog() {
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, this,
                 Calendar.getInstance().get(Calendar.YEAR),
                 Calendar.getInstance().get(Calendar.MONTH),
@@ -198,7 +205,6 @@ public class InserirOcorrencia extends AppCompatActivity implements DatePickerDi
 
 
    */
-
 
 
 }
