@@ -75,13 +75,10 @@
 
     //Array para tipo de ocorrencias
     <string-array name="ocorrencias">
-        <item></item>
-        <item>Semáforo Quebrado</item>
-        <item>Obstrução Acidental</item>
-        <item>Obstrução Veicular</item>
-        <item>Solicitação de Faixa de Pedestre</item>
-        <item>Placas Quebradas</item>
-        <item>Sinalização Incorreta</item>
+        <item>Estacionamento</item>
+        <item>Acidente</item>
+        <item>Sinalização</item>
+        <item>Pavimento</item>
     </string-array>
 
 
