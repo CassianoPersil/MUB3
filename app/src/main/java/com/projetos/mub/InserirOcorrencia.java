@@ -1,6 +1,7 @@
 package com.projetos.mub;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -16,6 +17,7 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.location.aravind.getlocation.GeoLocator;
 import com.projetos.mub.conexao.Utils;
 import com.projetos.mub.roomDatabase.UsuarioDatabase;
 import com.projetos.mub.roomDatabase.entities.Usuario;
@@ -23,11 +25,12 @@ import com.projetos.mub.roomDatabase.entities.Usuario;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.SQLOutput;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-public class InserirOcorrencia extends AppCompatActivity{
+public class InserirOcorrencia extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     private Object ImageViewFoto;
 
@@ -37,6 +40,9 @@ public class InserirOcorrencia extends AppCompatActivity{
     EditText descricaoOcorrencia;
     ImageButton imgData, imgHoras;
     private Usuario usuario;
+    private String cep, rua, bairro, numero, cidade, uf, endereco;
+    private Double latitude, longitude;
+    private ProgressDialog load;
 
     @Override
     public void onBackPressed() {
@@ -49,6 +55,15 @@ public class InserirOcorrencia extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inserir_ocorrencia);
 
+        ConsultarCoordenadas consultarCoordenadas = null;
+        if (consultarCoordenadas == null) {
+            consultarCoordenadas = new ConsultarCoordenadas();
+        } else {
+            consultarCoordenadas.cancel(true);
+            consultarCoordenadas = new ConsultarCoordenadas();
+        }
+        consultarCoordenadas.execute();
+
         sp = (Spinner) findViewById(R.id.sp);
         dataOcorrencia = (TextView) findViewById(R.id.textDataOco);
         textLocal = (TextView) findViewById(R.id.textLocal);
@@ -57,24 +72,18 @@ public class InserirOcorrencia extends AppCompatActivity{
         btEnviarOco = (Button) findViewById(R.id.btEnviarOco);
         imgData = (ImageButton) findViewById(R.id.imgData);
         imgHoras = (ImageButton) findViewById(R.id.imgHoras);
-
-
         this.usuario = consultarLocalmente();
 
         Date d = new Date();
         SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
-
         dataOcorrencia.setText(sdf1.format(d));
         horarioOcorrencia.setText(sdf2.format(d));
 
         //Criar array para receber os dados da String
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.ocorrencias, R.layout.support_simple_spinner_dropdown_item);
-
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         sp.setAdapter(adapter);
-
         sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -92,11 +101,10 @@ public class InserirOcorrencia extends AppCompatActivity{
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(getBaseContext(), MenuPrincipal.class);
-                startActivity(intent);
             }
         });
     }
+
     private Usuario consultarLocalmente() {
         Usuario usuario = UsuarioDatabase
                 .getInstance(getBaseContext())
@@ -138,9 +146,9 @@ public class InserirOcorrencia extends AppCompatActivity{
             Log.i("Res ATEND", s);
             try {
                 JSONObject json = new JSONObject(s);
-                if(json.getString("id") != null){
+                if (json.getString("id") != null) {
                     modal("Sucesso!", "Alteração de status ocorrida com sucesso", true);
-                }else{
+                } else {
                     modal("Desculpe-nos :(", "Algo de errado aconteceu... Contate um administrador.", false);
                 }
 
@@ -158,11 +166,11 @@ public class InserirOcorrencia extends AppCompatActivity{
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
 
-                    if(sucess == true){
+                    if (sucess == true) {
                         alert.dismiss();
-                        Intent i = new Intent(getBaseContext(),ListrarOcorrencias.class);
+                        Intent i = new Intent(getBaseContext(), ListrarOcorrencias.class);
                         startActivity(i);
-                    }else{
+                    } else {
                         alert.dismiss();
                     }
                 }
@@ -172,5 +180,28 @@ public class InserirOcorrencia extends AppCompatActivity{
         }
     }
 
+    private class ConsultarCoordenadas extends AsyncTask<Void, Void, String> {
+        Utils util = new Utils();
 
+        @Override
+        protected void onPreExecute() {
+            load = ProgressDialog.show(InserirOcorrencia.this,
+                    "Por favor aguarde...", "Buscando coordenadas...");
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            GeoLocator geoLocator = new GeoLocator(getApplicationContext(), InserirOcorrencia.this);
+            latitude = geoLocator.getLattitude();
+            longitude = geoLocator.getLongitude();
+            endereco = geoLocator.getAddress();
+            return latitude + "," + longitude;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            Log.i("COORDENADAS", s);
+            load.dismiss();
+        }
+    }
 }
