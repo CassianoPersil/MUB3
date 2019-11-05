@@ -15,49 +15,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/imagemUsuario"
-                android:layout_width="90dp"
-                android:layout_height="85dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                app:srcCompat="@drawable/icone_usuario" />
-
-            <TextView
-                android:id="@+id/nomeUsuario"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="@string/nav_header_title"
-                android:textSize="15sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
             android:layout_marginRight="10dp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textOcorrencia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_weight="1"
-                android:text="@string/id_Tipo_ocorrencia" />
+                android:text="@string/id_Tipo_ocorrencia"
+                android:textColor="@android:color/background_dark"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tipoOcorrenciaAtd"
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -81,41 +60,44 @@
                 android:id="@+id/spinnerStatusOcorrenciaAtd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="5dp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:layout_marginRight="10dp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textData"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="@string/Data_Ocorencia" />
+                android:text="@string/Data_Ocorencia"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/dataOcorrenciaAtd"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/textHorario"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
                 android:layout_weight="1"
-                android:text="@string/horario_ocorrencia" />
+                android:text="@string/horario_ocorrencia"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/horarioOcorrenciaAtd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1" />
         </LinearLayout>
 
@@ -133,6 +115,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:ems="10"
+                android:gravity="left"
                 android:hint="@string/Caixa_Observações"
                 android:inputType="textPersonName"
                 android:textSize="16sp" />
@@ -140,11 +123,13 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="70dp"
             android:layout_marginRight="10dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <Button

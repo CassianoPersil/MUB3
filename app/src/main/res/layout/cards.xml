@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/Cards"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="wrap_content"
     android:layout_margin="15dp"
-    android:background="#dfe3eb">
+    android:background="#dfe3eb"
+    app:cardBackgroundColor="#dfe3eb">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,38 +20,45 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textOcorrencia"
-                android:layout_width="143dp"
-                android:layout_height="20dp"
-                android:layout_marginLeft="10dp"
-                android:text="Ocorrencia:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/Texto_ocorrencia"
                 android:textColor="@android:color/background_dark"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/Protocolo"
-                android:layout_width="100dp"
-                android:layout_height="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Protocolo" />
+                android:gravity="center"
+                android:hint="Protocolo"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textTipo"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="left"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
+                android:gravity="left"
                 android:text="Tipo:"
                 android:textColor="@android:color/background_dark"
                 android:textStyle="bold" />
@@ -58,9 +67,10 @@
                 android:id="@+id/Tipo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="30dp"
+                android:layout_gravity="left"
+                android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:gravity="center|left"
+                android:gravity="left"
                 android:text="Semáforo Quebrado"
                 android:textColor="@android:color/background_dark" />
 
@@ -70,14 +80,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textStatus"
                 android:layout_width="55dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="left"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
+                android:gravity="left"
                 android:text="Status:"
                 android:textColor="@android:color/background_dark"
                 android:textStyle="bold" />
@@ -86,7 +98,10 @@
                 android:id="@+id/Status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="10dp"
                 android:layout_weight="1"
+                android:gravity="left"
                 android:text="Finalizado"
                 android:textColor="@android:color/background_dark" />
         </LinearLayout>
@@ -95,13 +110,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textData"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="7dp"
                 android:layout_weight="1"
                 android:text="Data:"
                 android:textColor="@android:color/background_dark"
@@ -111,6 +126,7 @@
                 android:id="@+id/Data"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
                 android:layout_weight="1"
                 android:hint="@string/Data_Ocorencia" />
 
@@ -118,15 +134,15 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textHora"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="7dp"
                 android:layout_weight="1"
                 android:text="Horário:"
                 android:textColor="@android:color/background_dark"
@@ -136,6 +152,7 @@
                 android:id="@+id/Horario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
                 android:layout_weight="1"
                 android:hint="Horário" />
         </LinearLayout>

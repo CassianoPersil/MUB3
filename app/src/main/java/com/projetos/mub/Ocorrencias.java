@@ -16,7 +16,7 @@ public class Ocorrencias extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ocorrencias);
 
-        btAtender = (Button) findViewById(R.id.btAtender);
+        btAtender = (Button) findViewById(R.id.btAtenderOcorrencia);
 
         btAtender.setOnClickListener(new View.OnClickListener() {
             @Override

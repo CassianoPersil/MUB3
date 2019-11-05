@@ -43,7 +43,7 @@
     <string name="Texo_Informativo_Mes">Selecione o mês desejavel</string>
     <string name="Texto_Botão_Pesquisar_Ocorrencias">Pesquisar</string>
     <string name="Nav_AtenderOcorrencia">Atender Ocorrências</string>
-    <string name="id_Tipo_ocorrencia">Tipo de Ocorrência:</string>
+    <string name="id_Tipo_ocorrencia">Tipo de Ocorrência</string>
     <string name="id_Img_ocorrencia">Imagem da Ocorrência</string>
     <string name="Texto_Data_Nascimento">01/01/2019</string>
     <string name="Texto_Telefone">(88) 9 9999-9999</string>
@@ -71,6 +71,7 @@
     <string name="nav_inserir_ocorrencia">Inserir Ocorrências</string>
     <string name="Texto_Informativo_Orgao">Área destinada para Avisos, Departamentos, Estados, Vigência</string>
     <string name="Texto_Apresentativo">Destalhes sobre as Informações</string>
+    <string name="Texto_ocorrencia">Protocolo da Ocorrência</string>
 
 
     //Array para tipo de ocorrencias
