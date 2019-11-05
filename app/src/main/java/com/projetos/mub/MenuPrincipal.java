@@ -1,11 +1,17 @@
 package com.projetos.mub;
 
+import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -20,6 +26,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.location.aravind.getlocation.GeoLocator;
 import com.projetos.mub.conexao.Utils;
 import com.projetos.mub.roomDatabase.UsuarioDatabase;
 import com.projetos.mub.roomDatabase.entities.Usuario;
@@ -38,11 +45,34 @@ public class MenuPrincipal extends AppCompatActivity
     TextView tvNomeUsuario, tvEmailUsuario;
     private ProgressDialog load;
     private Usuario usuario;
+    private String cidade;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
+
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        boolean GPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+        if(!GPSEnabled){
+            startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+        }
+
+        if (ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            Intent intent = new Intent(getBaseContext(), MenuPrincipal.class);
+            startActivity(intent);
+        } else {
+            ConsultarCoordenadas consultarCoordenadas = null;
+            if (consultarCoordenadas == null) {
+                consultarCoordenadas = new ConsultarCoordenadas();
+            } else {
+                consultarCoordenadas.cancel(true);
+                consultarCoordenadas = new ConsultarCoordenadas();
+            }
+            consultarCoordenadas.execute();
+        }
 
         Card = new ArrayList<>();
         Card.add(new CardGeral());
@@ -113,18 +143,18 @@ public class MenuPrincipal extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-       /*
-       * Handler do botão de Logout
-        */
+        /*
+         * Handler do botão de Logout
+         */
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             LogoutTask logout = null;
 
-            if(logout == null){
+            if (logout == null) {
                 logout = new LogoutTask();
-            }else{
+            } else {
                 logout.cancel(true);
                 logout = new LogoutTask();
             }
@@ -157,9 +187,9 @@ public class MenuPrincipal extends AppCompatActivity
         } else if (id == R.id.nav_inserir_ocorrencia) {
             Intent intent = new Intent(getBaseContext(), InserirOcorrencia.class);
             startActivity(intent);
-        //fim para usuario comum
+            //fim para usuario comum
 
-        //complemento para agente de transito
+            //complemento para agente de transito
       /*  } else if (id == R.id.nav_alterar_ocorrencia) {
             Intent intent = new Intent(getBaseContext(), AlterarOcorrencia.class);
             startActivity(intent); */
@@ -172,7 +202,7 @@ public class MenuPrincipal extends AppCompatActivity
     }
 
     /*
-    ** Task responsável por puxar os dados armazenados no banco de dados local.
+     ** Task responsável por puxar os dados armazenados no banco de dados local.
      */
     private class ConsultarLocalmenteTask extends AsyncTask<Void, Void, Usuario> {
 
@@ -209,27 +239,27 @@ public class MenuPrincipal extends AppCompatActivity
 
 
     /*
-    ** Task criada para realizar logou do usuário.
+     ** Task criada para realizar logou do usuário.
      */
     private class LogoutTask extends AsyncTask<Void, Void, String> {
 
         @Override
         protected String doInBackground(Void... voids) {
             Usuario obj = getUsuario();
-                try {
-                    obj.setManterLogado(false);
-                    Long id = UsuarioDatabase
-                            .getInstance(getBaseContext())
-                            .getUsuarioDAO()
-                            .insert(obj);
-                    System.out.println("Logout do usuário " + id +
-                            " realizado com sucesso!");
-                    Intent intent = new Intent(getBaseContext(), MainActivity.class);
-                    startActivity(intent);
-                } catch (Exception e) {
-                    Log.i("Erro ao fazer logout ", e.toString());
-                }
-                return null;
+            try {
+                obj.setManterLogado(false);
+                Long id = UsuarioDatabase
+                        .getInstance(getBaseContext())
+                        .getUsuarioDAO()
+                        .insert(obj);
+                System.out.println("Logout do usuário " + id +
+                        " realizado com sucesso!");
+                Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(intent);
+            } catch (Exception e) {
+                Log.i("Erro ao fazer logout ", e.toString());
+            }
+            return null;
         }
     }
 
@@ -239,5 +269,36 @@ public class MenuPrincipal extends AppCompatActivity
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    private class ConsultarCoordenadas extends AsyncTask<Void, Void, String> {
+        Utils util = new Utils();
+
+        @Override
+        protected void onPreExecute() {
+            /*load = ProgressDialog.show(MenuPrincipal.this,
+                    "Por favor aguarde...", "Buscando coordenadas...");*/
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            try {
+                GeoLocator geoLocator = new GeoLocator(getApplicationContext(), MenuPrincipal.this);
+                cidade = geoLocator.getAddress();
+                System.out.println("ENDEREÇO" + cidade);
+                return String.valueOf(geoLocator.getLongitude());
+            } catch (Exception e) {
+                Log.e("ERRO AO BUSCAR", e.toString());
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            if (s != null) {
+                System.out.println("ENDEREÇOOOO " + s);
+            }
+            //load.dismiss();
+        }
     }
 }
