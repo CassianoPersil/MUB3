@@ -21,13 +21,12 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/textInformativo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="Informações sobre a Ocorrência"
@@ -38,15 +37,15 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/textProtocolo"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:gravity="center"
@@ -57,8 +56,8 @@
 
                 <TextView
                     android:id="@+id/tvProtocoloOcorrencia"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:gravity="center"
@@ -74,8 +73,8 @@
 
                 <TextView
                     android:id="@+id/textData"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:text="Data:"
@@ -85,8 +84,8 @@
 
                 <TextView
                     android:id="@+id/tvDataOcorrencia"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:hint="@string/Data_Ocorencia"
@@ -101,8 +100,8 @@
 
                 <TextView
                     android:id="@+id/textHorario"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:text="Horário:"
@@ -112,8 +111,8 @@
 
                 <TextView
                     android:id="@+id/tvHorarioOcorrencia"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:hint="Horário"
@@ -129,20 +128,20 @@
 
                 <TextView
                     android:id="@+id/textTipo"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="left"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
-                    android:text="Tipo "
+                    android:text="Tipo:"
                     android:textColor="@android:color/background_dark"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tvTipoOcorrencia"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="left"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
@@ -159,8 +158,8 @@
 
                 <TextView
                     android:id="@+id/textStatus"
-                    android:layout_width="133dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="left"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
@@ -171,8 +170,8 @@
 
                 <TextView
                     android:id="@+id/tvStatusOcorrencia"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="left"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
@@ -189,8 +188,8 @@
 
                 <TextView
                     android:id="@+id/textEndereco"
-                    android:layout_width="170dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="left"
                     android:layout_marginLeft="10dp"
                     android:text="Endereço:"
@@ -200,8 +199,8 @@
 
                 <TextView
                     android:id="@+id/tvEnderecoOcorrencia"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="left"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
@@ -219,8 +218,8 @@
 
                 <TextView
                     android:id="@+id/textDescricao"
-                    android:layout_width="180dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="left"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
@@ -231,8 +230,8 @@
 
                 <TextView
                     android:id="@+id/tvDescricaoOcorrencia"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="left"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
@@ -244,7 +243,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:orientation="vertical">
 
                 <Button

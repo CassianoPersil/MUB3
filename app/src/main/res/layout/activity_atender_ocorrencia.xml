@@ -21,10 +21,11 @@
 
             <TextView
                 android:id="@+id/textOcorrencia"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="@string/id_Tipo_ocorrencia"
                 android:textColor="@android:color/background_dark"
                 android:textSize="18sp"
@@ -32,10 +33,11 @@
 
             <TextView
                 android:id="@+id/tipoOcorrenciaAtd"
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -50,7 +52,7 @@
             <TextView
                 android:id="@+id/textStatus"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="Selecione o Status da Ocorrência que deseja Alterar"
                 android:textColor="@android:color/background_dark"
@@ -59,7 +61,7 @@
             <Spinner
                 android:id="@+id/spinnerStatusOcorrenciaAtd"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginTop="5dp" />
         </LinearLayout>
 
@@ -127,7 +129,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="40dp"
             android:layout_marginRight="10dp"
             android:gravity="center"
             android:orientation="horizontal">
