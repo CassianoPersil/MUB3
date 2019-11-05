@@ -1,10 +1,13 @@
 package com.projetos.mub;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -55,14 +58,21 @@ public class InserirOcorrencia extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inserir_ocorrencia);
 
-        ConsultarCoordenadas consultarCoordenadas = null;
-        if (consultarCoordenadas == null) {
-            consultarCoordenadas = new ConsultarCoordenadas();
+        if (ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            Intent intent = new Intent(getBaseContext(), MenuPrincipal.class);
+            startActivity(intent);
         } else {
-            consultarCoordenadas.cancel(true);
-            consultarCoordenadas = new ConsultarCoordenadas();
+            ConsultarCoordenadas consultarCoordenadas = null;
+            if (consultarCoordenadas == null) {
+                consultarCoordenadas = new ConsultarCoordenadas();
+            } else {
+                consultarCoordenadas.cancel(true);
+                consultarCoordenadas = new ConsultarCoordenadas();
+            }
+            consultarCoordenadas.execute();
         }
-        consultarCoordenadas.execute();
+
 
         sp = (Spinner) findViewById(R.id.sp);
         dataOcorrencia = (TextView) findViewById(R.id.textDataOco);
@@ -180,7 +190,7 @@ public class InserirOcorrencia extends AppCompatActivity {
         }
     }
 
-    private class ConsultarCoordenadas extends AsyncTask<Void, Void, String> {
+    private class ConsultarCoordenadas extends AsyncTask<Void, Void, GeoLocator> {
         Utils util = new Utils();
 
         @Override
@@ -190,17 +200,20 @@ public class InserirOcorrencia extends AppCompatActivity {
         }
 
         @Override
-        protected String doInBackground(Void... voids) {
+        protected GeoLocator doInBackground(Void... voids) {
             GeoLocator geoLocator = new GeoLocator(getApplicationContext(), InserirOcorrencia.this);
             latitude = geoLocator.getLattitude();
             longitude = geoLocator.getLongitude();
             endereco = geoLocator.getAddress();
-            return latitude + "," + longitude;
+            textLocal.setText(endereco);
+            System.out.println("ENDEREÇO" + endereco);
+            return geoLocator;
         }
 
         @Override
-        protected void onPostExecute(String s) {
-            Log.i("COORDENADAS", s);
+        protected void onPostExecute(GeoLocator geoLocator) {
+
+
             load.dismiss();
         }
     }
