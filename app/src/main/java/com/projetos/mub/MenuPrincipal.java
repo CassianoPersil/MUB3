@@ -55,7 +55,7 @@ public class MenuPrincipal extends AppCompatActivity
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         boolean GPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 
-        if(!GPSEnabled){
+        if (!GPSEnabled) {
             startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
         }
 
@@ -201,6 +201,14 @@ public class MenuPrincipal extends AppCompatActivity
         return true;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
     /*
      ** Task responsável por puxar os dados armazenados no banco de dados local.
      */
@@ -237,7 +245,6 @@ public class MenuPrincipal extends AppCompatActivity
         }
     }
 
-
     /*
      ** Task criada para realizar logou do usuário.
      */
@@ -261,14 +268,6 @@ public class MenuPrincipal extends AppCompatActivity
             }
             return null;
         }
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
     }
 
     private class ConsultarCoordenadas extends AsyncTask<Void, Void, String> {
