@@ -37,7 +37,7 @@ public class RecycleViewAdapterGeral extends RecyclerView.Adapter<RecycleViewAda
         holder.Alerta.setText(Card.get(position).getAlerta());
         holder.tipoInformacao.setText(Card.get(position).getTipoInformacao());
         holder.Vigencia.setText(Card.get(position).getVigencia());
-        holder.statusInformacao.setText(Card.get(position).getStatusInformacao());
+        //holder.statusInformacao.setText(Card.get(position).getStatusInformacao());
         holder.statusInfo.setText(Card.get(position).getStatusInfo());
 
         holder.Card.setOnClickListener(new View.OnClickListener() {
