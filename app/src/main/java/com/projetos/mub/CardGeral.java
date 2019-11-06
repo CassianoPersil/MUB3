@@ -10,6 +10,7 @@ public class CardGeral {
     private String textVigencia;
     private String statusInformacao;
     private String statusInfo;
+    private Long idAlerta;
 
     public CardGeral() {
     }
@@ -84,5 +85,13 @@ public class CardGeral {
 
     public void setStatusInfo(String statusInfo) {
         this.statusInfo = statusInfo;
+    }
+
+    public Long getIdAlerta() {
+        return idAlerta;
+    }
+
+    public void setIdAlerta(Long idAlerta) {
+        this.idAlerta = idAlerta;
     }
 }

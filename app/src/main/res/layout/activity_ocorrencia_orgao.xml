@@ -31,7 +31,7 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="@string/Texto_Apresentativo"
+                    android:text="@string/titulo_alerta"
                     android:textColor="@android:color/background_dark"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -45,7 +45,7 @@
                 android:gravity="center">
 
                 <TextView
-                    android:id="@+id/orgaoTransito"
+                    android:id="@+id/tvNmDepartamentoAlerta"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
@@ -66,23 +66,22 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textData"
+                    android:id="@+id/tvTtAlertaTitulo"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
-                    android:text="Data:"
+                    android:text="Alerta:"
                     android:textColor="@android:color/background_dark"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tvDataOcorrencia"
+                    android:id="@+id/tvAlertaTitulo"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:hint="@string/Data_Ocorencia" />
+                    android:layout_weight="1"/>
             </LinearLayout>
 
             <LinearLayout
@@ -92,52 +91,22 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textHorario"
+                    android:id="@+id/tvTtVigencia"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
-                    android:text="Horário:"
+                    android:text="Vigência:"
                     android:textColor="@android:color/background_dark"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tvHorarioOcorrencia"
+                    android:id="@+id/tvAlertaVigencia"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:hint="Horário" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textTipo"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="left"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:text="Tipo:"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tvTipoOcorrencia"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="left"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:hint="Tipo Ocorrência" />
+                    android:layout_weight="1"/>
             </LinearLayout>
 
             <LinearLayout
@@ -148,25 +117,24 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textStatus"
+                    android:id="@+id/tvTtStatusAlerta"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="left"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
-                    android:text="Status:"
+                    android:text="Status de atividade:"
                     android:textColor="@android:color/background_dark"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tvStatusOcorrencia"
+                    android:id="@+id/tvAlertaStatus"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="left"
                     android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:hint="Status da Ocorrência" />
+                    android:layout_weight="1" />
             </LinearLayout>
 
             <LinearLayout
@@ -177,35 +145,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textEndereco"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="left"
-                    android:layout_marginLeft="10dp"
-                    android:text="Endereço:"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tvEnderecoOcorrencia"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="left"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:hint="Endereço da Ocorrência" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textDescricao"
+                    android:id="@+id/tvTtDescricaoAlerta"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="left"
@@ -217,31 +157,12 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tvDescricaoOcorrencia"
+                    android:id="@+id/tvAlertaDescricao"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="left"
                     android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:hint="Descrição sobre a Ocorrência" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="60dp"
-                android:orientation="vertical">
-
-                <Button
-                    android:id="@+id/btAtenderOcorrencia"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/botao_customizado"
-                    android:text="@string/Nav_AtenderOcorrencia"
-                    android:textColor="@color/background"
-                    android:textStyle="bold"
-                    android:visibility="gone" />
+                    android:layout_weight="1"/>
             </LinearLayout>
 
         </LinearLayout>

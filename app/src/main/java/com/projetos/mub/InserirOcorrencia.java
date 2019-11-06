@@ -3,10 +3,13 @@ package com.projetos.mub;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.os.AsyncTask;
+import android.provider.Settings;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,6 +28,7 @@ import com.projetos.mub.conexao.Utils;
 import com.projetos.mub.roomDatabase.UsuarioDatabase;
 import com.projetos.mub.roomDatabase.entities.Usuario;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -43,9 +47,9 @@ public class InserirOcorrencia extends AppCompatActivity {
     EditText descricaoOcorrencia;
     ImageButton imgData, imgHoras;
     private Usuario usuario;
-    private String cep, rua, bairro, numero, cidade, uf, endereco;
+    private String rua, numero, bairro, cidade, estado, cep;
     private Double latitude, longitude;
-    private ProgressDialog load;
+
 
     @Override
     public void onBackPressed() {
@@ -57,6 +61,13 @@ public class InserirOcorrencia extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inserir_ocorrencia);
+
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        boolean GPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+        if (!GPSEnabled) {
+            startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+        }
 
         if (ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -72,7 +83,6 @@ public class InserirOcorrencia extends AppCompatActivity {
             }
             consultarCoordenadas.execute();
         }
-
 
         sp = (Spinner) findViewById(R.id.sp);
         dataOcorrencia = (TextView) findViewById(R.id.textDataOco);
@@ -110,7 +120,14 @@ public class InserirOcorrencia extends AppCompatActivity {
         btEnviarOco.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                InserirOcorrenciasTask inserirOcorrencia = null;
+                if (inserirOcorrencia == null) {
+                    inserirOcorrencia = new InserirOcorrenciasTask();
+                } else {
+                    inserirOcorrencia.cancel(true);
+                    inserirOcorrencia = new InserirOcorrenciasTask();
+                }
+                inserirOcorrencia.execute();
             }
         });
     }
@@ -132,19 +149,20 @@ public class InserirOcorrencia extends AppCompatActivity {
             String dataHora = dataOcorrencia.getText().toString() + " " + horarioOcorrencia.getText().toString();
             try {
                 JSONObject json = new JSONObject();
-                json.put("cep", "");
-                json.put("rua", "");
-                json.put("numero", "");
-                json.put("bairro", "");
-                json.put("cidade", "");
-                json.put("uf", "");
-                json.put("latitude", "");
-                json.put("longitude", "");
+                json.put("data", dataHora);
+                json.put("cep", cep);
+                json.put("rua", rua);
+                json.put("numero", numero);
+                json.put("bairro", bairro);
+                json.put("cidade", cidade);
+                json.put("uf", estado);
+                json.put("latitude", latitude);
+                json.put("longitude", longitude);
                 json.put("descricao", descricaoOcorrencia.getText());
                 json.put("idUsuario", usuario.getIdUsuarioAPI());
                 json.put("idTipoOcorrencia", sp.getSelectedItemPosition() + 1);
                 json.put("idStatusOcorrencia", 1);
-                return util.postTeste("http://192.168.137.1:8080/ocorrencia/add", json);
+                return util.postTeste("http://192.168.137.1:8080/ocorrencia/inserir", json);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -190,7 +208,8 @@ public class InserirOcorrencia extends AppCompatActivity {
         }
     }
 
-    private class ConsultarCoordenadas extends AsyncTask<Void, Void, GeoLocator> {
+    private class ConsultarCoordenadas extends AsyncTask<Void, Void, String> {
+        private ProgressDialog load;
         Utils util = new Utils();
 
         @Override
@@ -200,21 +219,45 @@ public class InserirOcorrencia extends AppCompatActivity {
         }
 
         @Override
-        protected GeoLocator doInBackground(Void... voids) {
+        protected String doInBackground(Void... voids) {
             GeoLocator geoLocator = new GeoLocator(getApplicationContext(), InserirOcorrencia.this);
+
             latitude = geoLocator.getLattitude();
             longitude = geoLocator.getLongitude();
-            endereco = geoLocator.getAddress();
-            textLocal.setText(endereco);
-            System.out.println("ENDEREÇO" + endereco);
-            return geoLocator;
+            System.out.println(latitude + "\n" + longitude);
+            String endereco = util.getInfFromGET("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude +
+                    "," + longitude + "&key=AIzaSyAUzj3IP_i6PCj-VcZYJaNLcr0lxj9xLnc");
+            return endereco;
         }
 
         @Override
-        protected void onPostExecute(GeoLocator geoLocator) {
-
-
+        protected void onPostExecute(String s) {
+            try {
+                JSONObject jsonObject = new JSONObject(s);
+                JSONObject jsonObject1 = jsonObject.getJSONArray("results").getJSONObject(0);
+                String endereco = jsonObject1.getString("formatted_address");
+                quebrarEndereco(endereco);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
             load.dismiss();
         }
+    }
+
+    private void quebrarEndereco(String s) {
+        String[] vetorEndereco = s.split(", "); // Remove ", " quebrando em várias strings
+        rua = vetorEndereco[0];
+        cep = vetorEndereco[3];
+
+        String[] vetorNumBairro = vetorEndereco[1].split(" - ");
+        numero = vetorNumBairro[0];
+        bairro = vetorNumBairro[1];
+
+        String[] vetorCidadeEstado = vetorEndereco[2].split(" -");
+        cidade = vetorCidadeEstado[0];
+        estado = vetorCidadeEstado[1];
+        System.out.println("FUNFOU: " + estado);
+
+        textLocal.setText(s);
     }
 }

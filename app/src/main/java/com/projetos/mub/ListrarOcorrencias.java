@@ -24,9 +24,6 @@ import java.util.List;
 
 public class ListrarOcorrencias extends AppCompatActivity {
     private List<Cards> listCard = new ArrayList<>();
-    private ImageView listrarOcorrenciaImg;
-    private TextView textolista, listarOcorrenciaEmail;
-    private Spinner spListaOcorrencia;
     private RecyclerView reclistaOcorrencia;
     private Usuario usuario;
 
@@ -121,8 +118,6 @@ public class ListrarOcorrencias extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
-
         }
 
         private Usuario consultarLocalmente() {
@@ -132,13 +127,5 @@ public class ListrarOcorrencias extends AppCompatActivity {
                     .getUserById(1L);
             return usuario;
         }
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
     }
 }

@@ -31,6 +31,7 @@ import com.projetos.mub.conexao.Utils;
 import com.projetos.mub.roomDatabase.UsuarioDatabase;
 import com.projetos.mub.roomDatabase.entities.Usuario;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -39,13 +40,13 @@ import java.util.List;
 
 public class MenuPrincipal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    List<CardGeral> Card;
+    private List<CardGeral> listCard = new ArrayList<>();
 
 
     TextView tvNomeUsuario, tvEmailUsuario;
     private ProgressDialog load;
-    private Usuario usuario;
-    private String cidade;
+    private String rua, numero, bairro, cidade, estado, cep;
+    private Double latitude, longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,30 +75,8 @@ public class MenuPrincipal extends AppCompatActivity
             consultarCoordenadas.execute();
         }
 
-        Card = new ArrayList<>();
-        Card.add(new CardGeral());
-        Card.add(new CardGeral());
-        Card.add(new CardGeral());
-        Card.add(new CardGeral());
-        Card.add(new CardGeral());
-        Card.add(new CardGeral());
-        Card.add(new CardGeral());
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recGeral);
-        RecycleViewAdapterGeral recycleViewAdapter = new RecycleViewAdapterGeral(this, Card);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
-        recyclerView.setAdapter(recycleViewAdapter);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        ConsultarLocalmenteTask load = null;
-        if (load == null) {
-            load = new ConsultarLocalmenteTask();
-        } else {
-            load.cancel(true);
-            load = new ConsultarLocalmenteTask();
-        }
-        load.execute();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -172,28 +151,15 @@ public class MenuPrincipal extends AppCompatActivity
         // Handle para navegação dos itens do menu.
         int id = item.getItemId();
 
-        // menu para usuario comum e agente de transito
         if (id == R.id.nav_conta_usuario) {
             Intent intent = new Intent(getBaseContext(), UsuarioMenu.class);
             startActivity(intent);
         } else if (id == R.id.nav_listrar_ocorrencias) {
             Intent intent = new Intent(getBaseContext(), ListrarOcorrencias.class);
             startActivity(intent);
-
-       /* } else if (id == R.id.nav_consultar_ocorrencia) {
-            Intent intent = new Intent(getBaseContext(), ConsultarOcorrencia.class);
-            startActivity(intent); */
-
         } else if (id == R.id.nav_inserir_ocorrencia) {
             Intent intent = new Intent(getBaseContext(), InserirOcorrencia.class);
             startActivity(intent);
-            //fim para usuario comum
-
-            //complemento para agente de transito
-      /*  } else if (id == R.id.nav_alterar_ocorrencia) {
-            Intent intent = new Intent(getBaseContext(), AlterarOcorrencia.class);
-            startActivity(intent); */
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -201,58 +167,15 @@ public class MenuPrincipal extends AppCompatActivity
         return true;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
     /*
-     ** Task responsável por puxar os dados armazenados no banco de dados local.
-     */
-    private class ConsultarLocalmenteTask extends AsyncTask<Void, Void, Usuario> {
-
-        @Override
-        protected void onPreExecute() {
-            load = ProgressDialog.show(MenuPrincipal.this,
-                    "Por favor aguarde...", "Estamos carregando os seus dados! ;)");
-        }
-
-        @Override
-        protected Usuario doInBackground(Void... voids) {
-            try {
-                Usuario usuario = UsuarioDatabase
-                        .getInstance(getBaseContext())
-                        .getUsuarioDAO()
-                        .getUserById(1L);
-                System.out.println("Usuário buscado MENU_PRINCIPAL: " + usuario.getId());
-                setUsuario(usuario);
-                return usuario;
-            } catch (Exception e) {
-                Log.i("Error ON INSERT", e.toString());
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Usuario usuario) {
-            System.out.println("Identificador on POST EXECUTE " + usuario.getNome());
-            tvNomeUsuario.setText(usuario.getNome());
-            tvEmailUsuario.setText(usuario.getEmail());
-            load.dismiss();
-        }
-    }
-
-    /*
-     ** Task criada para realizar logou do usuário.
+     ** Task criada para realizar logout do usuário.
      */
     private class LogoutTask extends AsyncTask<Void, Void, String> {
 
         @Override
         protected String doInBackground(Void... voids) {
-            Usuario obj = getUsuario();
+
+            Usuario obj = consultarLocalmente();
             try {
                 obj.setManterLogado(false);
                 Long id = UsuarioDatabase
@@ -275,29 +198,109 @@ public class MenuPrincipal extends AppCompatActivity
 
         @Override
         protected void onPreExecute() {
-            /*load = ProgressDialog.show(MenuPrincipal.this,
-                    "Por favor aguarde...", "Buscando coordenadas...");*/
+            load = ProgressDialog.show(MenuPrincipal.this,
+                    "Por favor aguarde...", "Buscando coordenadas...");
         }
 
         @Override
         protected String doInBackground(Void... voids) {
-            try {
-                GeoLocator geoLocator = new GeoLocator(getApplicationContext(), MenuPrincipal.this);
-                cidade = geoLocator.getAddress();
-                System.out.println("ENDEREÇO" + cidade);
-                return String.valueOf(geoLocator.getLongitude());
-            } catch (Exception e) {
-                Log.e("ERRO AO BUSCAR", e.toString());
-                return null;
-            }
+            GeoLocator geoLocator = new GeoLocator(getApplicationContext(), MenuPrincipal.this);
+
+            latitude = geoLocator.getLattitude();
+            longitude = geoLocator.getLongitude();
+            System.out.println(latitude + "\n" + longitude);
+            String endereco = util.getInfFromGET("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude +
+                    "," + longitude + "&key=AIzaSyAUzj3IP_i6PCj-VcZYJaNLcr0lxj9xLnc");
+            return endereco;
         }
 
         @Override
         protected void onPostExecute(String s) {
-            if (s != null) {
-                System.out.println("ENDEREÇOOOO " + s);
+            try {
+                JSONObject jsonObject = new JSONObject(s);
+                JSONObject jsonObject1 = jsonObject.getJSONArray("results").getJSONObject(0);
+                String endereco = jsonObject1.getString("formatted_address");
+                quebrarEndereco(endereco);
+                load.dismiss();
+
+                CarregarAvisosTask carregarAvisosTask = null;
+                if (carregarAvisosTask == null) {
+                    carregarAvisosTask = new CarregarAvisosTask();
+                } else {
+                    carregarAvisosTask.cancel(true);
+                    carregarAvisosTask = new CarregarAvisosTask();
+                }
+                carregarAvisosTask.execute();
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-            //load.dismiss();
         }
+    }
+
+    private class CarregarAvisosTask extends AsyncTask<Void, Void, String> {
+        private Utils util = new Utils();
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            String consultaApi = util.getInfFromGET("http://192.168.137.1:8080/alertas/buscar-cidade/" + cidade);
+            return consultaApi;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            try {
+                JSONArray jsonArrayOcorrencias = new JSONArray(s);
+                Log.i("Resultado ocorrência ", jsonArrayOcorrencias.toString());
+                String status;
+                for (int i = 0; i < jsonArrayOcorrencias.length(); i++) {
+                    JSONObject jsonOcorrencia = jsonArrayOcorrencias.getJSONObject(i);
+                    CardGeral card = new CardGeral();
+                    if(jsonOcorrencia.getBoolean("statusDeAtividade") == true){
+                        status = "Ativo";
+                    }else{
+                        status = "Inativo";
+                    }
+                    card.setIdAlerta(jsonOcorrencia.getLong("id"));
+                    card.setAlerta(jsonOcorrencia.getString("titulo"));
+                    card.setTextOrgao(jsonOcorrencia.getJSONObject("departamentoResponsavel").getString("nomeFantasia"));
+                    card.setVigencia(jsonOcorrencia.getString("vigencia"));
+                    card.setStatusInfo(status);
+                    listCard.add(card);
+                }
+
+                RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recGeral);
+                RecycleViewAdapterGeral recycleViewAdapter = new RecycleViewAdapterGeral(getApplicationContext(), listCard);
+                recyclerView.setLayoutManager(new GridLayoutManager(getBaseContext(), 1));
+                recyclerView.setAdapter(recycleViewAdapter);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void quebrarEndereco(String s) {
+        String[] vetorEndereco = s.split(", "); // Remove ", " quebrando em várias strings
+        rua = vetorEndereco[0];
+        cep = vetorEndereco[3];
+
+        String[] vetorNumBairro = vetorEndereco[1].split(" - ");
+        numero = vetorNumBairro[0];
+        bairro = vetorNumBairro[1];
+
+        String[] vetorCidadeEstado = vetorEndereco[2].split(" -");
+        cidade = vetorCidadeEstado[0];
+        estado = vetorCidadeEstado[1];
+        System.out.println("FUNFOU: " + cidade + estado);
+    }
+
+    private Usuario consultarLocalmente() {
+        Usuario usuario = UsuarioDatabase
+                .getInstance(getBaseContext())
+                .getUsuarioDAO()
+                .getUserById(1L);
+        tvNomeUsuario.setText(usuario.getNome());
+        tvEmailUsuario.setText(usuario.getEmail());
+
+        return usuario;
     }
 }

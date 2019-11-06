@@ -44,8 +44,12 @@ public class RecycleViewAdapterGeral extends RecyclerView.Adapter<RecycleViewAda
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, OcorrenciaOrgao.class);
-                context.startActivity(intent);
+                Bundle informacoes = new Bundle();
+                informacoes.putLong("idAlerta", Card.get(position).getIdAlerta());
 
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtras(informacoes);
+                context.startActivity(intent);
             }
         });
 
