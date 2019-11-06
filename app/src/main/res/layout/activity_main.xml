@@ -67,11 +67,11 @@
 
             <ImageView
                 android:id="@+id/imImagem"
-                android:layout_width="15px"
-                android:layout_height="wrap_content"
+                android:layout_width="18dp"
+                android:layout_height="match_parent"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                app:srcCompat="@mipmap/ic_key" />
+                app:srcCompat="@mipmap/ic_key_round" />
 
             <EditText
                 android:id="@+id/ctLoginSenha"

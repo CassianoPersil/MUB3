@@ -22,14 +22,8 @@
         <activity android:name=".OcorrenciaOrgao"></activity>
         <activity android:name=".OcorrenciasUsuario" />
         <activity android:name=".Ocorrencias" />
-        <activity android:name=".SelecionarConsultarOcorrencia" />
-        <activity android:name=".SelecionarAlterarOcorrencia" />
-        <activity android:name=".SelecionarAtenderOcorrencia" />
         <activity android:name=".ListrarOcorrencias" />
         <activity android:name=".AtenderOcorrencia" />
-        <activity android:name=".ConsultarOcorrencia" />
-        <activity android:name=".AlterarOcorrencia" />
-        <activity android:name=".RecuperarSenha" />
         <activity android:name=".CadastrarUsuario" />
         <activity android:name=".UsuarioMenu" />
         <activity android:name=".InserirOcorrencia" />
@@ -41,9 +35,6 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
-        <activity
-            android:name=".MapsActivity"
-            android:label="@string/title_activity_maps" />
         <activity android:name=".MainActivity" />
         <activity
             android:name=".MenuPrincipal"
