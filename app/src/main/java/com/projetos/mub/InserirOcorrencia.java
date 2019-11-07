@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.provider.Settings;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,7 +29,6 @@ import com.projetos.mub.conexao.Utils;
 import com.projetos.mub.roomDatabase.UsuarioDatabase;
 import com.projetos.mub.roomDatabase.entities.Usuario;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -36,11 +36,14 @@ import java.sql.SQLOutput;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import me.drakeet.materialdialog.MaterialDialog;
+
 
 public class InserirOcorrencia extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 1;
+    public static final int REQUEST_PERMISSIONS_CODE = 128;
     private Object ImageViewFoto;
-
+    MaterialDialog mMaterialDialog;
     Spinner sp;
     Button btEnviarOco;
     TextView textLocal, dataOcorrencia, horarioOcorrencia;
@@ -49,6 +52,7 @@ public class InserirOcorrencia extends AppCompatActivity {
     private Usuario usuario;
     private String rua, numero, bairro, cidade, estado, cep;
     private Double latitude, longitude;
+    private final static int MY_PERMISSIONS_REQUEST_INTERNET_LOCATION = 128;
 
 
     @Override
@@ -67,21 +71,19 @@ public class InserirOcorrencia extends AppCompatActivity {
 
         if (!GPSEnabled) {
             startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+
+        } else {
+            System.out.println("GPS ATIVO!");
         }
 
-        if (ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
-            Intent intent = new Intent(getBaseContext(), MenuPrincipal.class);
-            startActivity(intent);
+            Log.e("TESTEE", "Permissão não concedida");
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    MY_PERMISSIONS_REQUEST_INTERNET_LOCATION);
         } else {
-            ConsultarCoordenadas consultarCoordenadas = null;
-            if (consultarCoordenadas == null) {
-                consultarCoordenadas = new ConsultarCoordenadas();
-            } else {
-                consultarCoordenadas.cancel(true);
-                consultarCoordenadas = new ConsultarCoordenadas();
-            }
-            consultarCoordenadas.execute();
+            System.out.println("A LOCALIZAÇÃO ESTÁ OK");
         }
 
         sp = (Spinner) findViewById(R.id.sp);
@@ -130,6 +132,35 @@ public class InserirOcorrencia extends AppCompatActivity {
                 inserirOcorrencia.execute();
             }
         });
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            System.out.println("ENTROU AQUIIIIIIIIII");
+            executarConsultaCoodenadas();
+        }
+
+    }
+
+    @Override
+    protected void onResume() {
+        checkLocalizacao();
+        super.onResume();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[],
+                                           int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_INTERNET_LOCATION: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                        System.out.println("Localização ATIVA");
+                    }
+                }
+            }
+        }
+
     }
 
     private Usuario consultarLocalmente() {
@@ -138,6 +169,25 @@ public class InserirOcorrencia extends AppCompatActivity {
                 .getUsuarioDAO()
                 .getUserById(1L);
         return usuario;
+    }
+
+    private void executarConsultaCoodenadas(){
+        ConsultarCoordenadas consultarCoordenadas = null;
+        if (consultarCoordenadas == null) {
+            consultarCoordenadas = new ConsultarCoordenadas();
+        } else {
+            consultarCoordenadas.cancel(true);
+            consultarCoordenadas = new ConsultarCoordenadas();
+        }
+        consultarCoordenadas.execute();
+    }
+
+    private void checkLocalizacao(){
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            System.out.println("ENTROU AQUIIIIIIIIII");
+            executarConsultaCoodenadas();
+        }
     }
 
     private class InserirOcorrenciasTask extends AsyncTask<Void, Void, String> {

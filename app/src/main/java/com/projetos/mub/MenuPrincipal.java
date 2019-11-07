@@ -52,6 +52,7 @@ public class MenuPrincipal extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
+        setTitle("Alertas Municipais!");
 
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         boolean GPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
@@ -176,6 +177,9 @@ public class MenuPrincipal extends AppCompatActivity
         protected String doInBackground(Void... voids) {
 
             Usuario obj = consultarLocalmente();
+
+            tvNomeUsuario.setText(obj.getNome());
+            tvEmailUsuario.setText(obj.getEmail());
             try {
                 obj.setManterLogado(false);
                 Long id = UsuarioDatabase
@@ -268,6 +272,7 @@ public class MenuPrincipal extends AppCompatActivity
                     listCard.add(card);
                 }
 
+
                 RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recGeral);
                 RecycleViewAdapterGeral recycleViewAdapter = new RecycleViewAdapterGeral(getApplicationContext(), listCard);
                 recyclerView.setLayoutManager(new GridLayoutManager(getBaseContext(), 1));
@@ -298,9 +303,6 @@ public class MenuPrincipal extends AppCompatActivity
                 .getInstance(getBaseContext())
                 .getUsuarioDAO()
                 .getUserById(1L);
-        tvNomeUsuario.setText(usuario.getNome());
-        tvEmailUsuario.setText(usuario.getEmail());
-
         return usuario;
     }
 }
