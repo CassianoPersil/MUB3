@@ -35,7 +35,7 @@ public class RecycleViewAdapterGeral extends RecyclerView.Adapter<RecycleViewAda
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         holder.Alerta.setText(Card.get(position).getAlerta());
-        holder.tipoInformacao.setText(Card.get(position).getTipoInformacao());
+        //holder.tipoInformacao.setText(Card.get(position).getTipoInformacao());
         holder.Vigencia.setText(Card.get(position).getVigencia());
         //holder.statusInformacao.setText(Card.get(position).getStatusInformacao());
         holder.statusInfo.setText(Card.get(position).getStatusInfo());
