@@ -10,28 +10,41 @@
         android:id="@+id/tipoOco"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_margin="10dp"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="center"
             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textInformativo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="Localidade do Usuário"
+                android:textColor="@android:color/background_dark"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textLocal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="5dp"
                 android:autoText="true"
                 android:ems="10"
                 android:inputType="textMultiLine|textPersonName"
                 android:maxLines="3"
                 android:text="@string/Texto_Local_Ocorrencia"
                 android:textColor="@android:color/background_dark"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -51,8 +64,7 @@
                 android:inputType="date"
                 android:text="01/01/2019"
                 android:textColor="@android:color/background_dark"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="18sp" />
 
             <ImageButton
                 android:id="@+id/imgData"
@@ -74,8 +86,7 @@
                 android:inputType="time"
                 android:text="00:00:00"
                 android:textColor="@android:color/background_dark"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="18sp" />
 
             <ImageButton
                 android:id="@+id/imgHoras"
@@ -99,8 +110,7 @@
                 android:gravity="center"
                 android:text="Selecione o Tipo da Ocorrência"
                 android:textColor="@android:color/background_dark"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textSize="16sp" />
 
             <Spinner
                 android:id="@+id/sp"
