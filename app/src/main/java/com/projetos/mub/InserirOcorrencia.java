@@ -175,7 +175,8 @@ public class InserirOcorrencia extends AppCompatActivity {
             try {
                 JSONObject json = new JSONObject(s);
                 if (json.getString("id") != null) {
-                    modal("Sucesso!", "Alteração de status ocorrida com sucesso", true);
+                    System.out.println("funfou");
+                    modal("Sucesso!", "Ocorrência inserida com sucesso, dúvidas?! Consulte a sua lista de ocorrências :)", true);
                 } else {
                     modal("Desculpe-nos :(", "Algo de errado aconteceu... Contate um administrador.", false);
                 }
@@ -185,9 +186,9 @@ public class InserirOcorrencia extends AppCompatActivity {
             }
         }
 
-        protected void modal(String title, String message, final boolean sucess) {
+        public void modal(String title, String message, final boolean sucess) {
             // Criando gerador de Alerta
-            final AlertDialog.Builder builder = new AlertDialog.Builder(getBaseContext());
+            final AlertDialog.Builder builder = new AlertDialog.Builder(InserirOcorrencia.this);
             builder.setTitle(title);
             builder.setMessage(message);
             builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -196,7 +197,7 @@ public class InserirOcorrencia extends AppCompatActivity {
 
                     if (sucess == true) {
                         alert.dismiss();
-                        Intent i = new Intent(getBaseContext(), ListrarOcorrencias.class);
+                        Intent i = new Intent(getBaseContext(), MenuPrincipal.class);
                         startActivity(i);
                     } else {
                         alert.dismiss();
