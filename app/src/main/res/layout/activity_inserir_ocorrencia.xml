@@ -131,10 +131,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_gravity="left"
+                android:autoText="true"
                 android:ems="10"
                 android:gravity="left"
                 android:hint="Descrição"
-                android:inputType="textPersonName" />
+                android:inputType="textMultiLine|textPersonName"
+                android:maxLines="3" />
         </LinearLayout>
 
         <LinearLayout
