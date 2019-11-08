@@ -15,6 +15,7 @@ public class Ocorrencias extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ocorrencias);
+        setTitle("Destalhes da Ocorrência");
 
         btAtender = (Button) findViewById(R.id.btAtenderOcorrencia);
 

@@ -30,6 +30,7 @@ public class OcorrenciasUsuario extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ocorrencias_usuario);
+        setTitle("Destalhes da Ocorrência");
 
         usuario = consultarLocalmente();
         this.informacoes =  new Bundle();
