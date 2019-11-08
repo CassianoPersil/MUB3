@@ -28,10 +28,12 @@
                 android:id="@+id/textOcorrencia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:autoText="true"
                 android:gravity="center"
+                android:inputType="textMultiLine"
                 android:text="@string/Texto_ocorrencia"
                 android:textColor="@android:color/background_dark"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
