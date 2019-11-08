@@ -14,9 +14,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_icon_mub"
+        android:icon="@mipmap/ic_logo_mub_inicial"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_icon_mub"
+        android:roundIcon="@mipmap/ic_logo_mub_inicial"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
