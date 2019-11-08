@@ -98,22 +98,21 @@ public class CadastrarUsuario extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
-            Log.i("RESULTADO: ", s);
             String titulo = "", texto = "";
             int status = 0;
-
-            load.dismiss();
-
-            if (status == 500) {
-                titulo = "Erro ao cadastrar :(";
-                texto = "Seu e-mail ou CPF já estão cadastrados. Consulte contato@voxelsbrasil.com para mais informações!";
-                modalAlert(titulo, texto, false);
-            } else {
+            try {
+                JSONObject jsonObject = new JSONObject(s);
+                status = jsonObject.getInt("status");
                 titulo = "Obrigado por se cadastrar!";
                 texto = "Agora é só realizar o login :)";
                 modalAlert(titulo, texto, true);
-
+            } catch (JSONException e) {
+                e.printStackTrace();
+                titulo = "Erro ao cadastrar :(";
+                texto = "Seu e-mail ou CPF já estão cadastrados. Consulte contato@voxelsbrasil.com para mais informações!";
+                modalAlert(titulo, texto, false);
             }
+            load.dismiss();
         }
 
         @Override
@@ -139,7 +138,7 @@ public class CadastrarUsuario extends AppCompatActivity {
             return null;
         }
 
-        protected void modalAlert(String titulo, String texto, final boolean redirecionar){
+        protected void modalAlert(String titulo, String texto, final boolean redirecionar) {
             // Criando gerador de Alerta
             final AlertDialog.Builder builder = new AlertDialog.Builder(CadastrarUsuario.this);
             builder.setTitle(titulo);
@@ -149,7 +148,7 @@ public class CadastrarUsuario extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     alert.dismiss();
-                    if(redirecionar == true){
+                    if (redirecionar == true) {
                         Intent intent = new Intent(getBaseContext(), MainActivity.class);
                         startActivity(intent);
                     }

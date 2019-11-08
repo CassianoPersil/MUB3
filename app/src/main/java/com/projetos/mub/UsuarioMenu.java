@@ -1,6 +1,8 @@
 package com.projetos.mub;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +10,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,13 +23,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class UsuarioMenu extends AppCompatActivity {
-    private ImageView imgPerfilUsuario;
-    private ImageButton btNomeUsuario, btSenhaUsuario, btEmailUsuario, btDataNasc;
     private TextView tvNomeUsuario, tvEmailUsuario, ctNomeUsuario, ctSenhaUsuario, ctCpf, ctEmailUsuario, ctDataNasc, ctTelefone;
     private Button btAtualizarUsuario;
     private Long idUsuario;
     private Usuario usuario;
     private String nome, email, telefone, cpf, senha, dataNascimento;
+    private android.support.v7.app.AlertDialog alert;
 
     @Override
     public void onBackPressed() {
@@ -106,7 +106,6 @@ public class UsuarioMenu extends AppCompatActivity {
 
     //metodo para inicializar as variaveis
     public void iniciarVariaveis() {
-        imgPerfilUsuario = (ImageView) findViewById(R.id.imgPerfilUsuario);
         ctNomeUsuario = (TextView) findViewById(R.id.ctNomeUsuario);
         ctSenhaUsuario = (TextView) findViewById(R.id.ctEditSenha);
         ctCpf = (TextView) findViewById(R.id.ctCpf);
@@ -136,6 +135,13 @@ public class UsuarioMenu extends AppCompatActivity {
     protected class RecuperarDadosPerfilTask extends AsyncTask<Void, Void, String> {
         private AlertDialog alert;
         private Utils util = new Utils();
+        private ProgressDialog load;
+
+        @Override
+        protected void onPreExecute() {
+            load = ProgressDialog.show(UsuarioMenu.this,
+                    "Por favor aguarde...", "Carregando seus dados ;)");
+        }
 
         @Override
         protected String doInBackground(Void... voids) {
@@ -174,23 +180,20 @@ public class UsuarioMenu extends AppCompatActivity {
                 tvEmailUsuario.setText(contatoObj.getString("email"));
 
                 ctTelefone.setText(contatoObj.getString("telefone"));
+                load.dismiss();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
         }
     }
 
     protected class AtualizarUsuarioLocal extends AsyncTask<Void, Void, String> {
 
         @Override
-        protected void onPreExecute() {
-        }
-
-        @Override
         protected String doInBackground(Void... voids) {
             String retornoCadastro = "";
             Utils util = new Utils();
-            Usuario usuario = getUsuario();
             System.out.println("SENHAAAAAAAAAAAAAAAAAAAAAA" + senha);
             try {
                 JSONObject json = new JSONObject();
@@ -205,7 +208,6 @@ public class UsuarioMenu extends AppCompatActivity {
 
                 System.out.println("IDENTIFICADOR DO USUARIO: " + idUsuario);
                 retornoCadastro = util.putSend("http://192.168.137.1:8080/user/alterar/" + idUsuario, json);
-                System.out.println(retornoCadastro);
                 return retornoCadastro;
             } catch (Exception e) {
                 Log.i("Error ON INSERT", e.toString());
@@ -215,26 +217,47 @@ public class UsuarioMenu extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String retorno) {
-            Log.i("RETORNO DO PUT: ", retorno);
-            Usuario usuario = getUsuario();
+            Long aux = 0L;
             try {
-                usuario = consultarLocalmente();
-                usuario.setIdUsuarioAPI(idUsuario);
-                usuario.setNome(ctNomeUsuario.getText().toString());
-                usuario.setEmail(ctEmailUsuario.getText().toString());
-                usuario.setNvAcesso(usuario.getNvAcesso());
-                usuario.setManterLogado(true);
+                JSONObject jsonObject = new JSONObject(retorno);
+                 aux = jsonObject.getLong("id");
 
-                Long id = UsuarioDatabase
-                        .getInstance(getBaseContext())
-                        .getUsuarioDAO()
-                        .insert(usuario);
+                try {
+                    usuario = consultarLocalmente();
+                    usuario.setIdUsuarioAPI(idUsuario);
+                    usuario.setNome(ctNomeUsuario.getText().toString());
+                    usuario.setEmail(ctEmailUsuario.getText().toString());
+                    usuario.setNvAcesso(usuario.getNvAcesso());
+                    usuario.setManterLogado(true);
 
-                System.out.println("Identificador on UPDATE: " + id);
-                Intent intent = new Intent(getBaseContext(), MenuPrincipal.class);
-                startActivity(intent);
-            } catch (Exception e) {
-                Log.i("Error ON UPDATE", e.toString());
+                    Long id = UsuarioDatabase
+                            .getInstance(getBaseContext())
+                            .getUsuarioDAO()
+                            .insert(usuario);
+
+                    System.out.println("Identificador on UPDATE: " + id);
+                    Intent intent = new Intent(getBaseContext(), MenuPrincipal.class);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    Log.i("Error ON UPDATE", e.toString());
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+                // Criando gerador de Alerta
+                final android.support.v7.app.AlertDialog.Builder builder
+                        = new android.support.v7.app.AlertDialog.Builder(UsuarioMenu.this);
+                builder.setTitle("Erro ao atulizar :(");
+                builder.setMessage("Informe um e-mail válido e tente novamente! ♥");
+
+                builder.setNegativeButton("Fechar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ctCpf.setEnabled(false);
+                        alert.dismiss();
+                    }
+                });
+                alert = builder.create();
+                alert.show();
             }
         }
     }

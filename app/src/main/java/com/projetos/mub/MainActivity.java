@@ -78,18 +78,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-       /* ctEsqueceuSenha.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), RecuperarSenha.class);
-                startActivity(intent);
-            }
-        });
-
-        */
-
-
     }
 
     private class GetJson extends AsyncTask<Void, Void, String> {

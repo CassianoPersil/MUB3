@@ -48,7 +48,6 @@ public class MenuPrincipal extends AppCompatActivity
 
 
     TextView tvNomeUsuario, tvEmailUsuario;
-    private ProgressDialog load;
     private String rua, numero, bairro, cidade, estado, cep;
     private Double latitude, longitude;
     private final static int MY_PERMISSIONS_REQUEST_INTERNET_LOCATION = 128;
@@ -253,9 +252,12 @@ public class MenuPrincipal extends AppCompatActivity
 
     private class ConsultarCoordenadas extends AsyncTask<Void, Void, String> {
         Utils util = new Utils();
+        private ProgressDialog load;
 
         @Override
         protected void onPreExecute() {
+            load = ProgressDialog.show(MenuPrincipal.this,
+                    "Por favor aguarde...", "Carregando as coordenadas ;)");
         }
 
         @Override
@@ -282,7 +284,7 @@ public class MenuPrincipal extends AppCompatActivity
                     JSONObject jsonObject1 = jsonObject.getJSONArray("results").getJSONObject(0);
                     String endereco = jsonObject1.getString("formatted_address");
                     quebrarEndereco(endereco);
-                    //load.dismiss();
+                    load.dismiss();
 
                     CarregarAvisosTask carregarAvisosTask = null;
                     if (carregarAvisosTask == null) {
@@ -316,6 +318,13 @@ public class MenuPrincipal extends AppCompatActivity
 
     private class CarregarAvisosTask extends AsyncTask<Void, Void, String> {
         private Utils util = new Utils();
+        private ProgressDialog load;
+
+        @Override
+        protected void onPreExecute() {
+            load = ProgressDialog.show(MenuPrincipal.this,
+                    "Por favor aguarde...", "Carregando avisos municipais ;)");
+        }
 
         @Override
         protected String doInBackground(Void... voids) {
@@ -326,6 +335,7 @@ public class MenuPrincipal extends AppCompatActivity
         @Override
         protected void onPostExecute(String s) {
             try {
+
                 JSONArray jsonArrayOcorrencias = new JSONArray(s);
                 Log.i("Resultado ocorrência ", jsonArrayOcorrencias.toString());
                 String status;
@@ -346,11 +356,12 @@ public class MenuPrincipal extends AppCompatActivity
                 }
 
                 RecycleViewAdapterGeral recycleViewAdapter = new RecycleViewAdapterGeral(getApplicationContext(), listCard);
-
                 recyclerView.setAdapter(recycleViewAdapter);
+                load.dismiss();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
         }
     }
 

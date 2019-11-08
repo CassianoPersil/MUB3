@@ -35,10 +35,9 @@ public class RecycleViewAdapterGeral extends RecyclerView.Adapter<RecycleViewAda
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         holder.Alerta.setText(Card.get(position).getAlerta());
-        //holder.tipoInformacao.setText(Card.get(position).getTipoInformacao());
         holder.Vigencia.setText(Card.get(position).getVigencia());
-        //holder.statusInformacao.setText(Card.get(position).getStatusInformacao());
         holder.statusInfo.setText(Card.get(position).getStatusInfo());
+        holder.textOrgao.setText(Card.get(position).getTextOrgao());
 
         holder.Card.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,8 +64,6 @@ public class RecycleViewAdapterGeral extends RecyclerView.Adapter<RecycleViewAda
         TextView textOrgao;
         TextView textAlerta;
         TextView Alerta;
-        TextView tipoText;
-        TextView tipoInformacao;
         TextView textVigencia;
         TextView Vigencia;
         TextView statusInformacao;
@@ -79,8 +76,6 @@ public class RecycleViewAdapterGeral extends RecyclerView.Adapter<RecycleViewAda
             textOrgao = (TextView) itemView.findViewById(R.id.textOrgao);
             textAlerta = (TextView) itemView.findViewById(R.id.textAlerta);
             Alerta = (TextView) itemView.findViewById(R.id.Alerta);
-            tipoText = (TextView) itemView.findViewById(R.id.tipoText);
-            tipoInformacao = (TextView) itemView.findViewById(R.id.tipoInformacao);
             textVigencia = (TextView) itemView.findViewById(R.id.textVigencia);
             Vigencia = (TextView) itemView.findViewById(R.id.Vigencia);
             statusInformacao = (TextView) itemView.findViewById(R.id.statusInformacao);
