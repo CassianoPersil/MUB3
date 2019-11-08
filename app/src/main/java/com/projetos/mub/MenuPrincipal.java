@@ -3,6 +3,7 @@ package com.projetos.mub;
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
@@ -11,12 +12,15 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -47,6 +51,9 @@ public class MenuPrincipal extends AppCompatActivity
     private ProgressDialog load;
     private String rua, numero, bairro, cidade, estado, cep;
     private Double latitude, longitude;
+    private final static int MY_PERMISSIONS_REQUEST_INTERNET_LOCATION = 128;
+    private AlertDialog alert;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,19 +68,14 @@ public class MenuPrincipal extends AppCompatActivity
             startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
         }
 
-        if (ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
-            Intent intent = new Intent(getBaseContext(), MenuPrincipal.class);
-            startActivity(intent);
+            Log.e("TESTEE", "Permissão não concedida");
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    MY_PERMISSIONS_REQUEST_INTERNET_LOCATION);
         } else {
-            ConsultarCoordenadas consultarCoordenadas = null;
-            if (consultarCoordenadas == null) {
-                consultarCoordenadas = new ConsultarCoordenadas();
-            } else {
-                consultarCoordenadas.cancel(true);
-                consultarCoordenadas = new ConsultarCoordenadas();
-            }
-            consultarCoordenadas.execute();
+            System.out.println("A LOCALIZAÇÃO ESTÁ OK");
         }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -102,6 +104,23 @@ public class MenuPrincipal extends AppCompatActivity
         View headerView = navigationView.getHeaderView(0);
         tvNomeUsuario = (TextView) headerView.findViewById(R.id.tvMenuNomeUsuario);
         tvEmailUsuario = (TextView) headerView.findViewById(R.id.tvMenuEmailUsuario);
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            System.out.println("ENTROU AQUIIIIIIIIII");
+            executarConsultaCoodenadas();
+        }
+
+        recyclerView = (RecyclerView) findViewById(R.id.recGeral);
+        recyclerView.setLayoutManager(new GridLayoutManager(getBaseContext(), 1));
+
+        new Thread(new Runnable() {
+            public void run() {
+                Usuario u = consultarLocalmente();
+                tvNomeUsuario.setText(u.getNome());
+                tvEmailUsuario.setText(u.getEmail());
+            }
+        }).start();
     }
 
     @Override
@@ -168,18 +187,53 @@ public class MenuPrincipal extends AppCompatActivity
         return true;
     }
 
-    /*
-     ** Task criada para realizar logout do usuário.
-     */
+    @Override
+    protected void onResume() {
+        checkLocalizacao();
+        super.onResume();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[],
+                                           int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_INTERNET_LOCATION: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                        System.out.println("Localização ATIVA");
+                    }
+                }
+            }
+        }
+
+    }
+
+    private void executarConsultaCoodenadas() {
+        ConsultarCoordenadas consultarCoordenadas = null;
+        if (consultarCoordenadas == null) {
+            consultarCoordenadas = new ConsultarCoordenadas();
+        } else {
+            consultarCoordenadas.cancel(true);
+            consultarCoordenadas = new ConsultarCoordenadas();
+        }
+        consultarCoordenadas.execute();
+    }
+
+    private void checkLocalizacao() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            System.out.println("ENTROU AQUIIIIIIIIII");
+            executarConsultaCoodenadas();
+        }
+    }
+
     private class LogoutTask extends AsyncTask<Void, Void, String> {
 
         @Override
         protected String doInBackground(Void... voids) {
 
             Usuario obj = consultarLocalmente();
-
-            tvNomeUsuario.setText(obj.getNome());
-            tvEmailUsuario.setText(obj.getEmail());
             try {
                 obj.setManterLogado(false);
                 Long id = UsuarioDatabase
@@ -202,8 +256,6 @@ public class MenuPrincipal extends AppCompatActivity
 
         @Override
         protected void onPreExecute() {
-            load = ProgressDialog.show(MenuPrincipal.this,
-                    "Por favor aguarde...", "Buscando coordenadas...");
         }
 
         @Override
@@ -215,29 +267,50 @@ public class MenuPrincipal extends AppCompatActivity
             System.out.println(latitude + "\n" + longitude);
             String endereco = util.getInfFromGET("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude +
                     "," + longitude + "&key=AIzaSyAUzj3IP_i6PCj-VcZYJaNLcr0lxj9xLnc");
-            return endereco;
+            if (endereco.length() > 0) {
+                return endereco;
+            }
+            return null;
         }
 
         @Override
         protected void onPostExecute(String s) {
-            try {
-                JSONObject jsonObject = new JSONObject(s);
-                JSONObject jsonObject1 = jsonObject.getJSONArray("results").getJSONObject(0);
-                String endereco = jsonObject1.getString("formatted_address");
-                quebrarEndereco(endereco);
-                load.dismiss();
+            if (s != null) {
+                try {
+                    System.out.println("RETORNO AVISOS: " + s);
+                    JSONObject jsonObject = new JSONObject(s);
+                    JSONObject jsonObject1 = jsonObject.getJSONArray("results").getJSONObject(0);
+                    String endereco = jsonObject1.getString("formatted_address");
+                    quebrarEndereco(endereco);
+                    //load.dismiss();
 
-                CarregarAvisosTask carregarAvisosTask = null;
-                if (carregarAvisosTask == null) {
-                    carregarAvisosTask = new CarregarAvisosTask();
-                } else {
-                    carregarAvisosTask.cancel(true);
-                    carregarAvisosTask = new CarregarAvisosTask();
+                    CarregarAvisosTask carregarAvisosTask = null;
+                    if (carregarAvisosTask == null) {
+                        carregarAvisosTask = new CarregarAvisosTask();
+                    } else {
+                        carregarAvisosTask.cancel(true);
+                        carregarAvisosTask = new CarregarAvisosTask();
+                    }
+                    carregarAvisosTask.execute();
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-                carregarAvisosTask.execute();
-            } catch (JSONException e) {
-                e.printStackTrace();
+            } else {
+                // Criando gerador de Alerta
+                final AlertDialog.Builder builder = new AlertDialog.Builder(MenuPrincipal.this);
+                builder.setTitle("Nossa, tem algo errado :(");
+                builder.setMessage("Não desista da gente porque está sem internet, tente novamente! ♥");
+
+                builder.setNegativeButton("Fechar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        System.exit(0);
+                    }
+                });
+                alert = builder.create();
+                alert.show();
             }
+
         }
     }
 
@@ -259,9 +332,9 @@ public class MenuPrincipal extends AppCompatActivity
                 for (int i = 0; i < jsonArrayOcorrencias.length(); i++) {
                     JSONObject jsonOcorrencia = jsonArrayOcorrencias.getJSONObject(i);
                     CardGeral card = new CardGeral();
-                    if(jsonOcorrencia.getBoolean("statusDeAtividade") == true){
+                    if (jsonOcorrencia.getBoolean("statusDeAtividade") == true) {
                         status = "Ativo";
-                    }else{
+                    } else {
                         status = "Inativo";
                     }
                     card.setIdAlerta(jsonOcorrencia.getLong("id"));
@@ -272,10 +345,8 @@ public class MenuPrincipal extends AppCompatActivity
                     listCard.add(card);
                 }
 
-
-                RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recGeral);
                 RecycleViewAdapterGeral recycleViewAdapter = new RecycleViewAdapterGeral(getApplicationContext(), listCard);
-                recyclerView.setLayoutManager(new GridLayoutManager(getBaseContext(), 1));
+
                 recyclerView.setAdapter(recycleViewAdapter);
             } catch (JSONException e) {
                 e.printStackTrace();

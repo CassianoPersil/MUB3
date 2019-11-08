@@ -150,7 +150,7 @@ public class Splash extends AppCompatActivity {
                 }
                 return null;
             } catch (Exception e) {
-                Log.i("Error ON INSERT", e.toString());
+                Log.e("Error ON INSERT", e.toString());
                 return null;
             }
         }
