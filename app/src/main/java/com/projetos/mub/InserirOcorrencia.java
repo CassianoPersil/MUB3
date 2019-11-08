@@ -65,6 +65,7 @@ public class InserirOcorrencia extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inserir_ocorrencia);
+        setTitle("Inserir Ocorrência");
 
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         boolean GPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);

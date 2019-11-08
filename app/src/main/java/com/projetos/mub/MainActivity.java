@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         //Chamando view
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setTitle("Bem Vindo ao MUB");
 
         //Atribuição de ID
         btLogar = (Button) findViewById(R.id.btLogin);

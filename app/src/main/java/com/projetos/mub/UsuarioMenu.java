@@ -40,6 +40,7 @@ public class UsuarioMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usuario_menu);
+        setTitle("Perfil do Usuário");
         //chamando o metodo
         iniciarVariaveis();
         /*

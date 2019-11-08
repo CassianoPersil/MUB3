@@ -36,6 +36,7 @@ public class AtenderOcorrencia extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_atender_ocorrencia);
         inicializarVariaveis();
+        setTitle("Atender Ocorrências");
 
         Date d = new Date();
         SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
