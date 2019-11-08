@@ -43,7 +43,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:contentDescription="TODO"
-                app:srcCompat="@mipmap/ic_user" />
+                app:srcCompat="@mipmap/ic_user_fore" />
 
             <EditText
                 android:id="@+id/ctLoginEmail"
@@ -52,6 +52,7 @@
                 android:layout_marginRight="7dp"
                 android:layout_weight="1"
                 android:ems="10"
+                android:hint="@string/email"
                 android:inputType="textEmailAddress"
                 android:textColorLink="@color/colorPrimary" />
         </LinearLayout>
@@ -71,7 +72,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                app:srcCompat="@mipmap/ic_key_round" />
+                app:srcCompat="@mipmap/ic_key_fore" />
 
             <EditText
                 android:id="@+id/ctLoginSenha"
@@ -80,6 +81,7 @@
                 android:layout_marginRight="7dp"
                 android:layout_weight="1"
                 android:ems="10"
+                android:hint="@string/senha"
                 android:inputType="textPassword"
                 android:textColorLink="@color/design_default_color_primary"
                 android:tooltipText="Senha" />

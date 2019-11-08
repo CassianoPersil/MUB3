@@ -66,12 +66,14 @@
 
             <TextView
                 android:id="@+id/Tipo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="left"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
+                android:autoText="true"
                 android:gravity="left"
+                android:inputType="textMultiLine"
                 android:text="Semáforo Quebrado"
                 android:textColor="@android:color/background_dark" />
 
@@ -97,12 +99,14 @@
 
             <TextView
                 android:id="@+id/Status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="left"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
+                android:autoText="true"
                 android:gravity="left"
+                android:inputType="textMultiLine"
                 android:text="Finalizado"
                 android:textColor="@android:color/background_dark" />
         </LinearLayout>

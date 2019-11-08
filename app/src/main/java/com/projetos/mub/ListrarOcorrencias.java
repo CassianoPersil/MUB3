@@ -32,6 +32,7 @@ public class ListrarOcorrencias extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listrar_ocorrencias);
         reclistaOcorrencia = (RecyclerView) findViewById(R.id.recCards);
+        setTitle("Lista de Ocorrências");
 
         BuscarOcorrenciasTask consultarLocalmenteTask = null;
         if (consultarLocalmenteTask == null) {

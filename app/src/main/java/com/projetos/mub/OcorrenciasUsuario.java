@@ -21,7 +21,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class OcorrenciasUsuario extends AppCompatActivity {
-    private TextView tvProtocolo, tvTipo, tvStatus, tvEndereco, tvDescricao, tvData, tvHorario;
+    private TextView tvProtocolo, tvTipo, tvStatus, tvEndereco, tvDescricao, tvData, tvHorario, textDescricao, idTextDescricao;
     private Button btAtender;
     private Usuario usuario;
     protected Bundle informacoes;
@@ -30,6 +30,7 @@ public class OcorrenciasUsuario extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ocorrencias_usuario);
+        setTitle("Destalhes da Ocorrência");
 
         usuario = consultarLocalmente();
         this.informacoes =  new Bundle();
@@ -42,6 +43,8 @@ public class OcorrenciasUsuario extends AppCompatActivity {
         tvEndereco = findViewById(R.id.tvEnderecoOcorrencia);
         tvDescricao = findViewById(R.id.tvDescricaoOcorrencia);
         tvData = findViewById(R.id.tvDataOcorrencia);
+        textDescricao = findViewById(R.id.textDescricao);
+        idTextDescricao = findViewById(R.id.idTextDescricao);
         tvHorario = findViewById(R.id.tvHorarioOcorrencia);
         btAtender = findViewById(R.id.btAtenderOcorrencia);
 

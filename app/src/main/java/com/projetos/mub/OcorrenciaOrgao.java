@@ -20,6 +20,7 @@ public class OcorrenciaOrgao extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ocorrencia_orgao);
+        setTitle("Destalhes da Ocorrência");
 
         tvNmDepartamento = findViewById(R.id.tvNmDepartamentoAlerta);
         tvAlertaTitulo = findViewById(R.id.tvAlertaTitulo);

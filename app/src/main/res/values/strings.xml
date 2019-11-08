@@ -45,7 +45,7 @@
     <string name="Nav_AtenderOcorrencia">Atender Ocorrências</string>
     <string name="id_Tipo_ocorrencia">Tipo de Ocorrência</string>
     <string name="id_Img_ocorrencia">Imagem da Ocorrência</string>
-    <string name="Texto_Data_Nascimento">01/01/2019</string>
+    <string name="Texto_Data_Nascimento">Data de Nascimento</string>
     <string name="Texto_Telefone">(88) 9 9999-9999</string>
     <string name="Data_Ocorencia">Data:</string>
     <string name="horario_ocorrencia">Horário:</string>
@@ -53,9 +53,9 @@
     <string name="botao_recusar">Recusar</string>
     <string name="Texto_Nascimento">Data de Nascimento</string>
     <string name="Texto_Tipo_Ocorrencia_Listrar_Ocorrencia">Selecione o tipo de Ocorrência que deseja Pesquisar</string>
-    <string name="Texto_CPF">123.456.789-00</string>
-    <string name="Menu_Usuario_Texto_CPF">123.456.789-55</string>
-    <string name="Menu_Usuario_Nascimento">01/01/2019</string>
+    <string name="Texto_CPF">CPF</string>
+    <string name="Menu_Usuario_Texto_CPF">CPF</string>
+    <string name="Menu_Usuario_Nascimento">Data de Nascimento</string>
     <string name="Menu_principal_Conta">Dados da Conta</string>
     <string name="Texto_Selecionar_Atender_Ocorrencia">Selecione a ocorrencia que deseja atender</string>
     <string name="Texto_Alterar_Ococrrencia">Selecione a ocorrência que deseja alterar</string>
@@ -87,7 +87,7 @@
     <string-array name="Status_Ocorrencias">
         <item>Em espera</item>
         <item>Em atendimento</item>
-        <item>Atendimento</item>
+        <item>Finalizada</item>
         <item>Recusada</item>
     </string-array>
 
