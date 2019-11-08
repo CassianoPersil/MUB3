@@ -200,7 +200,7 @@ public class UsuarioMenu extends AppCompatActivity {
                 json.put("senha", senha);
                 json.put("dataDeNascimento", dataNascimento);
                 json.put("statusUsuario", 1);
-                json.put("nvAcesso", 1);
+                json.put("nvAcesso", 0);
 
                 System.out.println("IDENTIFICADOR DO USUARIO: " + idUsuario);
                 retornoCadastro = util.putSend("http://192.168.137.1:8080/user/alterar/" + idUsuario, json);
