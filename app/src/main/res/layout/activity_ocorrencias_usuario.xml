@@ -92,7 +92,9 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
+                    android:autoText="true"
                     android:hint="Endereço da Ocorrência"
+                    android:inputType="textMultiLine"
                     android:textSize="16sp" />
             </LinearLayout>
 
@@ -123,7 +125,9 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
+                    android:autoText="true"
                     android:hint="Descrição sobre a Ocorrência"
+                    android:inputType="textMultiLine"
                     android:textSize="16sp" />
             </LinearLayout>
 
@@ -153,7 +157,9 @@
                     android:layout_gravity="left"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
+                    android:autoText="true"
                     android:hint="Tipo Ocorrência"
+                    android:inputType="textMultiLine"
                     android:textSize="16sp" />
             </LinearLayout>
 
@@ -183,7 +189,9 @@
                     android:layout_gravity="left"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
+                    android:autoText="true"
                     android:hint="Status da Ocorrência"
+                    android:inputType="textMultiLine"
                     android:textSize="16sp" />
             </LinearLayout>
 
@@ -262,6 +270,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
+                    android:autoText="true"
+                    android:inputType="textMultiLine"
                     android:text="Descrição do Status"
                     android:textSize="16sp" />
             </LinearLayout>

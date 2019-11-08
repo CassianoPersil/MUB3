@@ -38,7 +38,9 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="1"
+                android:autoText="true"
                 android:gravity="center"
+                android:inputType="textMultiLine"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -116,10 +118,11 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
+                android:autoText="true"
                 android:ems="10"
                 android:gravity="left"
                 android:hint="@string/Caixa_Observações"
-                android:inputType="textPersonName"
+                android:inputType="textMultiLine|textPersonName"
                 android:textSize="16sp" />
 
         </LinearLayout>

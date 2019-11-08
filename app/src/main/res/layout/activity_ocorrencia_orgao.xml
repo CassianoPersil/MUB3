@@ -82,7 +82,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:autoText="true" />
             </LinearLayout>
 
             <LinearLayout
@@ -107,7 +108,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:autoText="true"
+                    android:inputType="textMultiLine" />
             </LinearLayout>
 
             <LinearLayout
@@ -135,7 +138,9 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="left"
                     android:layout_marginLeft="10dp"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:autoText="true"
+                    android:inputType="textMultiLine" />
             </LinearLayout>
 
             <LinearLayout
@@ -163,7 +168,9 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="left"
                     android:layout_marginLeft="10dp"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:autoText="true"
+                    android:inputType="textMultiLine" />
             </LinearLayout>
 
         </LinearLayout>
