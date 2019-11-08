@@ -87,7 +87,7 @@
     <string-array name="Status_Ocorrencias">
         <item>Em espera</item>
         <item>Em atendimento</item>
-        <item>Atendimento</item>
+        <item>Finalizada</item>
         <item>Recusada</item>
     </string-array>
 
