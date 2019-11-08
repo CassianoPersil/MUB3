@@ -67,11 +67,13 @@ public class UsuarioMenu extends AppCompatActivity {
         btAtualizarUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ctCpf.setEnabled(true);
                 nome = ctNomeUsuario.getText().toString();
                 email = ctEmailUsuario.getText().toString();
                 telefone = ctTelefone.getText().toString();
                 senha = ctSenhaUsuario.getText().toString();
                 dataNascimento = ctDataNasc.getText().toString();
+                cpf = ctCpf.getText().toString();
 
                 //Disparando AsyncTask onClick
                 AtualizarUsuarioLocal atualizarUsuarioLocal = null;
@@ -104,7 +106,6 @@ public class UsuarioMenu extends AppCompatActivity {
     //metodo para inicializar as variaveis
     public void iniciarVariaveis() {
         imgPerfilUsuario = (ImageView) findViewById(R.id.imgPerfilUsuario);
-        tvNomeUsuario = (TextView) findViewById(R.id.ctNomeUsuario);
         ctNomeUsuario = (TextView) findViewById(R.id.ctNomeUsuario);
         ctSenhaUsuario = (TextView) findViewById(R.id.ctEditSenha);
         ctCpf = (TextView) findViewById(R.id.ctCpf);
@@ -189,7 +190,7 @@ public class UsuarioMenu extends AppCompatActivity {
             String retornoCadastro = "";
             Utils util = new Utils();
             Usuario usuario = getUsuario();
-
+            System.out.println("SENHAAAAAAAAAAAAAAAAAAAAAA" + senha);
             try {
                 JSONObject json = new JSONObject();
                 json.put("email", email);
@@ -199,10 +200,10 @@ public class UsuarioMenu extends AppCompatActivity {
                 json.put("senha", senha);
                 json.put("dataDeNascimento", dataNascimento);
                 json.put("statusUsuario", 1);
-
                 json.put("nvAcesso", 1);
+
                 System.out.println("IDENTIFICADOR DO USUARIO: " + idUsuario);
-                retornoCadastro = util.putSend("http://192.168.137.1:8080/user/alterar/" + getIdUsuario(), json);
+                retornoCadastro = util.putSend("http://192.168.137.1:8080/user/alterar/" + idUsuario, json);
                 System.out.println(retornoCadastro);
                 return retornoCadastro;
             } catch (Exception e) {
