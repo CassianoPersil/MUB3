@@ -21,10 +21,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class OcorrenciasUsuario extends AppCompatActivity {
-    private TextView tvProtocolo, tvTipo, tvStatus, tvEndereco, tvDescricao, tvData, tvHorario, textDescricao, idTextDescricao;
+    private TextView tvProtocolo, tvTipo, tvStatus, tvEndereco, tvDescricao, tvData, tvHorario, textDescricao, idTextDescricao, tvObs, tvTxtObs;
     private Button btAtender;
     private Usuario usuario;
     protected Bundle informacoes;
+    private String txtObs = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +33,9 @@ public class OcorrenciasUsuario extends AppCompatActivity {
         setContentView(R.layout.activity_ocorrencias_usuario);
         setTitle("Destalhes da Ocorrência");
 
+
         usuario = consultarLocalmente();
-        this.informacoes =  new Bundle();
+        this.informacoes = new Bundle();
         /*
          ** Declarando VIEWS
          */
@@ -44,11 +46,13 @@ public class OcorrenciasUsuario extends AppCompatActivity {
         tvDescricao = findViewById(R.id.tvDescricaoOcorrencia);
         tvData = findViewById(R.id.tvDataOcorrencia);
         textDescricao = findViewById(R.id.textDescricao);
-        idTextDescricao = findViewById(R.id.idTextDescricao);
         tvHorario = findViewById(R.id.tvHorarioOcorrencia);
         btAtender = findViewById(R.id.btAtenderOcorrencia);
+        tvObs = findViewById(R.id.tvObs);
+        tvTxtObs = findViewById(R.id.tvTxtObs);
 
-        if(usuario.isAgente()){
+
+        if (usuario.isAgente()) {
             btAtender.setVisibility(View.VISIBLE);
         }
 
@@ -61,6 +65,15 @@ public class OcorrenciasUsuario extends AppCompatActivity {
         }
         buscarOcorrenciasTask.execute();
 
+        BuscarAtendimentosTask buscarAtendimentosTask = null;
+        if (buscarAtendimentosTask == null) {
+            buscarAtendimentosTask = new BuscarAtendimentosTask();
+        } else {
+            buscarAtendimentosTask.cancel(true);
+            buscarAtendimentosTask = new BuscarAtendimentosTask();
+        }
+        buscarAtendimentosTask.execute();
+
         btAtender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,6 +82,37 @@ public class OcorrenciasUsuario extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private class BuscarAtendimentosTask extends AsyncTask<Void, Void, String> {
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            Utils util = new Utils();
+            Intent intent = getIntent();
+            Bundle inf = intent.getExtras();
+            return util.getInfFromGET("http://192.168.137.1:8080/ocorrencia/atendimentos-ocorrencia/"
+                    + inf.getLong("idOcorrencia"));
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            try {
+                JSONArray jsonArray = new JSONArray(s);
+                JSONObject jsonObject = jsonArray.getJSONObject(0);
+                System.out.println(jsonObject);
+                txtObs = jsonObject.getJSONObject("status").getString("status") + " - "
+                        + jsonObject.getString("observacao");
+            } catch (JSONException e) {
+                Log.e("Resultado", "Não encontramos nenhum array...");
+                e.printStackTrace();
+            }
+            if (txtObs == "") {
+                tvTxtObs.setText("Até o momento nada consta em nossos registros... Aguarde!");
+            } else {
+                tvTxtObs.setText(txtObs);
+            }
+        }
     }
 
     private class BuscarOcorrenciasTask extends AsyncTask<Void, Void, String> {

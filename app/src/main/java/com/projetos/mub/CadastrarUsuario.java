@@ -19,6 +19,9 @@ import com.projetos.mub.conexao.Utils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class CadastrarUsuario extends AppCompatActivity {
     TextView ctNomeUsuario, ctEmailUsuario, ctSenhaUsuario, ctCpfUsuario, ctTelefoneUsuario, ctNascimentoUsuario;
     Button btCadastrarUsuario;
@@ -99,10 +102,10 @@ public class CadastrarUsuario extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             String titulo = "", texto = "";
-            int status = 0;
             try {
+                Long id;
                 JSONObject jsonObject = new JSONObject(s);
-                status = jsonObject.getInt("status");
+                id = jsonObject.getLong("id");
                 titulo = "Obrigado por se cadastrar!";
                 texto = "Agora é só realizar o login :)";
                 modalAlert(titulo, texto, true);
@@ -125,7 +128,7 @@ public class CadastrarUsuario extends AppCompatActivity {
                 json.put("telefone", telefone);
                 json.put("nome", nome);
                 json.put("cpf", cpf);
-                json.put("senha", senha);
+                json.put("senha", hashMd5(senha));
                 json.put("dataDeNascimento", dataNascimento);
                 json.put("nvAcesso", 1);
                 json.put("statusUsuario", 1);
@@ -196,6 +199,33 @@ public class CadastrarUsuario extends AppCompatActivity {
             segDig = new Integer(11 - (soma % 11));
 
         return primDig.toString() + segDig.toString();
+    }
+
+    private String hashMd5(String s){
+        String passwordToHash = s;
+        String generatedPassword = null;
+        try {
+            // Create MessageDigest instance for MD5
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            //Add password bytes to digest
+            md.update(passwordToHash.getBytes());
+            //Get the hash's bytes
+            byte[] bytes = md.digest();
+            //This bytes[] has bytes in decimal format;
+            //Convert it to hexadecimal format
+            StringBuilder sb = new StringBuilder();
+            for(int i=0; i< bytes.length ;i++)
+            {
+                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            }
+            //Get complete hashed password in hex format
+            generatedPassword = sb.toString();
+        }
+        catch (NoSuchAlgorithmException e)
+        {
+            e.printStackTrace();
+        }
+        return generatedPassword;
     }
 
 }

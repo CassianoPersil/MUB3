@@ -256,17 +256,17 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textoDescricaoStatus"
+                    android:id="@+id/tvObs"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="Observações do Status:"
+                    android:text="Observações de atendimento:"
                     android:textColor="@android:color/background_dark"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/idTextDescricao"
+                    android:id="@+id/tvTxtObs"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
